@@ -461,6 +461,12 @@
       "name": "PRENDE E PASSA",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/prende_passa.png",
       "rarity": "raro"
+    },
+    {
+      "id": "mumu_pidao",
+      "name": "mimda um prato de comida",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mumu_pidao.png",
+      "rarity": "raro"
     }
   ],
   "1285093524836057139": [
