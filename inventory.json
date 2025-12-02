@@ -467,6 +467,30 @@
       "name": "mimda um prato de comida",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mumu_pidao.png",
       "rarity": "raro"
+    },
+    {
+      "id": "zoio_bolso",
+      "name": "ZOIO BORSONARO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/zoio_bolso.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "gugu_juju",
+      "name": "gugu de juju",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_juju.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "mini_messi",
+      "name": "Mini messi",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mini_messi.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "usaracao",
+      "name": "JA USA RAÇAO E COME AREIA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/usaracao.png",
+      "rarity": "comum"
     }
   ],
   "1285093524836057139": [
@@ -564,6 +588,24 @@
       "id": "mucei",
       "name": "MUCEI CARAI",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mucei.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "bolsonaro_",
+      "name": "AINN BOLSONARO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/bolsonaro_.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "macaco_sargento",
+      "name": "mamaco sargento 22 🫡",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/macaco_sargento.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "cavalo_foto",
+      "name": "cavalo celular foto selfie",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/cavalo_foto.png",
       "rarity": "comum"
     }
   ],
@@ -1465,6 +1507,24 @@
       "name": "INGOLA DA BOLA",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/igor_dabola.png",
       "rarity": "raro"
+    },
+    {
+      "id": "murilin_role",
+      "name": "MUMU CASA SAPUCAI",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/murilin_role.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "murilo_morto",
+      "name": "🪨",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/murilo_morto.png",
+      "rarity": "lendario"
+    },
+    {
+      "id": "luiz_davi",
+      "name": "ta molhadinho é?",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/luiz_davi.png",
+      "rarity": "raro"
     }
   ],
   "470049195772870656": [
@@ -1689,6 +1749,18 @@
       "name": "@luiz",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/sofomaniaco.png",
       "rarity": "raro"
+    },
+    {
+      "id": "murilo_fla",
+      "name": "😱😱😱",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/murilo_fla.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "davy_jones",
+      "name": "DAVY JONES",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/davy_jones.png",
+      "rarity": "comum"
     }
   ],
   "217117377970569216": [
@@ -1867,6 +1939,54 @@
       "name": "JHOW KFC EDITION",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/jhow_kfc.png",
       "rarity": "raro"
+    },
+    {
+      "id": "luiz_lost",
+      "name": "luiz lost midia",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/luiz_lost.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "cuzinhos_pelucia",
+      "name": "CUZINHOS DE PELUCIA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/cuzinhos_pelucia.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "cachorro_mumu",
+      "name": "MEU CACHORRO SUMIU 😥😥",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/cachorro_mumu.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "moises",
+      "name": "Na reliquia do moises",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/moises.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "mamaco",
+      "name": "RAFIKI 🐵",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mamaco.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "caminhao_calcinha",
+      "name": "CAMINHAO VIADO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/caminhao_calcinha.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "mumu_zika",
+      "name": "MUMUZIKA 😁",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mumu_zika.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "gugu_mtoemo",
+      "name": "voces nao me entendem",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_mtoemo.png",
+      "rarity": "raro"
     }
   ],
   "978799312140140554": [
@@ -1934,6 +2054,24 @@
       "id": "cavalo_foto",
       "name": "cavalo celular foto selfie",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/cavalo_foto.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "luiz_aut",
+      "name": "luiz autisto",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/luiz_aut.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "leo_carnaval",
+      "name": "LEO CARNAVAL",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/leo_carnaval.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "gugu_gozo",
+      "name": "quer leitinho ?",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_gozo.png",
       "rarity": "comum"
     }
   ],
