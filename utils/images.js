@@ -71,13 +71,13 @@ export const cardsPool = [
     id: 'caminhoneiro_dosbon',
     name: 'SONHOOOO 😍',
     imageUrl: `${BASE_URL}/caminhoneiro_dosbon.png`, 
-    rarity: 'epica'
+    rarity: 'epico'
   },
   {
     id: 'jao_ovo',
     name: 'COMO É Q CES TA VIADO ÓO OS CARA',
     imageUrl: `${BASE_URL}/jao_ovo.png`, 
-    rarity: 'epica'
+    rarity: 'epico'
   },
   {
     id: 'andriew2',
@@ -515,7 +515,13 @@ export const cardsPool = [
     id: 'jhow_verao',
     name: 'JHOW CURTINDO VERAO',
     imageUrl: `${BASE_URL}/jhow_verao.png`,
-    rarity: ''
+    rarity: 'raro'
+  },
+  {
+    id: 'gatinho_lolo',
+    name: 'ENCHE DE LOLO',
+    imageUrl: `${BASE_URL}/gatinho_lolo.jpg`,
+    rarity: 'comum'
   },
   {
     id: 'murilin_dnv',
@@ -689,7 +695,7 @@ export const cardsPool = [
     id: 'jhow_morto',
     name: 'JHOW MORREU!!!',
     imageUrl: `${BASE_URL}/jhow_morto.png`,
-    rarity: 'raro'
+    rarity: 'lendario'
    },
   {
     id: 'jhow_desaparecido',
