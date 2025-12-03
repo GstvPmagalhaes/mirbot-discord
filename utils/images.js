@@ -758,12 +758,6 @@ export const cardsPool = [
      rarity: 'comum'
     },
     {
-     id: 'mumu_bert',
-     name: 'MURILO BERT',
-     imageUrl: `${BASE_URL}/mumu_bert.png`,
-     rarity: 'raro'
-    },
-    {
      id: 'mumu_jardas',
      name: 'OLHAR DE MIL JARDAS',
      imageUrl: `${BASE_URL}/mumu_jardas.png`,
