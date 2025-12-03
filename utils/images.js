@@ -74,6 +74,42 @@ export const cardsPool = [
     rarity: 'epica'
   },
   {
+    id: 'jao_ovo',
+    name: 'COMO É Q CES TA VIADO ÓO OS CARA',
+    imageUrl: `${BASE_URL}/jao_ovo.png`, 
+    rarity: 'epica'
+  },
+  {
+    id: 'andriew2',
+    name: 'KKKKKKKKKKKKKK',
+    imageUrl: `${BASE_URL}/andriew2.png`, 
+    rarity: 'raro'
+  },
+  {
+    id: 'igortalaras',
+    name: 'ALMOCO NA CASA DO AMIGO E A ESPOSA ESTAVA UMA DELICIA',
+    imageUrl: `${BASE_URL}/igortalaras.png`, 
+    rarity: 'raro'
+  },
+  {
+    id: 'jhow_morreu_dnv',
+    name: 'jhow morto de fato',
+    imageUrl: `${BASE_URL}/jhow_morreu_dnv.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'preco_nanico',
+    name: 'PRECO NANICO',
+    imageUrl: `${BASE_URL}/preco_nanico.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'laelelanches',
+    name: 'LÁ ELE',
+    imageUrl: `${BASE_URL}/laelelanches.png`, 
+    rarity: 'comum'
+  },
+  {
     id: 'cachorro_mumu',
     name: 'MEU CACHORRO SUMIU 😥😥',
     imageUrl: `${BASE_URL}/cachorro_mumu.png`, 

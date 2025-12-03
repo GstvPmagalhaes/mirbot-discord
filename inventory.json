@@ -2157,6 +2157,12 @@
       "rarity": "comum"
     },
     {
+      "id": "bizarro_3200",
+      "name": "BIZARRO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/bizarro_3200.png",
+      "rarity": "lendario"
+    },
+    {
       "id": "taco_calvo",
       "name": "NEM TENHO ENTRADA MAN",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/taco_calvo.png",
