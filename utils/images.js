@@ -68,12 +68,6 @@ export const cardsPool = [
     rarity: 'comum'
   },
   {
-    id: 'computador',
-    name: 'esse ai gosta de criança',
-    imageUrl: `${BASE_URL}/computador.png`, 
-    rarity: 'comum'
-  },
-  {
     id: 'caminhoneiro_dosbon',
     name: 'SONHOOOO 😍',
     imageUrl: `${BASE_URL}/caminhoneiro_dosbon.png`, 
@@ -564,12 +558,6 @@ export const cardsPool = [
     name: 'gugu emo',
     imageUrl: `${BASE_URL}/gugu_emo.png`,
     rarity: 'comum'
-  },
-  {
-    id: 'gugu_muie',
-    name: 'gugu muie? 🤨',
-    imageUrl: `${BASE_URL}/gugu_muie.png`,
-    rarity: 'raro'
   },
   {
     id: 'gugu_covid',
