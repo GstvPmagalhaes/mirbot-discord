@@ -453,7 +453,7 @@ client.on(Events.MessageCreate, async (message) => {
   }
 
     if(content == '!comandos'){
-       message.reply('GUIA DE COMANDOS: \nPra dropar uma leva de cartas: **`as`**\n Pra ver todas as cartas do inventario: **`!inv`**\n Pra filtrar por raridade só lançar um **`!inv + raridade`**  \n Pra ver uma carta em ispicifico **`!card + numero da carta`**');
+       message.reply('GUIA DE COMANDOSS: \nPra dropar uma leva de cartas: **`as`**\n Pra ver todas as cartas do inventario: **`!inv`**\n Pra filtrar por raridade só lançar um **`!inv + raridade`**  \n Pra ver uma carta em ispicifico **`!card + numero da carta`**');
     }
 
    if (content.startsWith('!card')) {
