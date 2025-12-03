@@ -521,7 +521,7 @@ export const cardsPool = [
     id: 'gatinho_lolo',
     name: 'ENCHE DE LOLO',
     imageUrl: `${BASE_URL}/gatinho_lolo.jpg`,
-    rarity: 'comum'
+    rarity: 'raro'
   },
   {
     id: 'murilin_dnv',
