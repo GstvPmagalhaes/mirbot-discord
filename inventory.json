@@ -1131,6 +1131,99 @@
       "name": "E O PATATA?",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/patati_7mil.png",
       "rarity": "comum"
+<<<<<<< Updated upstream
+=======
+    },
+    {
+      "id": "mumu_pidao",
+      "name": "mimda um prato de comida",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mumu_pidao.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "usaracao",
+      "name": "JA USA RAÇAO E COME AREIA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/usaracao.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "andriew2",
+      "name": "KKKKKKKKKKKKKK",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/andriew2.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "trio_lendario",
+      "name": "QUE RANÇOOOH",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/trio_lendario.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "gabriel_garcom",
+      "name": "GABRIEL GARÇÃO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gabriel_garcom.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "jao_flo",
+      "name": "jao flozinha",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/jao_flo.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "gugu_juju",
+      "name": "gugu de juju",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_juju.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "deus_cuida",
+      "name": "Deus cuida de mim",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/deus_cuida.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "nao_pergunte",
+      "name": "NAO PERGUNTE",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nao_pergunte.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "gugu_juju",
+      "name": "gugu de juju",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_juju.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "chefe",
+      "name": "chefe do nanico kkkkkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/chefe.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "gugu_gozo",
+      "name": "quer leitinho ?",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_gozo.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "laelelanches",
+      "name": "LÁ ELE",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/laelelanches.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "leo_taca",
+      "name": "LAMPIAO DE JESUS CRISTO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/leo_taca.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "moises",
+      "name": "Na reliquia do moises",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/moises.png",
+      "rarity": "epico"
+>>>>>>> Stashed changes
     }
   ],
   "887546445681537024": [
