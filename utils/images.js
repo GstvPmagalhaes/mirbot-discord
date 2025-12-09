@@ -764,6 +764,54 @@ export const cardsPool = [
      rarity: 'raro'
     },
     {
+     id: 'x1_cartola',
+     name: 'ACORDA AI TU TAMEN FELADAPUTA',
+     imageUrl: `${BASE_URL}/x1_cartola.png`,
+     rarity: 'supremo'
+    },
+    {
+     id: 'onca_pintuda',
+     name: 'ONÇA PINTUDA',
+     imageUrl: `${BASE_URL}/onca_pintuda.png`,
+     rarity: 'epico'
+    },
+    {
+     id: 'mimdepapai',
+     name: 'MEU FI QUE CACHAÇA',
+     imageUrl: `${BASE_URL}/mimdepapai.png`,
+     rarity: 'lendario'
+    },
+    {
+     id: 'fallenzao_aqui',
+     name: 'FALLENZAO NA AREA',
+     imageUrl: `${BASE_URL}/fallenzao_aqui.png`,
+     rarity: 'lendario'
+    },
+    {
+     id: 'goku_20',
+     name: 'GOKU SSJ 20',
+     imageUrl: `${BASE_URL}/goku_20.png`,
+     rarity: 'epico'
+    },
+    {
+     id: 'monark',
+     name: 'ACORDA CARA JA COMEÇOU!!',
+     imageUrl: `${BASE_URL}/monark.png`,
+     rarity: 'raro'
+    },
+    {
+     id: 'kogos_templario',
+     name: 'KOGOS TEMPLARIO',
+     imageUrl: `${BASE_URL}/kogos_templario.png`,
+     rarity: 'raro'
+    },
+    {
+     id: 'bolso_mosquito',
+     name: 'BOLSONARIO MOSQUITO',
+     imageUrl: `${BASE_URL}/bolso_mosquito.png`,
+     rarity: 'raro'
+    },
+    {
      id: 'taco_calvo',
      name: 'NEM TENHO ENTRADA MAN',
      imageUrl: `${BASE_URL}/taco_calvo.png`,

@@ -803,6 +803,12 @@
       "name": "JA USA RAÇAO E COME AREIA",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/usaracao.png",
       "rarity": "comum"
+    },
+    {
+      "id": "mucei",
+      "name": "MUCEI CARAI",
+      "imageUrl": "https://cdn.discordapp.com/attachments/848600691097468971/1073812850759434340/EALHxn5XUAAmEGo.png?ex=692872e6&is=69272166&hm=92b3f4bf2c9c73648a50605bb553930b9972a24e5802d8898d95761f35f3e0b1&",
+      "rarity": "comum"
     }
   ],
   "1285093524836057139": [
@@ -1944,12 +1950,6 @@
       "id": "luiz_mugshot",
       "name": "LUIZ MUGSHOT",
       "imageUrl": "https://cdn.discordapp.com/attachments/848600691097468971/1379937370668798033/IMG_2926.png?ex=69281c13&is=6926ca93&hm=842ca3a745cf12684b16f910573fc676fed9265dce312467c70579ceb754160c&",
-      "rarity": "comum"
-    },
-    {
-      "id": "mucei",
-      "name": "MUCEI CARAI",
-      "imageUrl": "https://cdn.discordapp.com/attachments/848600691097468971/1073812850759434340/EALHxn5XUAAmEGo.png?ex=692872e6&is=69272166&hm=92b3f4bf2c9c73648a50605bb553930b9972a24e5802d8898d95761f35f3e0b1&",
       "rarity": "comum"
     },
     {

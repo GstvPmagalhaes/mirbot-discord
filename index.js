@@ -34,12 +34,85 @@ const client = new Client({
   partials: [Partials.Channel],
 });
 
+//batalhas
+const battles = new Map();
+const BATTLE_TIMEOUT = 2 * 60 * 1000;
+
+
 // cooldown e inventário
+const REPEAT_PAGE_SIZE = 10;
 const cooldowns = new Map(); // userId -> timestamp
 const INVENTORY_FILE = './inventory.json';
 const PAGE_SIZE = 10; 
 let inventory = new Map();
 const sessions = new Map();  // sessionId -> { userId, options, messageId }
+
+function buildRepeatPage(userId, page = 1) {
+  const userInventory = inventory.get(userId) || [];
+
+  // agrupa por id
+  const map = new Map();
+  for (const card of userInventory) {
+    const entry = map.get(card.id) || { card, count: 0 };
+    entry.count += 1;
+    map.set(card.id, entry);
+  }
+
+  // filtra só repetidas
+  const repetidas = [...map.values()].filter((e) => e.count > 1);
+  const total = repetidas.length;
+
+  if (total === 0) {
+    return {
+      content: '🔁 Você não tem cartas repetidas.',
+      components: []
+    };
+  }
+
+  const totalPages = Math.max(1, Math.ceil(total / REPEAT_PAGE_SIZE));
+  if (page < 1) page = 1;
+  if (page > totalPages) page = totalPages;
+
+  const start = (page - 1) * REPEAT_PAGE_SIZE;
+  const end = start + REPEAT_PAGE_SIZE;
+  const slice = repetidas.slice(start, end);
+
+  const lines = slice.map((e, i) => {
+    const meta = getRarityMeta(e.card);
+    return `${start + i + 1}. ${e.card.name} — ${meta.label} (x${e.count})  [\`${e.card.id}\`]`;
+  });
+
+  const header =
+    `🔁 **Cartas repetidas:** (${total} no total) — pág. ${page}/${totalPages}\n`;
+
+  const row = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setCustomId(`repeat:${userId}:${page}:first`)
+      .setLabel('≪')
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(page === 1),
+    new ButtonBuilder()
+      .setCustomId(`repeat:${userId}:${page}:prev`)
+      .setLabel('<')
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(page === 1),
+    new ButtonBuilder()
+      .setCustomId(`repeat:${userId}:${page}:next`)
+      .setLabel('>')
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(page === totalPages),
+    new ButtonBuilder()
+      .setCustomId(`repeat:${userId}:${page}:last`)
+      .setLabel('≫')
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(page === totalPages)
+  );
+
+  return {
+    content: header + lines.join('\n'),
+    components: [row]
+  };
+}
 
 function buildInventoryPage(userId, page = 1, filter = 'all') {
   const userInventory = inventory.get(userId) || [];
@@ -367,6 +440,157 @@ client.on(Events.MessageCreate, async (message) => {
   const content = raw.toLowerCase();
   const userId = message.author.id;
 
+  if (content === '!repetidas') {
+    const payload = buildRepeatPage(userId, 1);
+    await message.reply(payload);
+    return;
+  }
+
+  //BAFAO
+  if (content.startsWith('!bafao')) {
+    const parts = raw.split(/\s+/);
+    if (parts.length < 3) {
+      message.reply('Uso: `!bafao @pessoa id_da_carta`');
+      return;
+    }
+
+    const target = message.mentions.users.first();
+    if (!target) {
+      message.reply('Você precisa mencionar alguém.');
+      return;
+    }
+
+    const cardId = parts[2];
+    const desafianteId = message.author.id;
+    const alvoId = target.id;
+
+    if (desafianteId === alvoId) {
+      message.reply('Você não pode desafiar você mesmo, paizão 😂');
+      return;
+    }
+
+    // verifica carta do desafiante
+    const inv = inventory.get(desafianteId) || [];
+    const cartaDesafiante = inv.find((c) => c.id === cardId);
+
+    if (!cartaDesafiante) {
+      message.reply('Você não tem essa carta para apostar.');
+      return;
+    }
+
+    // cria chave
+    const key = `${desafianteId}:${alvoId}`;
+    if (battles.has(key)) {
+      message.reply('Já existe um bafão pendente entre vocês!');
+      return;
+    }
+
+    const battle = {
+      desafianteId,
+      alvoId,
+      cartaDesafiante,
+      cartaAlvo: null,
+      status: 'waiting',
+      createdAt: Date.now(),
+    };
+
+    battles.set(key, battle);
+
+    // timeout automatico
+    setTimeout(() => {
+      const b = battles.get(key);
+      if (b && b.status === 'waiting') {
+        battles.delete(key);
+        message.channel.send(`⏳ O bafão entre <@${desafianteId}> e <@${alvoId}> expirou.`);
+      }
+    }, BATTLE_TIMEOUT);
+
+    message.reply(
+      `🔥 **BAFÃO INICIADO!**\n\n` +
+      `<@${alvoId}> foi desafiado por <@${desafianteId}>!\n` +
+      `Aposta: **${cartaDesafiante.name}**\n\n` +
+      `Para aceitar, use:\n` +
+      `\`!aceitarbafao ${cardId} @${message.author.username}\``
+    );
+
+    return;
+  }
+
+  if (content.startsWith('!aceitarbafao')) {
+    const parts = raw.split(/\s+/);
+    if (parts.length < 3) {
+      message.reply('Uso: `!aceitarbafao id_da_carta @pessoa`');
+      return;
+    }
+
+    const cartaIdAlvo = parts[1];
+    const desafiante = message.mentions.users.first();
+
+    if (!desafiante) {
+      message.reply('Você precisa mencionar o desafiante.');
+      return;
+    }
+
+    const alvoId = message.author.id;
+    const desafianteId = desafiante.id;
+
+    const key = `${desafianteId}:${alvoId}`;
+    const battle = battles.get(key);
+
+    if (!battle) {
+      message.reply('Não existe bafão pendente com essa pessoa.');
+      return;
+    }
+
+    // verifica carta do alvo
+    const invAlvo = inventory.get(alvoId) || [];
+    const cartaAlvo = invAlvo.find((c) => c.id === cartaIdAlvo);
+
+    if (!cartaAlvo) {
+      message.reply('Você não tem essa carta para apostar.');
+      return;
+    }
+
+    // completa batalha
+    battle.cartaAlvo = cartaAlvo;
+    battle.status = 'ready';
+
+    // decide vencedor
+    const winnerId =
+      Math.random() < 0.5 ? desafianteId : alvoId;
+    const loserId = winnerId === desafianteId ? alvoId : desafianteId;
+
+    const cartaPerdida =
+      loserId === desafianteId
+        ? battle.cartaDesafiante
+        : battle.cartaAlvo;
+
+    // retira 1 cópia do perdedor
+    const loserInv = inventory.get(loserId) || [];
+    const idx = loserInv.findIndex((c) => c.id === cartaPerdida.id);
+    if (idx !== -1) loserInv.splice(idx, 1);
+    inventory.set(loserId, loserInv);
+
+    // adiciona ao vencedor
+    const winnerInv = inventory.get(winnerId) || [];
+    winnerInv.push(cartaPerdida);
+    inventory.set(winnerId, winnerInv);
+
+    await saveInventory();
+
+    battles.delete(key);
+
+    message.channel.send(
+      `⚔️ **BAFÃO RESOLVIDO!** ⚔️\n\n` +
+      `🎉 **Vencedor:** <@${winnerId}>\n` +
+      `😵 **Perdedor:** <@${loserId}>\n\n` +
+      `💳 Carta apostada: **${cartaPerdida.name}**\n` +
+      `A carta foi transferida do perdedor para o vencedor!`
+    );
+
+    return;
+  }
+
   // ---- COMANDO DROP ----
   if (content === 'as') {
     const now = Date.now();
@@ -452,9 +676,33 @@ client.on(Events.MessageCreate, async (message) => {
     return;
   }
 
-    if(content == '!comandos'){
-       message.reply('GUIA DE COMANDOSS: \nPra dropar uma leva de cartas: **`as`**\n Pra ver todas as cartas do inventario: **`!inv`**\n Pra filtrar por raridade só lançar um **`!inv + raridade`**  \n Pra ver uma carta em ispicifico **`!card + numero da carta`**');
-    }
+  if (content === '!comandos') {
+    await message.reply(
+      '**📜 GUIA DE COMANDOS DO MIRBOT:**\n\n' +
+      '🎴 **Dropar cartas**\n' +
+      '→ `as`\n' +
+      'Dropa uma leva de 3 cartas.\n\n' +
+
+      '📦 **Inventário**\n' +
+      '→ `!inv`\n' +
+      'Mostra todas as suas cartas com paginação.\n\n' +
+      '→ `!inv raros`, `!inv epicos`, `!inv lendarios`, `!inv comuns`\n' +
+      'Filtra o inventário por raridade.\n\n' +
+      '→ `!card <n>`\n' +
+      'Mostra a carta **n** do seu inventário em destaque.\n\n' +
+
+      '🔁 **Cartas Repetidas**\n' +
+      '→ `!repetidas`\n' +
+      'Mostra todas as cartas que você tem duplicadas, com paginação.\n\n' +
+
+      '⚔️ **Batalha / Bafão**\n' +
+      '→ `!bafao @usuario <id_da_carta>`\n' +
+      'Desafia alguém para um X1 valendo cartas.\n\n' +
+      '→ `!aceitarbafao <id_da_carta> @usuario`\n' +
+      'Aceita o desafio e inicia a batalha (50/50). O vencedor leva a carta apostada.\n\n' 
+    );
+    return;
+  }
 
    if (content.startsWith('!card')) {
     const parts = raw.split(/\s+/);
@@ -502,6 +750,64 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
   const parts = interaction.customId.split(':');
   const prefix = parts[0];
+
+  if (prefix === 'repeat') {
+  const [, ownerId, pageStr, action] = parts;
+
+  if (interaction.user.id !== ownerId) {
+    return interaction.reply({
+      content: 'Essas repetidas não são suas, pai 😂',
+      ephemeral: true
+    });
+  }
+
+  const userInventory = inventory.get(ownerId) || [];
+  if (userInventory.length === 0) {
+    return interaction.update({
+      content: '🔁 Você não tem cartas repetidas.',
+      components: []
+    });
+  }
+
+  // descobrir total de repetidas (pois a paginação depende disso)
+  const map = new Map();
+  for (const card of userInventory) {
+    const entry = map.get(card.id) || { card, count: 0 };
+    entry.count += 1;
+    map.set(card.id, entry);
+  }
+  const repetidas = [...map.values()].filter((e) => e.count > 1);
+  const total = repetidas.length;
+  const totalPages = Math.max(1, Math.ceil(total / REPEAT_PAGE_SIZE));
+
+  const currentPage = parseInt(pageStr, 10);
+  let newPage = currentPage;
+
+  switch (action) {
+    case 'first':
+      newPage = 1;
+      break;
+    case 'prev':
+      newPage = Math.max(1, currentPage - 1);
+      break;
+    case 'next':
+      newPage = Math.min(totalPages, currentPage + 1);
+      break;
+    case 'last':
+      newPage = totalPages;
+      break;
+  }
+
+  const payload = buildRepeatPage(ownerId, newPage);
+
+  try {
+    await interaction.update(payload);
+  } catch (err) {
+    console.error('Erro ao atualizar página repetidas:', err);
+  }
+
+  return;
+}
 
   // 1) PAGINAÇÃO DO INVENTÁRIO
   if (prefix === 'inv') {
