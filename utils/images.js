@@ -770,6 +770,24 @@ export const cardsPool = [
      rarity: 'supremo'
     },
     {
+     id: 'demiurgo',
+     name: 'DEMIURGO',
+     imageUrl: `${BASE_URL}/demiurgo.png`,
+     rarity: 'lendario'
+    },
+    {
+     id: 'cachorro_moto',
+     name: 'CARAMELO NA MOTOCA',
+     imageUrl: `${BASE_URL}/cachorro_moto.png`,
+     rarity: 'raro'
+    },
+    {
+     id: 'mulher_bicicleta',
+     name: 'NUNCA SUBESTIME',
+     imageUrl: `${BASE_URL}/mulher_bicicleta.png`,
+     rarity: 'epico'
+    },
+    {
      id: 'onca_pintuda',
      name: 'ONÇA PINTUDA',
      imageUrl: `${BASE_URL}/onca_pintuda.png`,
