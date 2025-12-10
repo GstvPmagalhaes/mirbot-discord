@@ -153,6 +153,10 @@ function buildInventoryPage(userId, page = 1, filter = 'all') {
       displayInventory = userInventory.filter((c) => c.rarity === 'lendario');
       filterLabel = 'lendários';
       break;
+    case 'supremo':
+      displayInventory = userInventory.filter((c) => c.rarity === 'supremo');
+      filterLabel = 'supremos';
+      break;
     default:
       filter = 'all';
       break;
@@ -176,7 +180,7 @@ function buildInventoryPage(userId, page = 1, filter = 'all') {
 
   const header =
     `📦 **Suas cartas** (filtro: ${filterLabel}) ` +
-    `(**COMUM**: ${comumCount} | **RARO**: ${raroCount} | **EPICA**: ${epicoCount} | **LENDARIA**: ${lendarioCount}) ` +
+    `(**COMUM**: ${comumCount} | **RARO**: ${raroCount} | **EPICA**: ${epicoCount} | **LENDARIA**: ${lendarioCount}) | **SUPREMA**: ${supremoCount})` +
     `— ${total} no total — pág. ${page}/${totalPages}`;
 
   const content =
@@ -510,7 +514,7 @@ client.on(Events.MessageCreate, async (message) => {
       `<@${alvoId}> foi desafiado por <@${desafianteId}>!\n` +
       `Aposta: **${cartaDesafiante.name}**\n\n` +
       `Para aceitar, use:\n` +
-      `\`!aceitarbafao ${cardId} @${message.author.username}\``
+      `\`!aceitarbafao id_da_carta @${message.author.username}\``
     );
 
     return;
@@ -581,9 +585,9 @@ client.on(Events.MessageCreate, async (message) => {
     battles.delete(key);
 
     message.channel.send(
-      `⚔️ **BAFÃO RESOLVIDO!** ⚔️\n\n` +
+      `⚔️ **RAPELÔ ZÉ** ⚔️\n\n` +
       `🎉 **Vencedor:** <@${winnerId}>\n` +
-      `😵 **Perdedor:** <@${loserId}>\n\n` +
+      `😵 **otario kkkk:** <@${loserId}>\n\n` +
       `💳 Carta apostada: **${cartaPerdida.name}**\n` +
       `A carta foi transferida do perdedor para o vencedor!`
     );
@@ -602,7 +606,7 @@ client.on(Events.MessageCreate, async (message) => {
       const minutes = Math.floor(remaining / 60000);
       const seconds = Math.floor((remaining % 60000) / 1000);
       await message.reply(
-        `Calma calabreso, faltam **${minutes}m ${seconds}s** pro próximo drop.`
+        `UIUIUI TA ANSIOSO É? Faltam **${minutes}m ${seconds}s** pro próximo drop.`
       );
       return;
     }
