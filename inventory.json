@@ -1235,6 +1235,24 @@
       "name": "MUMU CASA SAPUCAI",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/murilin_role.png",
       "rarity": "raro"
+    },
+    {
+      "id": "moises",
+      "name": "Na reliquia do moises",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/moises.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "patati_7mil",
+      "name": "E O PATATA?",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/patati_7mil.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "encontrado_morto",
+      "name": "encontrado morto!! hoje cedo..",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/encontrado_morto.png",
+      "rarity": "comum"
     }
   ],
   "1285093524836057139": [
@@ -2073,6 +2091,12 @@
       "name": "MUMU CASA SAPUCAI",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/murilin_role.png",
       "rarity": "raro"
+    },
+    {
+      "id": "davy_jones",
+      "name": "DAVY JONES",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/davy_jones.png",
+      "rarity": "comum"
     }
   ],
   "887546445681537024": [
@@ -4827,6 +4851,18 @@
       "name": "jao de shapeu",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/jao_chapeu.png",
       "rarity": "raro"
+    },
+    {
+      "id": "gugu_mijo",
+      "name": "gugu mijano",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_mijo.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "gugu_demaua",
+      "name": "GUGU DE MAUA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_demaua.png",
+      "rarity": "comum"
     }
   ],
   "217117377970569216": [
@@ -5611,6 +5647,12 @@
       "name": "CARAMELO NA MOTOCA",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/cachorro_moto.png",
       "rarity": "raro"
+    },
+    {
+      "id": "pizza_media",
+      "name": "Sandra atualizou sua foto",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/pizza_media.png",
+      "rarity": "epico"
     }
   ],
   "978799312140140554": [

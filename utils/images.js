@@ -10,11 +10,11 @@ export const rarities = {
 
 
 export const rarityWeights = {
-  comum: 90,     // 80%
-  raro: 25,      // 15%
-  epico: 10,      // 4%
-  lendario: 1,   // 0,5%
-  supremo: 0.02 // 0,1%
+  comum: 70,
+  raro: 10,   
+  epico: 15,
+  lendario: 1,
+  supremo: 0.02
 };
 
 function pickRarityByWeight() {
@@ -91,24 +91,24 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/igortalaras.png`, 
     rarity: 'raro'
   },
-  {
-    id: 'jhow_morreu_dnv',
-    name: 'jhow morto de fato',
-    imageUrl: `${BASE_URL}/jhow_morreu_dnv.png`, 
-    rarity: 'comum'
-  },
-  {
-    id: 'preco_nanico',
-    name: 'PRECO NANICO',
-    imageUrl: `${BASE_URL}/preco_nanico.png`, 
-    rarity: 'comum'
-  },
-  {
-    id: 'laelelanches',
-    name: 'LÁ ELE',
-    imageUrl: `${BASE_URL}/laelelanches.png`, 
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'jhow_morreu_dnv',
+  //   name: 'jhow morto de fato',
+  //   imageUrl: `${BASE_URL}/jhow_morreu_dnv.png`, 
+  //   rarity: 'comum'
+  // },
+  // {
+  //   id: 'preco_nanico',
+  //   name: 'PRECO NANICO',
+  //   imageUrl: `${BASE_URL}/preco_nanico.png`, 
+  //   rarity: 'comum'
+  // },
+  // {
+  //   id: 'laelelanches',
+  //   name: 'LÁ ELE',
+  //   imageUrl: `${BASE_URL}/laelelanches.png`, 
+  //   rarity: 'comum'
+  // },
   {
     id: 'cachorro_mumu',
     name: 'MEU CACHORRO SUMIU 😥😥',
@@ -139,12 +139,12 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/deus_maravilhoso.png`, 
     rarity: 'raro'
   },
-  {
-    id: 'peixe_queanda',
-    name: 'ATERRORIZANTE!!!',
-    imageUrl: `${BASE_URL}/peixe_queanda.png`, 
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'peixe_queanda',
+  //   name: 'ATERRORIZANTE!!!',
+  //   imageUrl: `${BASE_URL}/peixe_queanda.png`, 
+  //   rarity: 'comum'
+  // },
   {
     id: 'pizza_media',
     name: 'Sandra atualizou sua foto',
@@ -157,24 +157,24 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/ditado.png`, 
     rarity: 'raro'
   },
-  {
-    id: 'nao_pergunte',
-    name: 'NAO PERGUNTE',
-    imageUrl: `${BASE_URL}/nao_pergunte.png`, 
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'nao_pergunte',
+  //   name: 'NAO PERGUNTE',
+  //   imageUrl: `${BASE_URL}/nao_pergunte.png`, 
+  //   rarity: 'comum'
+  // },
   {
     id: 'fato_assustador',
     name: 'EXISTE UM LUGAR',
     imageUrl: `${BASE_URL}/fato_assustador.png`, 
     rarity: 'lendario'
   },
-  {
-    id: 'tattoo_grau',
-    name: 'É OS D VIDA',
-    imageUrl: `${BASE_URL}/tattoo_grau.png`, 
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'tattoo_grau',
+  //   name: 'É OS D VIDA',
+  //   imageUrl: `${BASE_URL}/tattoo_grau.png`, 
+  //   rarity: 'comum'
+  // },
   {
     id: 'afelelicidade',
     name: 'LUIZ CURTIU',
@@ -193,29 +193,29 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/filhonasceu.png`, 
     rarity: 'epico'
   },
-  {
-    id: 'cuzinhos_pelucia',
-    name: 'CUZINHOS DE PELUCIA',
-    imageUrl: `${BASE_URL}/cuzinhos_pelucia.png`, 
-    rarity: 'comum'
-  },
-  {
-    id: 'usaracao',
-    name: 'JA USA RAÇAO E COME AREIA',
-    imageUrl: `${BASE_URL}/usaracao.png`, 
-    rarity: 'comum'
-  },
-  {
-    id: 'aparelho_refri',
-    name: 'APAELHO REFRIGERAÇAO COMPLETA',
-    imageUrl: `${BASE_URL}/aparelho_refri.png`, 
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'cuzinhos_pelucia',
+  //   name: 'CUZINHOS DE PELUCIA',
+  //   imageUrl: `${BASE_URL}/cuzinhos_pelucia.png`, 
+  //   rarity: 'comum'
+  // },
+  // {
+  //   id: 'usaracao',
+  //   name: 'JA USA RAÇAO E COME AREIA',
+  //   imageUrl: `${BASE_URL}/usaracao.png`, 
+  //   rarity: 'comum'
+  // },
+  // {
+  //   id: 'aparelho_refri',
+  //   name: 'APAELHO REFRIGERAÇAO COMPLETA',
+  //   imageUrl: `${BASE_URL}/aparelho_refri.png`, 
+  //   rarity: 'comum'
+  // },
   {
     id: 'degue',
     name: 'TEM DE QUE',
     imageUrl: `${BASE_URL}/degue.png`, 
-    rarity: 'supremo'
+    rarity: 'lendario'
   },
   {
     id: 'cudogustavo',
@@ -241,12 +241,12 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/rafael.png`, 
     rarity: 'epico'
   },
-  {
-    id: 'belle_belinha',
-    name: 'Belle belinha',
-    imageUrl: `${BASE_URL}/belle_belinha.png`, 
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'belle_belinha',
+  //   name: 'Belle belinha',
+  //   imageUrl: `${BASE_URL}/belle_belinha.png`, 
+  //   rarity: 'comum'
+  // },
   {
     id: 'manda_foto',
     name: 'PVF MANDA PFV PFV',
@@ -277,29 +277,41 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/luiz_kick.png`,
     rarity: 'raro'
   },
-  {
-    id: 'mucei',
-    name: 'MUCEI CARAI',
-    imageUrl: `${BASE_URL}/mucei.png`,
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'mucei',
+  //   name: 'MUCEI CARAI',
+  //   imageUrl: `${BASE_URL}/mucei.png`,
+  //   rarity: 'comum'
+  // },
   {
     id: 'nanico_sol',
     name: 'NANICO CLT',
     imageUrl: `${BASE_URL}/nanico_sol.png`,
     rarity: 'raro'
   },
+  // {
+  //   id: 'fab_godawn',
+  //   name: 'VALE DOS MACHADOS',
+  //   imageUrl: `${BASE_URL}/fab_godawn.png`,
+  //   rarity: 'comum'
+  // },
+  // {
+  //   id: 'gustavo_metafora',
+  //   name: 'gugu metaforando',
+  //   imageUrl: `${BASE_URL}/gustavo_metafora.png`,
+  //   rarity: 'comum'
+  // },
   {
-    id: 'fab_godawn',
-    name: 'VALE DOS MACHADOS',
-    imageUrl: `${BASE_URL}/fab_godawn.png`,
-    rarity: 'comum'
+    id: 'godzilla',
+    name: 'kkkkkkkkkkkkk',
+    imageUrl: `${BASE_URL}/godzilla.png`,
+    rarity: 'supremo'
   },
   {
-    id: 'gustavo_metafora',
-    name: 'gugu metaforando',
-    imageUrl: `${BASE_URL}/gustavo_metafora.png`,
-    rarity: 'comum'
+    id: 'luqinha_god',
+    name: 'luqinha amem',
+    imageUrl: `${BASE_URL}/luqinha_god.png`,
+    rarity: 'epico'
   },
   {
     id: 'luqinha_god',
@@ -313,36 +325,36 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/andriew.png`,
     rarity: 'epico'
   },
-  {
-    id: 'danivaquez',
-    name: 'Dani Vaquez',
-    imageUrl: `${BASE_URL}/danivaquez.png`,
-    rarity: 'comum'
-  },
-  {
-    id: 'mini_messi',
-    name: 'Mini messi',
-    imageUrl: `${BASE_URL}/mini_messi.png`,
-    rarity: 'comum'
-  },
-  {
-    id: 'deus_cuida',
-    name: 'Deus cuida de mim',
-    imageUrl: `${BASE_URL}/deus_cuida.png`,
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'danivaquez',
+  //   name: 'Dani Vaquez',
+  //   imageUrl: `${BASE_URL}/danivaquez.png`,
+  //   rarity: 'comum'
+  // },
+  // {
+  //   id: 'mini_messi',
+  //   name: 'Mini messi',
+  //   imageUrl: `${BASE_URL}/mini_messi.png`,
+  //   rarity: 'comum'
+  // },
+  // {
+  //   id: 'deus_cuida',
+  //   name: 'Deus cuida de mim',
+  //   imageUrl: `${BASE_URL}/deus_cuida.png`,
+  //   rarity: 'comum'
+  // },
   {
     id: 'marea_turbo',
     name: 'MAREA TURBO',
     imageUrl: `${BASE_URL}/marea_turbo.png`,
     rarity: 'raro'
   },
-  {
-    id: 'ford_ka',
-    name: 'FORDKA TUNADO',
-    imageUrl: `${BASE_URL}/ford_ka.png`,
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'ford_ka',
+  //   name: 'FORDKA TUNADO',
+  //   imageUrl: `${BASE_URL}/ford_ka.png`,
+  //   rarity: 'comum'
+  // },
   {
     id: 'gol_skyline',
     name: 'GOL SKYLINE',
@@ -547,24 +559,24 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/murilo_vaqueiro.png`,
     rarity: 'epico'
   },
-  {
-    id: 'nanico_skol',
-    name: 'NANICO E A LORA',
-    imageUrl: `${BASE_URL}/nanico_skol.png`,
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'nanico_skol',
+  //   name: 'NANICO E A LORA',
+  //   imageUrl: `${BASE_URL}/nanico_skol.png`,
+  //   rarity: 'comum'
+  // },
   {
     id: 'davy_jones',
     name: 'DAVY JONES',
     imageUrl: `${BASE_URL}/davy_jones.png`,
     rarity: 'comum'
   },
-  {
-    id: 'jhow_rato',
-    name: 'JHOW RATO',
-    imageUrl: `${BASE_URL}/jhow_rato.png`,
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'jhow_rato',
+  //   name: 'JHOW RATO',
+  //   imageUrl: `${BASE_URL}/jhow_rato.png`,
+  //   rarity: 'comum'
+  // },
   {
     id: 'jhow_kfc',
     name: 'JHOW KFC EDITION',
@@ -589,18 +601,18 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/luiz_smurf.png`,
     rarity: 'raro'
   },
-  {
-    id: 'luiz_tranca',
-    name: 'WAGNER LOVE',
-    imageUrl: `${BASE_URL}/luiz_tranca.png`,
-    rarity: 'comum'
-  },
-  {
-    id: 'gugu_emo',
-    name: 'gugu emo',
-    imageUrl: `${BASE_URL}/gugu_emo.png`,
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'luiz_tranca',
+  //   name: 'WAGNER LOVE',
+  //   imageUrl: `${BASE_URL}/luiz_tranca.png`,
+  //   rarity: 'comum'
+  // },
+  // {
+  //   id: 'gugu_emo',
+  //   name: 'gugu emo',
+  //   imageUrl: `${BASE_URL}/gugu_emo.png`,
+  //   rarity: 'comum'
+  // },
   {
     id: 'gugu_covid',
     name: 'gugu pandemico 🤧',
@@ -620,17 +632,23 @@ export const cardsPool = [
     rarity: 'epico'
   },
   {
-    id: 'gugu_verao',
-    name: 'GUGU CURTINDO VERAO',
-    imageUrl: `${BASE_URL}/gugu_verao.png`,
+    id: 'luiz_bebun',
+    name: 'o luiz bebo kkkkk',
+    imageUrl: `${BASE_URL}/luiz_bebun.png`,
     rarity: 'epico'
   },
-  {
-    id: 'jao_festa',
-    name: 'JAO FESTINHA',
-    imageUrl: `${BASE_URL}/jao_festa.png`,
-    rarity: 'comum'
-  },
+  // {
+  //   id: 'gugu_verao',
+  //   name: 'GUGU CURTINDO VERAO',
+  //   imageUrl: `${BASE_URL}/gugu_verao.png`,
+  //   rarity: 'epico'
+  // },
+  // {
+  //   id: 'jao_festa',
+  //   name: 'JAO FESTINHA',
+  //   imageUrl: `${BASE_URL}/jao_festa.png`,
+  //   rarity: 'comum'
+  // },
   {
     id: 'aphyr',
     name: 'APHYR',
@@ -739,24 +757,24 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/luiz_davi.png`,
     rarity: 'raro'
    },
-   {
-    id: 'gugu_gozo',
-    name: 'quer leitinho ?',
-    imageUrl: `${BASE_URL}/gugu_gozo.png`,
-    rarity: 'comum'
-    },
+  //  {
+  //   id: 'gugu_gozo',
+  //   name: 'quer leitinho ?',
+  //   imageUrl: `${BASE_URL}/gugu_gozo.png`,
+  //   rarity: 'comum'
+  //   },
     {
      id: 'mumu_pidao',
      name: 'mimda um prato de comida',
      imageUrl: `${BASE_URL}/mumu_pidao.png`,
      rarity: 'raro'
     },
-    {
-     id: 'murilo_uber',
-     name: 'MURILAO PRE UBER',
-     imageUrl: `${BASE_URL}/murilo_uber.png`,
-     rarity: 'comum'
-    },
+    // {
+    //  id: 'murilo_uber',
+    //  name: 'MURILAO PRE UBER',
+    //  imageUrl: `${BASE_URL}/murilo_uber.png`,
+    //  rarity: 'comum'
+    // },
     {
      id: 'mumu_jardas',
      name: 'OLHAR DE MIL JARDAS',
@@ -818,10 +836,28 @@ export const cardsPool = [
      rarity: 'raro'
     },
     {
+     id: 'hamood',
+     name: 'hamood😔',
+     imageUrl: `${BASE_URL}/hamood.png`,
+     rarity: 'lendario'
+    },
+    {
+     id: 'fodasefilhote',
+     name: 'fodasefilhote',
+     imageUrl: `${BASE_URL}/fodasefilhote.png`,
+     rarity: 'raro'
+    },
+    {
+     id: 'bebeporra',
+     name: 'bebeporra',
+     imageUrl: `${BASE_URL}/bebeporra.png`,
+     rarity: 'raro'
+    },
+    {
      id: 'kogos_templario',
      name: 'KOGOS TEMPLARIO',
      imageUrl: `${BASE_URL}/kogos_templario.png`,
-     rarity: 'raro'
+     rarity: 'epico'
     },
     {
      id: 'bolso_mosquito',
@@ -829,18 +865,18 @@ export const cardsPool = [
      imageUrl: `${BASE_URL}/bolso_mosquito.png`,
      rarity: 'raro'
     },
-    {
-     id: 'taco_calvo',
-     name: 'NEM TENHO ENTRADA MAN',
-     imageUrl: `${BASE_URL}/taco_calvo.png`,
-     rarity: 'raro'
-    },
-    {
-     id: 'familia_unida',
-     name: 'familia unida',
-     imageUrl: `${BASE_URL}/familia_unida.png`,
-     rarity: 'raro'
-    },
+    // {
+    //  id: 'taco_calvo',
+    //  name: 'NEM TENHO ENTRADA MAN',
+    //  imageUrl: `${BASE_URL}/taco_calvo.png`,
+    //  rarity: 'raro'
+    // },
+    // {
+    //  id: 'familia_unida',
+    //  name: 'familia unida',
+    //  imageUrl: `${BASE_URL}/familia_unida.png`,
+    //  rarity: 'raro'
+    // },
     {
       id: 'luiz_gozado',
       name: 'quer leitinho???',
@@ -923,36 +959,6 @@ export const cardsPool = [
       id: 'cavalo_foto',
       name: 'cavalo celular foto selfie',
       imageUrl: `${BASE_URL}/cavalo_foto.png`, 
-      rarity: 'comum',
-    },
-     {
-      id: 'luis_coringa',
-      name: 'luis coringa HAHAHAHAH',
-      imageUrl: `${BASE_URL}/luis_coringa.png`, 
-      rarity: 'comum',
-    },
-    {
-      id: 'luis_coringa',
-      name: 'luis coringa HAHAHAHAH',
-      imageUrl: `${BASE_URL}/luis_coringa.png`, 
-      rarity: 'comum',
-    },
-     {
-      id: 'cachorro_animal',
-      name: 'O cachorro e o animal',
-      imageUrl: `${BASE_URL}/cachorro_animal.png`, 
-      rarity: 'comum',
-    },
-     {
-      id: 'clarinha_jupiter',
-      name: 'clarinha e jupiter',
-      imageUrl: `${BASE_URL}/clarinha_jupiter.png`, 
-      rarity: 'comum',
-    },
-      {
-      id: 'luiz_lost',
-      name: 'luiz lost midia',
-      imageUrl: `${BASE_URL}/luiz_lost.png`, 
       rarity: 'comum',
     },
       {

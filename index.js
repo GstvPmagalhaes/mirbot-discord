@@ -659,7 +659,7 @@ client.on(Events.MessageCreate, async (message) => {
     const userInventory = inventory.get(userId) || [];
     console.log(userInventory);
     if (userInventory.length === 0) {
-      await message.reply('📦 Seu inventário está vazio, pae.');
+      await message.reply('📦 Seu inventário ta vazio, pae.');
       return;
     }
 
@@ -671,8 +671,9 @@ client.on(Events.MessageCreate, async (message) => {
 
       if (arg === 'comuns' || arg === 'comum') filter = 'comum';
       if (arg === 'raros' || arg === 'raro') filter = 'raro';
-      if (arg === 'epicos' || arg === 'epicos' || arg === 'epico') filter = 'epico';
-      if (arg === 'lendarios' || arg === 'lendario' || arg === 'lendario') filter = 'lendario';
+      if (arg === 'epicos' || arg === 'epico') filter = 'epico';
+      if (arg === 'lendarios' || arg === 'lendario') filter = 'lendario';
+      if (arg === 'supremos' || arg === 'supremo') filter = 'supremo';
     }
 
     const payload = buildInventoryPage(userId, 1, filter);
