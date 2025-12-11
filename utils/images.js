@@ -92,6 +92,144 @@ export const cardsPool = [
     rarity: 'raro'
   },
   {
+    id: 'avemaria',
+    name: 'avemaria',
+    imageUrl: `${BASE_URL}/avemaria.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'adonadessa',
+    name: 'FIQUE LIGADO',
+    imageUrl: `${BASE_URL}/adonadessa.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'leoai',
+    name: 'LITERALMENTE O LEO',
+    imageUrl: `${BASE_URL}/leoai.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'pradaocu',
+    name: 'pra isso eles sao bons',
+    imageUrl: `${BASE_URL}/pradaocu.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'cagueinapia',
+    name: 'NOTICIA CHATA',
+    imageUrl: `${BASE_URL}/cagueinapia.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'gayficalonge',
+    name: 'MANTENHA DISTANCIA',
+    imageUrl: `${BASE_URL}/gayficalonge.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'falaportugues',
+    name: 'faz favor',
+    imageUrl: `${BASE_URL}/falaportugues.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'afaste',
+    name: 'fique longe',
+    imageUrl: `${BASE_URL}/afaste.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'gaviaoj5',
+    name: 'gaviao do J5',
+    imageUrl: `${BASE_URL}/gaviaoj5.png`, 
+    rarity: 'epico'
+  },
+  {
+    id: 'perceba',
+    name: 'PERCEBA',
+    imageUrl: `${BASE_URL}/perceba.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'medigaentao',
+    name: 'ME DIGA ENTAO',
+    imageUrl: `${BASE_URL}/medigaentao.png`, 
+    rarity: 'lendario'
+  },
+  {
+    id: 'apodreca',
+    name: 'APODREÇA',
+    imageUrl: `${BASE_URL}/apodreca.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'vivemos',
+    name: 'vivemos em uma sociedade',
+    imageUrl: `${BASE_URL}/vivemos.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'boanoitecaralho',
+    name: 'BOA NOITE CARALHO',
+    imageUrl: `${BASE_URL}/boanoitecaralho.png`, 
+    rarity: 'raro'
+  },
+  {
+    id: 'eucaguei',
+    name: 'SIM VADIA',
+    imageUrl: `${BASE_URL}/eucaguei.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'eduardo',
+    name: 'eduardo',
+    imageUrl: `${BASE_URL}/eduardo.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'pauloeletronica',
+    name: 'pauloeletronica',
+    imageUrl: `${BASE_URL}/pauloeletronica.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'obrahma',
+    name: 'obrahma',
+    imageUrl: `${BASE_URL}/obrahma.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'afarsa',
+    name: 'CHEGA!!',
+    imageUrl: `${BASE_URL}/afarsa.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'alisamento',
+    name: 'ALISAMENTO',
+    imageUrl: `${BASE_URL}/alisamento.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'taxandoate',
+    name: 'TAXANDO ATE O ULTIMO',
+    imageUrl: `${BASE_URL}/taxandoate.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'planetados',
+    name: 'PLANETA DOS TAXADOS',
+    imageUrl: `${BASE_URL}/planetados.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'tributage',
+    name: 'TRIBUTAGE',
+    imageUrl: `${BASE_URL}/tributage.png`, 
+    rarity: 'comum'
+  },
+  {
     id: 'cachorro_mumu',
     name: 'MEU CACHORRO SUMIU 😥😥',
     imageUrl: `${BASE_URL}/cachorro_mumu.png`, 
