@@ -269,7 +269,7 @@ async function createDropImage(cards) {
 
 
   // Tamanhos "premium"
-  const border = 8;          // borda colorida ao redor da carta
+  const border = 20;          // borda colorida ao redor da carta
   const cardWidth = 650;      // largura interna da arte
   const cardHeight = 850;     // altura interna da arte
   const renderWidth = cardWidth + border * 2;
