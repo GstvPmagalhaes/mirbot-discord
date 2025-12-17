@@ -1847,6 +1847,12 @@
       "name": "ela foi..",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/apunheta.png",
       "rarity": "comum"
+    },
+    {
+      "id": "hojenao",
+      "name": "Hoje nao amigao, tenta amanha",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/hojenao.jpeg",
+      "rarity": "comum"
     }
   ],
   "1285093524836057139": [

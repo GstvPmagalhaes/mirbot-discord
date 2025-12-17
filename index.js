@@ -3,7 +3,7 @@ import sharp from 'sharp';
 import fetch from 'node-fetch';
 import { MessageFlags } from 'discord.js';
 import { promises as fs } from 'fs';
-import { getRarityMeta, drawUniqueCards  } from './utils/images.js';
+import { getRarityMeta, drawUniqueCards, cardsPool  } from './utils/images.js';
 import {
   Client,
   GatewayIntentBits,
@@ -37,7 +37,8 @@ const client = new Client({
 //batalhas
 const battles = new Map();
 const BATTLE_TIMEOUT = 2 * 60 * 1000;
-
+const DAILY_FILE = './daily.json';
+let dailyClaims = new Map();
 
 // cooldown e inventário
 const REPEAT_PAGE_SIZE = 10;
@@ -113,6 +114,50 @@ function buildRepeatPage(userId, page = 1) {
     components: [row]
   };
 }
+
+const DAILY_COMMON_CARD_ID = 'hojenao';
+const DAILY_JACKPOT_CARD_ID = 'dragon_lore';
+
+function findCardById(cardId) {
+  return cardsPool.find((c) => c.id === cardId);
+}
+
+async function loadDailyClaims() {
+  try {
+    const data = await fs.readFile(DAILY_FILE, 'utf8');
+    const obj = JSON.parse(data);
+    dailyClaims = new Map(Object.entries(obj));
+    console.log(`Daily carregado: ${dailyClaims.size} usuário(s).`);
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.log('Nenhum daily salvo ainda, começando do zero.');
+    } else {
+      console.error('Erro ao carregar daily:', err);
+    }
+  }
+}
+
+  function getSaoPauloDateKey() {
+    const dtf = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Sao_Paulo',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    });
+    return dtf.format(new Date()); // "YYYY-MM-DD"
+  }
+
+  async function saveDailyClaims() {
+    try {
+      const obj = Object.fromEntries(dailyClaims);
+      await fs.writeFile(DAILY_FILE, JSON.stringify(obj, null, 2), 'utf8');
+    } catch (err) {
+      console.error('Erro ao salvar daily:', err);
+    }
+  }
+  await loadInventory();
+  await loadDailyClaims();
+  client.login(process.env.DISCORD_TOKEN);
 
 function buildInventoryPage(userId, page = 1, filter = 'all') {
   const userInventory = inventory.get(userId) || [];
@@ -653,6 +698,47 @@ client.on(Events.MessageCreate, async (message) => {
     });
   }
 
+
+  if (content === '!daily' || content === '!caixa') {
+  const today = getSaoPauloDateKey();
+  const last = dailyClaims.get(userId);
+
+  if (last === today) {
+    await message.reply('📦 Você já abriu a caixa de hoje pae. Volta amanhã.');
+    return;
+  }
+
+  const commonCard = findCardById(DAILY_COMMON_CARD_ID);
+  const jackpotCard = findCardById(DAILY_JACKPOT_CARD_ID);
+
+  if (!commonCard || !jackpotCard) {
+    await message.reply('Erro: carta(s) da caixa diária não configurada(s).');
+    return;
+  }
+
+  // 1% jackpot
+  const roll = Math.random();
+  const won = roll < 0.07 ? jackpotCard : commonCard;
+
+  // adiciona direto no inventário
+  const inv = inventory.get(userId) || [];
+  inv.push(won);
+  inventory.set(userId, inv);
+
+  // marca claim do dia e persiste tudo
+  dailyClaims.set(userId, today);
+  await saveInventory();
+  await saveDailyClaims();
+
+  const meta = getRarityMeta(won);
+
+  await message.reply(
+    `🎁 **Caixa diária aberta!**\n` +
+    `Você ganhou: **${won.name}** — ${meta.label}\n` +
+    `Agora você tem **${inv.length}** carta(s) no inventário.`
+  );
+  return;
+}
 
   // ---- COMANDO INVENTÁRIO ----
     if (content.startsWith('!inv')) {

@@ -6,15 +6,16 @@ export const rarities = {
   epico:    { label: 'Épico 🟣',    color: '#b700ff' },
   lendario: { label: 'Lendário ⭐', color: '#ffdf5d' },
   supremo:  { label: 'SUPREMO 👹', color: '#fd0000' },
+  daily:  { label: 'MITICO 👑', color: '#00fdf0' },
 };
 
 
 export const rarityWeights = {
   comum: 70,
-  raro: 10,   
-  epico: 15,
+  raro: 15,   
+  epico: 10,
   lendario: 1,
-  supremo: 0.02
+  supremo: 0.5
 };
 
 function pickRarityByWeight() {
@@ -49,7 +50,19 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/nanico_peruca.jpeg`, 
     rarity: 'comum'
   },
-   {
+  {
+    id: 'hojenao',
+    name: 'Hoje nao amigao, tenta amanha',
+    imageUrl: `${BASE_URL}/hojenao.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'dragon_lore',
+    name: 'DRAGON LORE',
+    imageUrl: `${BASE_URL}/dragon_lore.png`, 
+    rarity: 'daily'
+  },
+  {
     id: 'blue_gem',
     name: 'KARAMBIT BLUE GEM',
     imageUrl: `${BASE_URL}/blue_gem.png`, 
@@ -66,12 +79,6 @@ export const cardsPool = [
     name: 'E O PATATA?',
     imageUrl: `${BASE_URL}/patati_7mil.png`, 
     rarity: 'comum'
-  },
-  {
-    id: 'caminhoneiro_dosbon',
-    name: 'SONHOOOO 😍',
-    imageUrl: `${BASE_URL}/caminhoneiro_dosbon.png`, 
-    rarity: 'epico'
   },
   {
     id: 'jao_ovo',
@@ -92,9 +99,99 @@ export const cardsPool = [
     rarity: 'raro'
   },
   {
-    id: 'avemaria',
-    name: 'avemaria',
-    imageUrl: `${BASE_URL}/avemaria.png`, 
+    id: 'meda10centavo',
+    name: 'ME DA 10 CENTAVO',
+    imageUrl: `${BASE_URL}/meda10centavo.png`, 
+    rarity: 'lendario'
+  },
+  {
+    id: 'sim_eujogo',
+    name: 'SIM',
+    imageUrl: `${BASE_URL}/sim_eujogo.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'psicopata',
+    name: 'psicopata',
+    imageUrl: `${BASE_URL}/psicopata.png`, 
+    rarity: 'comum'
+  },  
+  {
+    id: 'luto_lilpeep',
+    name: 'NGM OUVE LIL PEEP NA QUEBRADA',
+    imageUrl: `${BASE_URL}/luto_lilpeep.png`, 
+    rarity: 'raro'
+  },  
+  {
+    id: 'vou_ficar',
+    name: 'n lembro q imagem q eh kkk',
+    imageUrl: `${BASE_URL}/vou_ficar.png`, 
+    rarity: 'comum'
+  },  
+  {
+    id: 'smurf_domuca',
+    name: 'SMURF DO MUCA',
+    imageUrl: `${BASE_URL}/smurf_domuca.png`, 
+    rarity: 'raro'
+  },
+  {
+    id: 'galo_macaco',
+    name: 'a natureza eh linda',
+    imageUrl: `${BASE_URL}/galo_macaco.png`, 
+    rarity: 'epico'
+  },
+  {
+    id: 'rato_makonha',
+    name: 'RATO MAKONHA',
+    imageUrl: `${BASE_URL}/rato_makonha.png`, 
+    rarity: 'lendario'
+  },  
+  {
+    id: 'cachorro_honda',
+    name: 'novo modelo honda',
+    imageUrl: `${BASE_URL}/cachorro_honda.png`, 
+    rarity: 'raro'
+  },  
+  {
+    id: 'impressionant',
+    name: 'impressionant',
+    imageUrl: `${BASE_URL}/impressionant.png`, 
+    rarity: 'comum'
+  },  
+  {
+    id: 'saborearo',
+    name: 'saborearo',
+    imageUrl: `${BASE_URL}/saborearo.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'macaco_banza',
+    name: 'macaco banza',
+    imageUrl: `${BASE_URL}/macaco_banza.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'garotos_viados',
+    name: 'garotos viados',
+    imageUrl: `${BASE_URL}/garotos_viados.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'crianca',
+    name: 'menino abensoado',
+    imageUrl: `${BASE_URL}/crianca.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'caguei_nascalca',
+    name: 'caguei nascalca',
+    imageUrl: `${BASE_URL}/caguei_nascalca.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'idolo',
+    name: 'idolo',
+    imageUrl: `${BASE_URL}/idolo.png`, 
     rarity: 'comum'
   },
   {
@@ -176,36 +273,6 @@ export const cardsPool = [
     rarity: 'raro'
   },
   {
-    id: 'eucaguei',
-    name: 'SIM VADIA',
-    imageUrl: `${BASE_URL}/eucaguei.png`, 
-    rarity: 'comum'
-  },
-  {
-    id: 'eduardo',
-    name: 'eduardo',
-    imageUrl: `${BASE_URL}/eduardo.png`, 
-    rarity: 'comum'
-  },
-  {
-    id: 'pauloeletronica',
-    name: 'pauloeletronica',
-    imageUrl: `${BASE_URL}/pauloeletronica.png`, 
-    rarity: 'comum'
-  },
-  {
-    id: 'obrahma',
-    name: 'obrahma',
-    imageUrl: `${BASE_URL}/obrahma.png`, 
-    rarity: 'comum'
-  },
-  {
-    id: 'afarsa',
-    name: 'CHEGA!!',
-    imageUrl: `${BASE_URL}/afarsa.png`, 
-    rarity: 'comum'
-  },
-  {
     id: 'alisamento',
     name: 'ALISAMENTO',
     imageUrl: `${BASE_URL}/alisamento.png`, 
@@ -258,12 +325,6 @@ export const cardsPool = [
     name: 'DEUS ESTA EM TODAS AS COISAS',
     imageUrl: `${BASE_URL}/deus_maravilhoso.png`, 
     rarity: 'raro'
-  },
-  {
-    id: 'pizza_media',
-    name: 'Sandra atualizou sua foto',
-    imageUrl: `${BASE_URL}/pizza_media.png`, 
-    rarity: 'epico'
   },
   {
     id: 'ditado',
@@ -374,18 +435,6 @@ export const cardsPool = [
     rarity: 'epico'
   },
   {
-    id: 'luqinha_god',
-    name: 'luqinha amem',
-    imageUrl: `${BASE_URL}/luqinha_god.png`,
-    rarity: 'epico'
-  },
-  {
-    id: 'andriew',
-    name: 'nossa como voce esta bela',
-    imageUrl: `${BASE_URL}/andriew.png`,
-    rarity: 'epico'
-  },
-  {
     id: 'marea_turbo',
     name: 'MAREA TURBO',
     imageUrl: `${BASE_URL}/marea_turbo.png`,
@@ -402,12 +451,6 @@ export const cardsPool = [
     name: 'FOX HULK',
     imageUrl: `${BASE_URL}/fox_hulk.png`,
     rarity: 'comum'
-  },
-  {
-    id: 'pig_kombi',
-    name: 'PIG KOMBI',
-    imageUrl: `${BASE_URL}/pig_kombi.png`,
-    rarity: 'epico'
   },
   {
     id: 'cachorro_cururu',
@@ -440,12 +483,6 @@ export const cardsPool = [
     rarity: 'lendario'
   },
   {
-    id: 'jao_cria',
-    name: 'JOAO CV 🚩😡',
-    imageUrl: `${BASE_URL}/jao_cria.png`,
-    rarity: 'epico'
-  },
-  {
     id: 'sofomaniaco',
     name: '@luiz',
     imageUrl: `${BASE_URL}/sofomaniaco.png`,
@@ -474,12 +511,6 @@ export const cardsPool = [
     name: 'MUMU CASA SAPUCAI',
     imageUrl: `${BASE_URL}/murilin_role.png`,
     rarity: 'raro'
-  },
-  {
-    id: 'menorzin_envolvido',
-    name: 'CRIME ORGANIZADO',
-    imageUrl: `${BASE_URL}/menorzin_envolvido.png`,
-    rarity: 'epico'
   },
   {
     id: 'macaco_sargento',
@@ -518,28 +549,10 @@ export const cardsPool = [
     rarity: 'raro'
   },
   {
-    id: 'moises',
-    name: 'Na reliquia do moises',
-    imageUrl: `${BASE_URL}/moises.png`,
-    rarity: 'epico'
-  },
-  {
     id: 'gabriel_mine',
     name: 'gabriel quadrado',
     imageUrl: `${BASE_URL}/gabriel_mine.png`,
     rarity: 'raro'
-  },
-  {
-    id: 'jao_dog',
-    name: 'jao dog mal 😈',
-    imageUrl: `${BASE_URL}/jao_dog.png`,
-    rarity: 'epico'
-  },
-  {
-    id: 'taquinho',
-    name: 'TACO???',
-    imageUrl: `${BASE_URL}/taquinho.png`,
-    rarity: 'epico'
   },
   {
     id: 'mumu_zika',
@@ -590,12 +603,6 @@ export const cardsPool = [
     rarity: 'comum'
   },
   {
-    id: 'murilo_vaqueiro',
-    name: 'Murilo vaqueiro',
-    imageUrl: `${BASE_URL}/murilo_vaqueiro.png`,
-    rarity: 'epico'
-  },
-  {
     id: 'davy_jones',
     name: 'DAVY JONES',
     imageUrl: `${BASE_URL}/davy_jones.png`,
@@ -606,12 +613,6 @@ export const cardsPool = [
     name: 'JHOW KFC EDITION',
     imageUrl: `${BASE_URL}/jhow_kfc.png`,
     rarity: 'raro'
-  },
-  {
-    id: 'nanico_ifood',
-    name: 'NANICO IFOOD',
-    imageUrl: `${BASE_URL}/nanico_ifood.png`,
-    rarity: 'epico'
   },
   {
     id: 'gugos_tec',
@@ -644,28 +645,10 @@ export const cardsPool = [
     rarity: 'epico'
   },
   {
-    id: 'luiz_bebun',
-    name: 'o luiz bebo kkkkk',
-    imageUrl: `${BASE_URL}/luiz_bebun.png`,
-    rarity: 'epico'
-  },
-  {
-    id: 'aphyr',
-    name: 'APHYR',
-    imageUrl: `${BASE_URL}/aphyr.png`,
-    rarity: 'epico'
-  },
-  {
     id: 'igor_dabola',
     name: 'INGOLA DA BOLA',
     imageUrl: `${BASE_URL}/igor_dabola.png`,
     rarity: 'raro'
-  },
-  {
-    id: 'zoio_bolso',
-    name: 'ZOIO BORSONARO',
-    imageUrl: `${BASE_URL}/zoio_bolso.png`,
-    rarity: 'epico'
   },
   {
     id: 'gugu_gay',
@@ -788,12 +771,6 @@ export const cardsPool = [
      rarity: 'raro'
     },
     {
-     id: 'mulher_bicicleta',
-     name: 'NUNCA SUBESTIME',
-     imageUrl: `${BASE_URL}/mulher_bicicleta.png`,
-     rarity: 'epico'
-    },
-    {
      id: 'onca_pintuda',
      name: 'ONÇA PINTUDA',
      imageUrl: `${BASE_URL}/onca_pintuda.png`,
@@ -912,12 +889,6 @@ export const cardsPool = [
      name: 'uma medica',
      imageUrl: `${BASE_URL}/umamedica.png`,
      rarity: 'comum'
-    },
-    {
-     id: 'pixdasilva',
-     name: 'pix da silva',
-     imageUrl: `${BASE_URL}/pixdasilva.png`,
-     rarity: 'epico'
     },
     {
      id: 'monark',
