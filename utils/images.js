@@ -15,7 +15,7 @@ export const rarityWeights = {
   raro: 15,   
   epico: 10,
   lendario: 1,
-  supremo: 0.5
+  supremo: 0.8
 };
 
 function pickRarityByWeight() {
@@ -39,6 +39,270 @@ const BASE_URL = 'https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/
 
 export const cardsPool = [
   {
+    id: 'howl',
+    name: 'M4 HOWL',
+    imageUrl: `${BASE_URL}/howl.png`,
+    rarity: 'supremo'
+  },
+  {
+    id: 'butterfly_doppler',
+    name: 'butterfly_doppler',
+    imageUrl: `${BASE_URL}/butterfly_doppler.png`,
+    rarity: 'lendario'
+  },
+  {
+    id: 'awp_gungnir',
+    name: 'awp_gungnir',
+    imageUrl: `${BASE_URL}/awp_gungnir.png`,
+    rarity: 'lendario'
+  },
+  {
+    id: 'awp_asiimov',
+    name: 'awp_asiimov',
+    imageUrl: `${BASE_URL}/awp_asiimov.png`,
+    rarity: 'supremo'
+  },
+  {
+    id: 'marca_nao_randola',
+    name: 'marca_nao_randola',
+    imageUrl: `${BASE_URL}/marca_nao_randola.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'ronca_puta',
+    name: 'ronca_puta',
+    imageUrl: `${BASE_URL}/ronca_puta.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'cachorro_safado',
+    name: 'cachorro_safado',
+    imageUrl: `${BASE_URL}/cachorro_safado.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'sperma_fumante',
+    name: 'sperma_fumante',
+    imageUrl: `${BASE_URL}/sperma_fumante.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'lagarta_fumante',
+    name: 'lagarta_fumante',
+    imageUrl: `${BASE_URL}/lagarta_fumante.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'minion_bolado',
+    name: 'minion_bolado',
+    imageUrl: `${BASE_URL}/minion_bolado.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'lebron_james',
+    name: 'lebron_james',
+    imageUrl: `${BASE_URL}/lebron_james.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'trump',
+    name: 'trump',
+    imageUrl: `${BASE_URL}/trump.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'ememen',
+    name: 'ememen',
+    imageUrl: `${BASE_URL}/ememen.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'sofico_comloiras',
+    name: 'sofico_comloiras',
+    imageUrl: `${BASE_URL}/sofico_comloiras.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'flor_preta',
+    name: 'flor_preta',
+    imageUrl: `${BASE_URL}/flor_preta.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'reflita',
+    name: 'reflita',
+    imageUrl: `${BASE_URL}/reflita.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'josias_tog',
+    name: 'josias_tog',
+    imageUrl: `${BASE_URL}/josias_tog.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'bolso_gordinha',
+    name: 'bolso_gordinha',
+    imageUrl: `${BASE_URL}/bolso_gordinha.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'macaco_gang',
+    name: 'macaco_gang',
+    imageUrl: `${BASE_URL}/macaco_gang.png`,
+    rarity: 'lendario'
+  },
+  {
+    id: 'nao_raspe',
+    name: 'nao_raspe',
+    imageUrl: `${BASE_URL}/nao_raspe.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'saudade_dezoa',
+    name: 'saudade_dezoa',
+    imageUrl: `${BASE_URL}/saudade_dezoa.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'era_umjeferson',
+    name: 'era_umjeferson',
+    imageUrl: `${BASE_URL}/era_umjeferson.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'riram_dele',
+    name: 'riram_dele',
+    imageUrl: `${BASE_URL}/riram_dele.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'me_leve',
+    name: 'me_leve',
+    imageUrl: `${BASE_URL}/me_leve.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'obgd_khazix',
+    name: 'obgd_khazix',
+    imageUrl: `${BASE_URL}/obgd_khazix.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'kendrick',
+    name: 'kendrick',
+    imageUrl: `${BASE_URL}/kendrick.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'goku_tatuage',
+    name: 'goku_tatuage',
+    imageUrl: `${BASE_URL}/goku_tatuage.png`,
+    rarity: 'lendario'
+  },
+  {
+    id: 'galo_vinganca',
+    name: 'galo_vinganca',
+    imageUrl: `${BASE_URL}/galo_vinganca.png`,
+    rarity: 'supremo'
+  },
+  {
+    id: 'caguei_protime',
+    name: 'caguei_protime',
+    imageUrl: `${BASE_URL}/caguei_protime.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'gatinho_lendario',
+    name: 'gatinho_lendario',
+    imageUrl: `${BASE_URL}/gatinho_lendario.png`,
+    rarity: 'daily'
+  },
+  {
+    id: 'hoje_oceu',
+    name: 'hoje_oceu',
+    imageUrl: `${BASE_URL}/hoje_oceu.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'estacionamento',
+    name: 'estacionamento',
+    imageUrl: `${BASE_URL}/estacionamento.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'estudano_patch',
+    name: 'estudano_patch',
+    imageUrl: `${BASE_URL}/estudano_patch.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'temnei_mortadela',
+    name: 'temnei_mortadela',
+    imageUrl: `${BASE_URL}/temnei_mortadela.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'mc_respeito',
+    name: 'mc_respeito',
+    imageUrl: `${BASE_URL}/mc_respeito.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'semquerer_ansioso',
+    name: 'semquerer_ansioso',
+    imageUrl: `${BASE_URL}/semquerer_ansioso.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'ja_fragueize',
+    name: 'ja_fragueize',
+    imageUrl: `${BASE_URL}/ja_fragueize.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'essa_mulekada',
+    name: 'essa_mulekada',
+    imageUrl: `${BASE_URL}/essa_mulekada.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'foi_odiddy',
+    name: 'foi_odiddy',
+    imageUrl: `${BASE_URL}/foi_odiddy.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'nasus_level',
+    name: 'nasus_level',
+    imageUrl: `${BASE_URL}/nasus_level.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'pm_fdp',
+    name: 'pm_fdp',
+    imageUrl: `${BASE_URL}/pm_fdp.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'amanha_sereimorto',
+    name: 'amanha_sereimorto',
+    imageUrl: `${BASE_URL}/amanha_sereimorto.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'rato_ovudo',
+    name: 'rato_ovudo',
+    imageUrl: `${BASE_URL}/rato_ovudo.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'zoidegato',
+    name: 'zoidegato',
+    imageUrl: `${BASE_URL}/zoidegato.png`,
+    rarity: 'lendario'
+  },
+  {
     id: 'muie_pm',
     name: 'PM TONHAO',
     imageUrl: `${BASE_URL}/muie_pm.png`, 
@@ -55,12 +319,6 @@ export const cardsPool = [
     name: 'Hoje nao amigao, tenta amanha',
     imageUrl: `${BASE_URL}/hojenao.png`, 
     rarity: 'comum'
-  },
-  {
-    id: 'dragon_lore',
-    name: 'DRAGON LORE',
-    imageUrl: `${BASE_URL}/dragon_lore.png`, 
-    rarity: 'daily'
   },
   {
     id: 'blue_gem',

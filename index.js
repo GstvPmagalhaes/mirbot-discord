@@ -115,8 +115,8 @@ function buildRepeatPage(userId, page = 1) {
   };
 }
 
-const DAILY_COMMON_CARD_ID = 'hojenao';
-const DAILY_JACKPOT_CARD_ID = 'dragon_lore';
+const DAILY_COMMON_CARD_ID = 'hoje_oceu';
+const DAILY_JACKPOT_CARD_ID = 'gatinho_lendario';
 
 function findCardById(cardId) {
   return cardsPool.find((c) => c.id === cardId);
