@@ -2897,6 +2897,12 @@
       "name": "PVF MANDA PFV PFV",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/manda_foto.png",
       "rarity": "raro"
+    },
+    {
+      "id": "luiz_barriga",
+      "name": "LUIZ CURTINDO VERAO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/luiz_barriga.png",
+      "rarity": "raro"
     }
   ],
   "1285093524836057139": [
