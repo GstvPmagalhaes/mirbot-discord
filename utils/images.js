@@ -69,6 +69,246 @@ export const cardsPool = [
     rarity: 'comum'
   },
   {
+    id: 'hoje_estareinoplantao',
+    name: 'hoje estarei no plantas',
+    imageUrl: `${BASE_URL}/hoje_estareinoplantao.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'naoseiondeestarei',
+    name: 'apenas nao sei',
+    imageUrl: `${BASE_URL}/naoseiondeestarei.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'apenasonline',
+    name: 'somente via whatsapp',
+    imageUrl: `${BASE_URL}/apenasonline.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'estareinaadega',
+    name: 'hoje eh dia',
+    imageUrl: `${BASE_URL}/estareinaadega.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'seupai',
+    name: 'isso eh corintias',
+    imageUrl: `${BASE_URL}/seupai.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'issoehcoringao',
+    name: 'isso eh corintias2',
+    imageUrl: `${BASE_URL}/issoehcoringao.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'mandataxar',
+    name: 'mandataxar',
+    imageUrl: `${BASE_URL}/mandataxar.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'tomajack',
+    name: 'tomajacklanches',
+    imageUrl: `${BASE_URL}/tomajack.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'impostossa',
+    name: 'impostos SA',
+    imageUrl: `${BASE_URL}/impostossa.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'bomsabado',
+    name: 'fala galera',
+    imageUrl: `${BASE_URL}/bomsabado.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'maisvcehchato',
+    name: 'maisvcehchatoheinbot',
+    imageUrl: `${BASE_URL}/maisvcehchato.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'estounofrifas',
+    name: 'estarei no frifas',
+    imageUrl: `${BASE_URL}/estounofrifas.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'pavilhao',
+    name: 'pavilhao',
+    imageUrl: `${BASE_URL}/pavilhao.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'nessedomingo',
+    name: 'AMEM',
+    imageUrl: `${BASE_URL}/nessedomingo.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'vegetacria',
+    name: 'vegeta cria',
+    imageUrl: `${BASE_URL}/vegetacria.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'vegetacria',
+    name: 'vegeta cria',
+    imageUrl: `${BASE_URL}/vegetacria.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'atentese',
+    name: 'cuidado',
+    imageUrl: `${BASE_URL}/atentese.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'xerecarefri',
+    name: 'xereca',
+    imageUrl: `${BASE_URL}/xerecarefri.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'loucosmanutencao',
+    name: 'loucos da manutencao',
+    imageUrl: `${BASE_URL}/loucosmanutencao.png`,
+    rarity: 'lendario'
+  },
+  {
+    id: 'sucatapinto',
+    name: 'sucatapinto',
+    imageUrl: `${BASE_URL}/sucatapinto.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'vendo2penis',
+    name: 'vendo2penis',
+    imageUrl: `${BASE_URL}/vendo2penis.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'animaisagua',
+    name: 'MEU DEUS!!! :O',
+    imageUrl: `${BASE_URL}/animaisagua.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'umhomem',
+    name: 'kkkkkkkkkkkkkkkk',
+    imageUrl: `${BASE_URL}/umhomem.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'naoseinadadepassaros',
+    name: 'essa é boa',
+    imageUrl: `${BASE_URL}/naoseinadadepassaros.png`,
+    rarity: 'comum'
+  },
+   {
+    id: 'seprostituino',
+    name: 'seprostituino',
+    imageUrl: `${BASE_URL}/seprostituino.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'depressaomata',
+    name: 'depressao mata',
+    imageUrl: `${BASE_URL}/depressaomata.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'oquevcfariamcgui',
+    name: 'seja sincero',
+    imageUrl: `${BASE_URL}/oquevcfariamcgui.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'euesuamae',
+    name: 'eu e suamae',
+    imageUrl: `${BASE_URL}/euesuamae.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'vemdepv',
+    name: 'luiz ai kkkkkkk',
+    imageUrl: `${BASE_URL}/vemdepv.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'delegadodacu',
+    name: 'delegadodacu',
+    imageUrl: `${BASE_URL}/delegadodacu.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'emsuahouse',
+    name: 'hein',
+    imageUrl: `${BASE_URL}/emsuahouse.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'quemsorriu',
+    name: 'VAI CHORAR NA MINHA.',
+    imageUrl: `${BASE_URL}/quemsorriu.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'comediantessao',
+    name: 'eles são',
+    imageUrl: `${BASE_URL}/comediantessao.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'curasenhor',
+    name: 'curasenhor',
+    imageUrl: `${BASE_URL}/curasenhor.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'eutenhoansiedade',
+    name: 'primeiramente vadia',
+    imageUrl: `${BASE_URL}/eutenhoansiedade.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'tamoscano',
+    name: 'EAI BROWN tamoscano',
+    imageUrl: `${BASE_URL}/tamoscano.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'itachi',
+    name: 'itachi',
+    imageUrl: `${BASE_URL}/itachi.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'mtotriste',
+    name: 'mtotriste',
+    imageUrl: `${BASE_URL}/mtotriste.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'vcehasitaico',
+    name: 'vcehasitaico',
+    imageUrl: `${BASE_URL}/vcehasitaico.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'loucoesonhador',
+    name: 'loucoesonhador',
+    imageUrl: `${BASE_URL}/loucoesonhador.png`,
+    rarity: 'comum'
+  },
+  {
     id: 'ronca_puta',
     name: 'ronca_puta',
     imageUrl: `${BASE_URL}/ronca_puta.png`,
@@ -213,9 +453,9 @@ export const cardsPool = [
     rarity: 'comum'
   },
   {
-    id: 'gatinho_lendario',
-    name: 'gatinho_lendario',
-    imageUrl: `${BASE_URL}/gatinho_lendario.png`,
+    id: 'miticadavez',
+    name: 'miticadavez',
+    imageUrl: `${BASE_URL}/miticadavez.png`,
     rarity: 'daily'
   },
   {
