@@ -4325,6 +4325,24 @@
       "name": "GOKU SSJ 20",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/goku_20.png",
       "rarity": "epico"
+    },
+    {
+      "id": "mano8",
+      "name": "mano8",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mano8.png",
+      "rarity": "manos"
+    },
+    {
+      "id": "gol_quadrado",
+      "name": "GOL QUADRADO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gol_quadrado.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "umhomem",
+      "name": "kkkkkkkkkkkkkkkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/umhomem.png",
+      "rarity": "epico"
     }
   ],
   "1285093524836057139": [
@@ -6051,6 +6069,12 @@
       "name": "JAO EMO",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/jaoemo.png",
       "rarity": "raro"
+    },
+    {
+      "id": "bluezaopai",
+      "name": "papai e mamae *-*",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/bluezaopai.png",
+      "rarity": "epico"
     }
   ],
   "887546445681537024": [
@@ -12241,6 +12265,12 @@
       "name": "ONÇA PINTUDA",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/onca_pintuda.png",
       "rarity": "epico"
+    },
+    {
+      "id": "ops",
+      "name": "🤤🤤",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/ops.png",
+      "rarity": "epico"
     }
   ],
   "470049195772870656": [
@@ -15146,6 +15176,30 @@
       "id": "nao_raspe",
       "name": "nao_raspe",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nao_raspe.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "mano6",
+      "name": "mano6",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mano6.png",
+      "rarity": "manos"
+    },
+    {
+      "id": "mano4",
+      "name": "mano4",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mano4.png",
+      "rarity": "manos"
+    },
+    {
+      "id": "bebeporra",
+      "name": "bebeporra",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/bebeporra.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "lebron_james",
+      "name": "lebron_james",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/lebron_james.png",
       "rarity": "comum"
     }
   ],
@@ -18127,6 +18181,12 @@
       "name": "kkkkkkkkkkkkkkkk",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/umhomem.png",
       "rarity": "epico"
+    },
+    {
+      "id": "sucatapinto",
+      "name": "sucatapinto",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/sucatapinto.png",
+      "rarity": "comum"
     }
   ],
   "978799312140140554": [
