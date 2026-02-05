@@ -6,6 +6,7 @@ export const rarities = {
   epico:    { label: 'Épico 🟣',    color: '#b700ff' },
   lendario: { label: 'Lendário ⭐', color: '#ffdf5d' },
   supremo:  { label: 'SUPREMO 👹', color: '#fd0000' },
+  manos:  { label: 'MANOS 😶‍🌫️', color: '#9b0662' },
   daily:  { label: 'MITICO 👑', color: '#00fdf0' },
 };
 
