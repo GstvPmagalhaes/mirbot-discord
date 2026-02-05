@@ -203,6 +203,12 @@ function buildInventoryPage(userId, page = 1, filter = 'all') {
     case 'supremo':
       displayInventory = userInventory.filter((c) => c.rarity === 'supremo');
       filterLabel = 'supremos';
+    case 'mitico':
+      displayInventory = userInventory.filter((c) => c.rarity === 'mitico');
+      filterLabel = 'miticos';
+    case 'manos':
+      displayInventory = userInventory.filter((c) => c.rarity === 'manos');
+      filterLabel = 'manos';
       break;
     default:
       filter = 'all';
