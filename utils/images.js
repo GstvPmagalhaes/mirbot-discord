@@ -57,6 +57,108 @@ export const cardsPool = [
     rarity: 'lendario'
   },
   {
+    id: 'evitocagar',
+    name: 'evito cagar p nao ficar de barriga vazia',
+    imageUrl: `${BASE_URL}/evitocagar.png`,
+    rarity: 'comum'
+  },
+  {
+    id: '5000videos',
+    name: 'VIRGINIA CARLINHOS MAIA E NEYMAR',
+    imageUrl: `${BASE_URL}/5000videos.png`,
+    rarity: 'raro'
+  },
+  {
+    id: 'bluezaopai',
+    name: 'papai e mamae *-*',
+    imageUrl: `${BASE_URL}/bluezaopai.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'parabenscemig',
+    name: 'PARABENS CORTADOR DE LUZ',
+    imageUrl: `${BASE_URL}/parabenscemig.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'caiunapiscina',
+    name: 'VO PULA DE TENIS E TUDO MANÉ',
+    imageUrl: `${BASE_URL}/caiunapiscina.png`,
+    rarity: 'lendario'
+  },
+  {
+    id: 'pqpitaipava',
+    name: 'PQP DNV ITAIPAVA',
+    imageUrl: `${BASE_URL}/pqpitaipava.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'tempaoai',
+    name: 'TEM PAO AI????',
+    imageUrl: `${BASE_URL}/tempaoai.png`,
+    rarity: 'lendario'
+  },
+  {
+    id: 'mano1',
+    name: 'mano1',
+    imageUrl: `${BASE_URL}/mano1.png`,
+    rarity: 'manos'
+  },
+  {
+    id: 'mano2',
+    name: 'mano2',
+    imageUrl: `${BASE_URL}/mano2.png`,
+    rarity: 'manos'
+  }, 
+  {
+    id: 'mano3',
+    name: 'mano3',
+    imageUrl: `${BASE_URL}/mano3.png`,
+    rarity: 'manos'
+  },  
+  {
+    id: 'mano4',
+    name: 'mano4',
+    imageUrl: `${BASE_URL}/mano4.png`,
+    rarity: 'manos'
+  },  
+  {
+    id: 'mano5',
+    name: 'mano5',
+    imageUrl: `${BASE_URL}/mano5.png`,
+    rarity: 'manos'
+  },  
+  {
+    id: 'mano6',
+    name: 'mano6',
+    imageUrl: `${BASE_URL}/mano6.png`,
+    rarity: 'manos'
+  },  
+  {
+    id: 'mano7',
+    name: 'mano7',
+    imageUrl: `${BASE_URL}/mano7.png`,
+    rarity: 'manos'
+  },  
+  {
+    id: 'mano8',
+    name: 'mano8',
+    imageUrl: `${BASE_URL}/mano8.png`,
+    rarity: 'manos'
+  },
+  {
+    id: 'mano9',
+    name: 'mano9',
+    imageUrl: `${BASE_URL}/mano9.png`,
+    rarity: 'manos'
+  },
+  {
+    id: 'mano10',
+    name: 'mano10',
+    imageUrl: `${BASE_URL}/mano10.png`,
+    rarity: 'manos'
+  },
+  {
     id: 'awp_asiimov',
     name: 'awp_asiimov',
     imageUrl: `${BASE_URL}/awp_asiimov.png`,

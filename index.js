@@ -177,6 +177,8 @@ function buildInventoryPage(userId, page = 1, filter = 'all') {
   const epicoCount    = rarityCounts.epico    || 0;
   const lendarioCount = rarityCounts.lendario || 0;
   const supremoCount = rarityCounts.supremo || 0;
+  const manosCount = rarityCounts.manos || 0;
+  const miticoCount = rarityCounts.mitico || 0;
 
   // aplica filtro na lista pra exibir
   let displayInventory = userInventory;
@@ -225,7 +227,7 @@ function buildInventoryPage(userId, page = 1, filter = 'all') {
 
   const header =
     `📦 **Suas cartas** (filtro: ${filterLabel}) ` +
-    `(**COMUM**: ${comumCount} | **RARO**: ${raroCount} | **EPICA**: ${epicoCount} | **LENDARIA**: ${lendarioCount}) | **SUPREMA**: ${supremoCount})` +
+    `(**COMUM**: ${comumCount} | **RARO**: ${raroCount} | **EPICA**: ${epicoCount} | **LENDARIA**: ${lendarioCount}) | **SUPREMA**: ${supremoCount} | **MITICA**: ${miticoCount}  | **MANOS**: ${manosCount}  )` +
     `— ${total} no total — pág. ${page}/${totalPages}`;
 
   const content =
@@ -760,6 +762,8 @@ client.on(Events.MessageCreate, async (message) => {
       if (arg === 'epicos' || arg === 'epico') filter = 'epico';
       if (arg === 'lendarios' || arg === 'lendario') filter = 'lendario';
       if (arg === 'supremos' || arg === 'supremo') filter = 'supremo';
+      if (arg === 'mano' || arg === 'manos') filter = 'manos';
+      if (arg === 'miticas' || arg === 'mitica' || arg === 'miticos' || arg === 'mitico') filter = 'mitico';
     }
 
     const payload = buildInventoryPage(userId, 1, filter);
@@ -935,6 +939,9 @@ client.on(Events.InteractionCreate, async (interaction) => {
       if (filter === 'raro') return userInventory.filter((c) => c.rarity === 'raro');
       if (filter === 'epico') return userInventory.filter((c) => c.rarity === 'epico');
       if (filter === 'lendario') return userInventory.filter((c) => c.rarity === 'lendario');
+      if (filter === 'supremo') return userInventory.filter((c) => c.rarity === 'supremo');
+      if (filter === 'mitico') return userInventory.filter((c) => c.rarity === 'mitico');
+      if (filter === 'manos') return userInventory.filter((c) => c.rarity === 'manos');
       return userInventory;
     })();
 
