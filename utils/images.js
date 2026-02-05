@@ -15,6 +15,7 @@ export const rarityWeights = {
   comum: 70,
   raro: 15,   
   epico: 10,
+  manos: 8,
   lendario: 1,
   supremo: 0.8
 };
