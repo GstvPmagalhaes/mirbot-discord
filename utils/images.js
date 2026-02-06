@@ -7,7 +7,7 @@ export const rarities = {
   lendario: { label: 'Lendário ⭐', color: '#ffdf5d' },
   supremo:  { label: 'SUPREMO 👹', color: '#fd0000' },
   manos:    { label: 'MANOS 😶‍🌫️', color: '#ffffff' },
-  mitico:   { label: 'MITICO 👑', color: '#00fdf0' },
+  daily:   { label: 'MITICO 👑', color: '#00fdf0' },
 };
 
 
@@ -103,7 +103,7 @@ export const cardsPool = [
   {
     id: 'mano1',
     name: 'mano1',
-    imageUrl: `${BASE_URL}/mano1.png`,
+    imageUrl: `${BASE_URL}/manodoplay.png`,
     rarity: 'manos'
   },
   {
@@ -560,7 +560,7 @@ export const cardsPool = [
     id: 'miticadavez',
     name: 'miticadavez',
     imageUrl: `${BASE_URL}/miticadavez.png`,
-    rarity: 'mitico'
+    rarity: 'daily'
   },
   {
     id: 'hoje_oceu',

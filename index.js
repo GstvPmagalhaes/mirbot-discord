@@ -661,7 +661,7 @@ client.on(Events.MessageCreate, async (message) => {
       const minutes = Math.floor(remaining / 60000);
       const seconds = Math.floor((remaining % 60000) / 1000);
       await message.reply(
-        `UIUIUI TA ANSIOSO É? Faltam **${minutes}m ${seconds}s** pro próximo drop.`
+        `CALLLMA DESGRAÇAAA ainda faltam **${minutes}m ${seconds}s** pro próximo drop.`
       );
       return;
     }
