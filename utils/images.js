@@ -47,6 +47,72 @@ export const cardsPool = [
     rarity: 'supremo'
   },
   {
+    id: 'tiraamaodomeucabelo',
+    name: 'TIRA A MAO DO MEU CABELO',
+    imageUrl: `${BASE_URL}/tiraamaodomeucabelo.png`,
+    rarity: 'lendario'
+  },
+    {
+    id: 'criansachinesa',
+    name: 'criansa chinesa',
+    imageUrl: `${BASE_URL}/criansachinesa.png`,
+    rarity: 'supremo'
+  },
+    {
+    id: 'brainhotmitico',
+    name: 'brainhot',
+    imageUrl: `${BASE_URL}/brainhotmitico.png`,
+    rarity: 'daily'
+  },
+    {
+    id: 'essecaraaiehfoda',
+    name: 'esse cara ai eh foda',
+    imageUrl: `${BASE_URL}/essecaraaiehfoda.png`,
+    rarity: 'raro'
+  },
+    {
+    id: 'falamaisalto',
+    name: 'falamaisalto',
+    imageUrl: `${BASE_URL}/falamaisalto.png`,
+    rarity: 'comum'
+  },
+    {
+    id: 'pombosupremo',
+    name: 'pombo supremo',
+    imageUrl: `${BASE_URL}/pombosupremo.png`,
+    rarity: 'supremo'
+  },
+    {
+    id: 'cachorrocabelo',
+    name: 'cachorro cabelo',
+    imageUrl: `${BASE_URL}/cachorrocabelo.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'heisenberg',
+    name: 'heisenberg',
+    imageUrl: `${BASE_URL}/heisenberg.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'analise',
+    name: 'analise...',
+    imageUrl: `${BASE_URL}/analise.png`,
+    rarity: 'epico'
+  },
+  {
+    id: 'vcsentemeunegro',
+    name: 'vc me sente?',
+    imageUrl: `${BASE_URL}/vcsentemeunegro.png`,
+    rarity: 'comum'
+  },
+  {
+    id: 'paromano',
+    name: 'T',
+    imageUrl: `${BASE_URL}/paromano.png`,
+    rarity: 'epico'
+  },
+  {
     id: 'butterfly_doppler',
     name: 'butterfly_doppler',
     imageUrl: `${BASE_URL}/butterfly_doppler.png`,

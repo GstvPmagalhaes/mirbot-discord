@@ -6519,6 +6519,12 @@
       "name": "PASTELARIA MEU FILHO NASCEU",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/filhonasceu.png",
       "rarity": "epico"
+    },
+    {
+      "id": "x1_cartola",
+      "name": "ACORDA AI TU TAMEN FELADAPUTA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/x1_cartola.png",
+      "rarity": "supremo"
     }
   ],
   "887546445681537024": [
