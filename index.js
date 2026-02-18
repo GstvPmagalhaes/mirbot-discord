@@ -116,7 +116,7 @@ function buildRepeatPage(userId, page = 1) {
 }
 
 const DAILY_COMMON_CARD_ID = 'vou_ficar';
-const DAILY_JACKPOT_CARD_ID = 'miticadavez';
+const DAILY_JACKPOT_CARD_ID = 'brainhotmitico';
 
 function findCardById(cardId) {
   return cardsPool.find((c) => c.id === cardId);
