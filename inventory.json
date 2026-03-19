@@ -4613,6 +4613,12 @@
       "name": "hoje_oceu",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/hoje_oceu.png",
       "rarity": "comum"
+    },
+    {
+      "id": "mano10",
+      "name": "mano10",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mano10.png",
+      "rarity": "manos"
     }
   ],
   "1285093524836057139": [
@@ -13741,6 +13747,18 @@
       "name": "UIIIII",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_egirl.png",
       "rarity": "raro"
+    },
+    {
+      "id": "vou_ficar",
+      "name": "n lembro q imagem q eh kkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/vou_ficar.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "tomajack",
+      "name": "tomajacklanches",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/tomajack.png",
+      "rarity": "epico"
     }
   ],
   "470049195772870656": [
@@ -17390,6 +17408,24 @@
       "id": "semquerer_ansioso",
       "name": "semquerer_ansioso",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/semquerer_ansioso.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "vou_ficar",
+      "name": "n lembro q imagem q eh kkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/vou_ficar.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "jhow_morto",
+      "name": "JHOW MORREU!!!",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/jhow_morto.png",
+      "rarity": "lendario"
+    },
+    {
+      "id": "evitocagar",
+      "name": "evito cagar p nao ficar de barriga vazia",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/evitocagar.png",
       "rarity": "comum"
     }
   ],
