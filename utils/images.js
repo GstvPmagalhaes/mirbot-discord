@@ -58,31 +58,25 @@ export const cardsPool = [
     imageUrl: `${BASE_URL}/criansachinesa.png`,
     rarity: 'supremo'
   },
-    {
-    id: 'brainhotmitico',
-    name: 'brainhot',
-    imageUrl: `${BASE_URL}/brainhotmitico.png`,
-    rarity: 'daily'
-  },
-    {
+  {
     id: 'essecaraaiehfoda',
     name: 'esse cara ai eh foda',
     imageUrl: `${BASE_URL}/essecaraaiehfoda.png`,
     rarity: 'raro'
   },
-    {
+  {
     id: 'falamaisalto',
     name: 'falamaisalto',
     imageUrl: `${BASE_URL}/falamaisalto.png`,
     rarity: 'comum'
   },
-    {
+  {
     id: 'pombosupremo',
     name: 'pombo supremo',
     imageUrl: `${BASE_URL}/pombosupremo.png`,
     rarity: 'supremo'
   },
-    {
+  {
     id: 'cachorrocabelo',
     name: 'cachorro cabelo',
     imageUrl: `${BASE_URL}/cachorrocabelo.png`,
@@ -623,12 +617,6 @@ export const cardsPool = [
     rarity: 'comum'
   },
   {
-    id: 'miticadavez',
-    name: 'miticadavez',
-    imageUrl: `${BASE_URL}/miticadavez.png`,
-    rarity: 'daily'
-  },
-  {
     id: 'hoje_oceu',
     name: 'hoje_oceu',
     imageUrl: `${BASE_URL}/hoje_oceu.png`,
@@ -899,9 +887,123 @@ export const cardsPool = [
     rarity: 'comum'
   },
   {
-    id: 'afaste',
-    name: 'fique longe',
-    imageUrl: `${BASE_URL}/afaste.png`, 
+    id: 'bobsponja',
+    name: 'bobsponja',
+    imageUrl: `${BASE_URL}/bobsponja.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'jogador',
+    name: '"jogador"',
+    imageUrl: `${BASE_URL}/jogador.png`, 
+    rarity: 'raro'
+  },
+  {
+    id: 'mining',
+    name: 'mining',
+    imageUrl: `${BASE_URL}/mining.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'nqz',
+    name: 'nqz',
+    imageUrl: `${BASE_URL}/nqzcabecudo.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'comprei5',
+    name: 'comprei 5',
+    imageUrl: `${BASE_URL}/comprei5.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'sorteiovastilarva',
+    name: 'sorteiovastilarva',
+    imageUrl: `${BASE_URL}/sorteiovastilarva.png`, 
+    rarity: 'epico'
+  },
+  {
+    id: 'nemehdoano',
+    name: 'nem eh do ano',
+    imageUrl: `${BASE_URL}/nemehdoano.png`, 
+    rarity: 'lendario'
+  },
+  {
+    id: 'somorreuplay',
+    name: 'so morreu playboy',
+    imageUrl: `${BASE_URL}/somorreuplay.png`, 
+    rarity: 'raro'
+  },
+  {
+    id: 'pastorcris',
+    name: 'QUANDO SO FALTA',
+    imageUrl: `${BASE_URL}/pastorcris.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'charleskirk',
+    name: 'MEU FILHO NASCEU',
+    imageUrl: `${BASE_URL}/charleskirk.png`, 
+    rarity: 'daily'
+  },
+  {
+    id: 'ehmolodoy',
+    name: 'É MOLODOY OU N EH',
+    imageUrl: `${BASE_URL}/ehmolodoy.png`, 
+    rarity: 'raro'
+  },
+  {
+    id: 'negaobonito',
+    name: 'aprenda luiz',
+    imageUrl: `${BASE_URL}/negaobonito.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'molodoyateamorte',
+    name: 'ATE A MORTE',
+    imageUrl: `${BASE_URL}/molodoyateamorte.png`, 
+    rarity: 'raro'
+  },
+  {
+    id: 'paidesantofdp',
+    name: 'pai de santo fdp',
+    imageUrl: `${BASE_URL}/paidesantofdp.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'naomexecagang',
+    name: 'nao mexe c a gang',
+    imageUrl: `${BASE_URL}/naomexecagang.png`, 
+    rarity: 'supremo'
+  },
+  {
+    id: 'fuckdapolice',
+    name: 'fuck da police',
+    imageUrl: `${BASE_URL}/fuckdapolice.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'ripobama',
+    name: 'rip obama',
+    imageUrl: `${BASE_URL}/ripobama.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'anal',
+    name: 'anal 🔥',
+    imageUrl: `${BASE_URL}/anal.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'legepstein',
+    name: 'leg epstein',
+    imageUrl: `${BASE_URL}/legepstein.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'doutorhouse',
+    name: 'doutorhouse',
+    imageUrl: `${BASE_URL}/doutorhouse.png`, 
     rarity: 'comum'
   },
   {
