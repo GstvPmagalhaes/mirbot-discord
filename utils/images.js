@@ -941,12 +941,6 @@ export const cardsPool = [
     rarity: 'comum'
   },
   {
-    id: 'charleskirk',
-    name: 'MEU FILHO NASCEU',
-    imageUrl: `${BASE_URL}/charleskirk.png`, 
-    rarity: 'daily'
-  },
-  {
     id: 'ehmolodoy',
     name: 'É MOLODOY OU N EH',
     imageUrl: `${BASE_URL}/ehmolodoy.png`, 
@@ -1004,6 +998,72 @@ export const cardsPool = [
     id: 'doutorhouse',
     name: 'doutorhouse',
     imageUrl: `${BASE_URL}/doutorhouse.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'creepypastagoku',
+    name: 'creepypastagoku',
+    imageUrl: `${BASE_URL}/creepypastagoku.png`, 
+    rarity: 'daily'
+  },
+  {
+    id: 'putsss',
+    name: 'putsss',
+    imageUrl: `${BASE_URL}/putsss.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'aidento',
+    name: 'aidento',
+    imageUrl: `${BASE_URL}/aidento.png`, 
+    rarity: 'epico'
+  },
+  {
+    id: 'davisoline',
+    name: 'davisoline',
+    imageUrl: `${BASE_URL}/davisoline.png`, 
+    rarity: 'supremo'
+  },
+  {
+    id: 'tijoleiro',
+    name: 'tijoleiro',
+    imageUrl: `${BASE_URL}/tijoleiro.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'coringafrase',
+    name: 'coringafrases',
+    imageUrl: `${BASE_URL}/coringafrase.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'umamulher',
+    name: 'nunca subestime',
+    imageUrl: `${BASE_URL}/umamulher.png`, 
+    rarity: 'raro'
+  },
+  {
+    id: 'tvnova',
+    name: 'tvnova',
+    imageUrl: `${BASE_URL}/tvnova.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'aoenem',
+    name: 'ao enem aquele abraso',
+    imageUrl: `${BASE_URL}/aoenem.png`, 
+    rarity: 'lendario'
+  },
+  {
+    id: 'aparentementesealuga',
+    name: 'aparentemente se aluga',
+    imageUrl: `${BASE_URL}/aparentementesealuga.png`, 
+    rarity: 'comum'
+  },
+  {
+    id: 'tomaseumardito',
+    name: 'toma seu mardito',
+    imageUrl: `${BASE_URL}/tomaseumardito.png`, 
     rarity: 'comum'
   },
   {
