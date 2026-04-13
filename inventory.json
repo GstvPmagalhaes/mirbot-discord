@@ -4619,6 +4619,18 @@
       "name": "mano10",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mano10.png",
       "rarity": "manos"
+    },
+    {
+      "id": "cagueinapia",
+      "name": "NOTICIA CHATA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/cagueinapia.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "sorteiovastilarva",
+      "name": "sorteiovastilarva",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/sorteiovastilarva.png",
+      "rarity": "epico"
     }
   ],
   "1285093524836057139": [
@@ -13759,6 +13771,48 @@
       "name": "tomajacklanches",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/tomajack.png",
       "rarity": "epico"
+    },
+    {
+      "id": "mano6",
+      "name": "mano6",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mano6.png",
+      "rarity": "manos"
+    },
+    {
+      "id": "vou_ficar",
+      "name": "n lembro q imagem q eh kkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/vou_ficar.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "celso_machado",
+      "name": "OBRIGADO CELSO MACHADO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/celso_machado.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "fodasefilhote",
+      "name": "fodasefilhote",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/fodasefilhote.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "vou_ficar",
+      "name": "n lembro q imagem q eh kkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/vou_ficar.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "vou_ficar",
+      "name": "n lembro q imagem q eh kkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/vou_ficar.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "mano2",
+      "name": "mano2",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/mano2.png",
+      "rarity": "manos"
     }
   ],
   "470049195772870656": [
@@ -20965,6 +21019,54 @@
       "name": "to online",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/toonline.png",
       "rarity": "comum"
+    },
+    {
+      "id": "vou_ficar",
+      "name": "n lembro q imagem q eh kkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/vou_ficar.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "pormim",
+      "name": "POR MIM!!",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/pormim.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "vou_ficar",
+      "name": "n lembro q imagem q eh kkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/vou_ficar.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "analise",
+      "name": "analise...",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/analise.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "vou_ficar",
+      "name": "n lembro q imagem q eh kkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/vou_ficar.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "nqz",
+      "name": "nqz",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nqzcabecudo.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "luto_lilpeep",
+      "name": "NGM OUVE LIL PEEP NA QUEBRADA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/luto_lilpeep.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "thanos",
+      "name": "Thanos.",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/thanos.png",
+      "rarity": "epico"
     }
   ],
   "978799312140140554": [
