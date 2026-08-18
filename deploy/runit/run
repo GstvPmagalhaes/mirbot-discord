@@ -1,0 +1,8 @@
+#!/bin/sh
+
+exec 2>&1
+
+MIRBOT_DIR="${MIRBOT_DIR:-/opt/mirbot}"
+cd "$MIRBOT_DIR" || exit 1
+
+exec chpst -u mirbot:mirbot envdir ./deploy/runit/env node dist/index.js

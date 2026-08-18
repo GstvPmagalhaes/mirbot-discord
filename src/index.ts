@@ -1,9 +1,9 @@
 import 'dotenv/config';
-import sharp from 'sharp';
-import fetch from 'node-fetch';
 import { MessageFlags } from 'discord.js';
-import { promises as fs } from 'fs';
+import { promises as fs } from 'node:fs';
 import { getRarityMeta, drawUniqueCards, cardsPool  } from './utils/images.js';
+import type { Card } from './utils/images.js';
+import { renderDropImage } from './drop-image.js';
 import {
   Client,
   GatewayIntentBits,
@@ -16,7 +16,7 @@ import {
   EmbedBuilder,
 } from 'discord.js';
 
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', (reason) => {
   console.error('Unhandled Rejection em Promise:', reason);
 });
 
@@ -35,24 +35,45 @@ const client = new Client({
 });
 
 //batalhas
-const battles = new Map();
+interface Battle {
+  desafianteId: string;
+  alvoId: string;
+  cartaDesafiante: Card;
+  cartaAlvo: Card | null;
+  status: 'waiting' | 'ready';
+  createdAt: number;
+}
+
+interface DropSession {
+  userId: string;
+  options: Card[];
+  messageId: string;
+  createdAt: number;
+}
+
+interface RepeatedCard {
+  card: Card;
+  count: number;
+}
+
+const battles = new Map<string, Battle>();
 const BATTLE_TIMEOUT = 2 * 60 * 1000;
 const DAILY_FILE = './daily.json';
-let dailyClaims = new Map();
+let dailyClaims = new Map<string, string>();
 
 // cooldown e inventário
 const REPEAT_PAGE_SIZE = 10;
-const cooldowns = new Map(); // userId -> timestamp
+const cooldowns = new Map<string, number>(); // userId -> timestamp
 const INVENTORY_FILE = './inventory.json';
 const PAGE_SIZE = 10; 
-let inventory = new Map();
-const sessions = new Map();  // sessionId -> { userId, options, messageId }
+let inventory = new Map<string, Card[]>();
+const sessions = new Map<string, DropSession>();
 
-function buildRepeatPage(userId, page = 1) {
+function buildRepeatPage(userId: string, page = 1) {
   const userInventory = inventory.get(userId) || [];
 
   // agrupa por id
-  const map = new Map();
+  const map = new Map<string, RepeatedCard>();
   for (const card of userInventory) {
     const entry = map.get(card.id) || { card, count: 0 };
     entry.count += 1;
@@ -86,7 +107,7 @@ function buildRepeatPage(userId, page = 1) {
   const header =
     `🔁 **Cartas repetidas:** (${total} no total) — pág. ${page}/${totalPages}\n`;
 
-  const row = new ActionRowBuilder().addComponents(
+  const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder()
       .setCustomId(`repeat:${userId}:${page}:first`)
       .setLabel('≪')
@@ -118,18 +139,18 @@ function buildRepeatPage(userId, page = 1) {
 const DAILY_COMMON_CARD_ID = 'sucatapinto';
 const DAILY_JACKPOT_CARD_ID = 'creepypastagoku';
 
-function findCardById(cardId) {
+function findCardById(cardId: string) {
   return cardsPool.find((c) => c.id === cardId);
 }
 
 async function loadDailyClaims() {
   try {
     const data = await fs.readFile(DAILY_FILE, 'utf8');
-    const obj = JSON.parse(data);
+    const obj = JSON.parse(data) as Record<string, string>;
     dailyClaims = new Map(Object.entries(obj));
     console.log(`Daily carregado: ${dailyClaims.size} usuário(s).`);
   } catch (err) {
-    if (err.code === 'ENOENT') {
+    if (isNodeError(err) && err.code === 'ENOENT') {
       console.log('Nenhum daily salvo ainda, começando do zero.');
     } else {
       console.error('Erro ao carregar daily:', err);
@@ -150,21 +171,17 @@ async function loadDailyClaims() {
   async function saveDailyClaims() {
     try {
       const obj = Object.fromEntries(dailyClaims);
-      await fs.writeFile(DAILY_FILE, JSON.stringify(obj, null, 2), 'utf8');
+      await writeJsonAtomically(DAILY_FILE, obj);
     } catch (err) {
       console.error('Erro ao salvar daily:', err);
     }
   }
-  await loadInventory();
-  await loadDailyClaims();
-  client.login(process.env.DISCORD_TOKEN);
-
-function buildInventoryPage(userId, page = 1, filter = 'all') {
+function buildInventoryPage(userId: string, page = 1, filter = 'all') {
   const userInventory = inventory.get(userId) || [];
   const total = userInventory.length;
 
   // contagem por raridade no inventário inteiro
-  const rarityCounts = userInventory.reduce(
+  const rarityCounts = userInventory.reduce<Record<string, number>>(
     (acc, card) => {
       acc[card.rarity] = (acc[card.rarity] || 0) + 1;
       return acc;
@@ -242,7 +259,7 @@ function buildInventoryPage(userId, page = 1, filter = 'all') {
     lines.length > 0 ? header + '\n' + lines.join('\n') : header + '\n_(sem cartas nessa página)_';
 
   // botões guardam também o filtro
-  const row = new ActionRowBuilder().addComponents(
+  const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder()
       .setCustomId(`inv:${userId}:${page}:${filter}:first`)
       .setLabel('≪')
@@ -274,7 +291,7 @@ function buildInventoryPage(userId, page = 1, filter = 'all') {
 async function loadInventory() {
   try {
     const data = await fs.readFile(INVENTORY_FILE, 'utf8');
-    const obj = JSON.parse(data);
+    const obj = JSON.parse(data) as Record<string, Card[]>;
 
     // obj = { "userId1": [cards...], "userId2": [...] }
     inventory = new Map(
@@ -283,7 +300,7 @@ async function loadInventory() {
 
     console.log(`Inventário carregado: ${inventory.size} usuário(s).`);
   } catch (err) {
-    if (err.code === 'ENOENT') {
+    if (isNodeError(err) && err.code === 'ENOENT') {
       console.log('Nenhum inventário salvo ainda, começando do zero.');
     } else {
       console.error('Erro ao carregar inventário:', err);
@@ -294,11 +311,7 @@ async function loadInventory() {
 async function saveInventory() {
   try {
     const obj = Object.fromEntries(inventory); // Map -> objeto plano
-    await fs.writeFile(
-      INVENTORY_FILE,
-      JSON.stringify(obj, null, 2),
-      'utf8'
-    );
+    await writeJsonAtomically(INVENTORY_FILE, obj);
     // console.log('Inventário salvo.');
   } catch (err) {
     console.error('Erro ao salvar inventário:', err);
@@ -312,184 +325,21 @@ function createSessionId() {
 }
 
 client.once(Events.ClientReady, () => {
-  console.log(`Logado como ${client.user.tag} (ID: ${client.user.id})`);
+  console.log(`Logado como ${client.user?.tag} (ID: ${client.user?.id})`);
 });
 
 
-async function createDropImage(cards) {
-    console.log(
+async function createDropImage(cards: Card[]) {
+  console.log(
     'Drop atual:',
     cards.map((c) => `${c.id}`)
   );
-
-
-  // Tamanhos "premium"
-  const border = 20;          // borda colorida ao redor da carta
-  const cardWidth = 650;      // largura interna da arte
-  const cardHeight = 850;     // altura interna da arte
-  const renderWidth = cardWidth + border * 2;
-  const renderHeight = cardHeight + border * 2;
-
-  const gapX = 40;            // espaço horizontal entre as cartas
-  const marginTop = 40;       // topo da área das cartas
-  const marginBottom = 40;    // espaço embaixo
-  const labelHeight = 70;     // altura da faixa de texto abaixo de cada carta
-
-  // Largura total necessária pros cards
-  const totalRowWidth = cards.length * renderWidth + (cards.length - 1) * gapX;
-
-  // Canvas "grande" o suficiente, mas mínimo 1024px de largura
-  const canvasWidth = Math.max(1024, totalRowWidth + gapX * 2);
-  const canvasHeight =
-    marginTop + renderHeight + 20 + labelHeight + marginBottom;
-
-  const base = sharp({
-    create: {
-      width: canvasWidth,
-      height: canvasHeight,
-      channels: 4,
-      // fundo bem escuro, estiloso
-      background: '#050509',
-    },
-  });
-
-  const composites = [];
-
-  // Centraliza o conjunto de cartas
-  const startX = Math.floor((canvasWidth - totalRowWidth) / 2);
-  const cardTop = marginTop;
-  const labelTop = cardTop + renderHeight + 20;
-
-  for (let i = 0; i < cards.length; i++) {
-    const card = cards[i];
-    const meta = getRarityMeta(card);
-
-    console.log(
-      `Processando carta ${i + 1}: id=${card.id}`
-    );
-
-    try {
-    // 1) baixa a imagem da carta
-    const res = await fetch(card.imageUrl);
-    const buf = Buffer.from(await res.arrayBuffer());
-
-    // 2) redimensiona pra tamanho interno
-    const cardInner = await sharp(buf)
-      .resize(cardWidth, cardHeight, { fit: 'cover' })
-      .png()
-      .toBuffer();
-
-    // 3) adiciona borda de raridade em volta
-    const bordered = await sharp({
-      create: {
-        width: renderWidth,
-        height: renderHeight,
-        channels: 4,
-        background: meta.color, // cor da raridade
-      },
-    })
-      .composite([{ input: cardInner, left: border, top: border }])
-      .png()
-      .toBuffer();
-
-    // 4) cria uma sombra "fake" por trás da carta
-    const shadow = await sharp({
-      create: {
-        width: renderWidth,
-        height: renderHeight,
-        channels: 4,
-        background: '#c4c4c41e',
-      },
-    })
-      .png()
-      .blur(25)
-      .toBuffer();
-
-    const left = startX + i * (renderWidth + gapX);
-
-    // 4.1) aplica sombra primeiro (com offset)
-    composites.push({
-      input: shadow,
-      left: left + 18,
-      top: cardTop + 18,
-      blend: 'over',
-      opacity: 0.45,
-    });
-
-    // 4.2) depois a carta com borda
-    composites.push({
-      input: bordered,
-      left,
-      top: cardTop,
-    });
-
-    // 5) faixa com nome + raridade em SVG abaixo da carta
-    const labelSvg = createCardLabelSvg(card, renderWidth, labelHeight);
-    composites.push({
-      input: labelSvg,
-      left,
-      top: labelTop,
-    });
-  } catch (err) {
-      console.error(
-        'Erro ao montar imagem da carta',
-        card.id,
-        err
-      );
-      throw err; // mantém o erro pra você ver no console
-    }
-  }
-  const finalBuffer = await base.composite(composites).png().toBuffer();
+  const finalBuffer = await renderDropImage(cards);
 
   const fileName = `drop_${Date.now()}.png`;
   const attachment = new AttachmentBuilder(finalBuffer, { name: fileName });
 
   return { attachment, fileName };
-} 
-
-function escapeSvgText(text) {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-}
-
-function createCardLabelSvg(card, width, height) {
-  const meta = getRarityMeta(card);
-  const safeName = escapeSvgText(card.name);
-  const safeRarity = escapeSvgText(meta.label);
-
-  const svg = `
-    <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="labelBg" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="rgba(0,0,0,0.9)" />
-          <stop offset="100%" stop-color="rgba(0,0,0,0.6)" />
-        </linearGradient>
-      </defs>
-      <rect x="0" y="0" width="100%" height="100%" rx="18" ry="18" fill="url(#labelBg)" />
-      <text
-        x="50%"
-        y="45%"
-        text-anchor="middle"
-        fill="#ffffff"
-        font-size="26"
-        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-        ${safeName}
-      </text>
-      <text
-        x="50%"
-        y="78%"
-        text-anchor="middle"
-        fill="${meta.color}"
-        font-size="20"
-        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-        ${safeRarity}
-      </text>
-    </svg>
-  `;
-
-  return Buffer.from(svg);
 }
 
 client.on(Events.MessageCreate, async (message) => {
@@ -544,7 +394,7 @@ client.on(Events.MessageCreate, async (message) => {
       return;
     }
 
-    const battle = {
+    const battle: Battle = {
       desafianteId,
       alvoId,
       cartaDesafiante,
@@ -672,30 +522,31 @@ client.on(Events.MessageCreate, async (message) => {
     const options = drawUniqueCards(3);
     const sessionId = createSessionId();
 
-    const { attachment, fileName } = await createDropImage(options);
+    const { attachment } = await createDropImage(options);
+    const cardList = options
+      .map((card, index) => `\`${index + 1}.\` ${getRarityMeta(card).label} | **${card.name}**`)
+      .join('\n');
 
-    const embed = new EmbedBuilder()
-      .setTitle('🎴 **DROPANDO...\n\n CLICA NA IMAGEM PRA VER MELHOR AS CARTA**')
-      .setDescription('Escolhe a carta ae animal.\n\n ▪️▪️Carta 1️⃣▪️▪️▪️▪️▪️Carta 2️⃣▪️▪️▪️▪️Carta 3️⃣')
-      .setImage(`attachment://${fileName}`);
-
-    const row = new ActionRowBuilder().addComponents(
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
       new ButtonBuilder()
         .setCustomId(`card:${sessionId}:0`)
-        .setLabel('1')
-        .setStyle(ButtonStyle.Primary),
+        .setEmoji('1️⃣')
+        .setLabel('.')
+        .setStyle(ButtonStyle.Secondary),
       new ButtonBuilder()
         .setCustomId(`card:${sessionId}:1`)
-        .setLabel('2')
-        .setStyle(ButtonStyle.Primary),
+        .setEmoji('2️⃣')
+        .setLabel('.')
+        .setStyle(ButtonStyle.Secondary),
       new ButtonBuilder()
         .setCustomId(`card:${sessionId}:2`)
-        .setLabel('3')
-        .setStyle(ButtonStyle.Primary)
+        .setEmoji('3️⃣')
+        .setLabel('.')
+        .setStyle(ButtonStyle.Secondary)
     );
 
     const reply = await message.reply({
-      embeds: [embed],
+      content: `🎴 <@${userId}> está dropando cartas\n\n${cardList}\n\nEscolha uma carta abaixo:`,
       components: [row],
       files: [attachment],
     });
@@ -873,7 +724,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
   }
 
   // descobrir total de repetidas (pois a paginação depende disso)
-  const map = new Map();
+  const map = new Map<string, RepeatedCard>();
   for (const card of userInventory) {
     const entry = map.get(card.id) || { card, count: 0 };
     entry.count += 1;
@@ -1011,6 +862,14 @@ client.on(Events.InteractionCreate, async (interaction) => {
   const idx = Number(idxStr);
   const chosen = session.options[idx];
 
+  if (!chosen) {
+    await interaction.reply({
+      content: 'Opção de carta inválida.',
+      flags: MessageFlags.Ephemeral,
+    });
+    return;
+  }
+
   const userInventory = inventory.get(session.userId) || [];
   userInventory.push(chosen);
   inventory.set(session.userId, userInventory);
@@ -1020,27 +879,45 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
   // desabilita botões
   try {
-    const channel = await interaction.client.channels.fetch(interaction.channelId);
-    const msg = await channel.messages.fetch(session.messageId);
-
-    const disabledRow = new ActionRowBuilder().addComponents(
-      msg.components[0].components.map((btn) =>
-        ButtonBuilder.from(btn).setDisabled(true)
+    const disabledRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
+      session.options.map((_, buttonIndex) =>
+        new ButtonBuilder()
+          .setCustomId(`card:${sessionId}:${buttonIndex}`)
+          .setEmoji('🤍')
+          .setLabel(String(buttonIndex + 1))
+          .setStyle(ButtonStyle.Secondary)
+          .setDisabled(true)
       )
     );
 
-    await msg.edit({ components: [disabledRow] });
+    await interaction.message.edit({ components: [disabledRow] });
   } catch (e) {
     console.error('Erro ao desabilitar botões:', e);
   }
 
   await interaction.reply({
     content: `Você escolheu: **${chosen.name}** 🎉\nAgora você tem **${
-      inventory.get(session.userId).length
-    }** carta(s) no inventário. Digita !card ${inventory.get(session.userId).length} pra ver sua nova cartinha`,
+      userInventory.length
+    }** carta(s) no inventário. Digita !card ${userInventory.length} pra ver sua nova cartinha`,
     flags: MessageFlags.Ephemeral,
   });
 });
 
+function isNodeError(error: unknown): error is NodeJS.ErrnoException {
+  return error instanceof Error;
+}
+
+async function writeJsonAtomically(filePath: string, value: unknown): Promise<void> {
+  const temporaryPath = `${filePath}.tmp`;
+  await fs.writeFile(temporaryPath, JSON.stringify(value, null, 2), 'utf8');
+  await fs.rename(temporaryPath, filePath);
+}
+
+const token = process.env.DISCORD_TOKEN;
+if (!token) {
+  throw new Error('A variável de ambiente DISCORD_TOKEN não foi definida.');
+}
+
 await loadInventory();
-client.login(process.env.DISCORD_TOKEN);
+await loadDailyClaims();
+await client.login(token);

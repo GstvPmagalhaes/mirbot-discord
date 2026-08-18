@@ -1,5 +1,3 @@
-
-
 export const rarities = {
   comum:    { label: 'Comum 🟩',    color: '#10c400' }, 
   raro:     { label: 'Raro 🔷',     color: '#0099ff' },
@@ -8,7 +6,16 @@ export const rarities = {
   supremo:  { label: 'SUPREMO 👹', color: '#fd0000' },
   manos:    { label: 'MANOS 😶‍🌫️', color: '#ffffff' },
   daily:   { label: 'MITICO 👑', color: '#00fdf0' },
-};
+} as const;
+
+export type Rarity = keyof typeof rarities | 'mitico' | '';
+
+export interface Card {
+  id: string;
+  name: string;
+  imageUrl: string;
+  rarity: Rarity;
+}
 
 
 export const rarityWeights = {
@@ -20,26 +27,30 @@ export const rarityWeights = {
   supremo: 0.8
 };
 
-function pickRarityByWeight() {
+function pickRarityByWeight(): Rarity {
   const entries = Object.entries(rarityWeights); 
   const total = entries.reduce((acc, [, w]) => acc + w, 0);
   let roll = Math.random() * total;
 
   for (const [rarity, weight] of entries) {
-    if (roll < weight) return rarity;
+    if (roll < weight) return rarity as Rarity;
     roll -= weight;
   }
 
   return 'comum';
 }
 
-export function getRarityMeta(card) {
-  return rarities[card.rarity] ?? rarities.comum;
+export function getRarityMeta(card: Card) {
+  if (card.rarity in rarities) {
+    return rarities[card.rarity as keyof typeof rarities];
+  }
+
+  return rarities.comum;
 }
 
 const BASE_URL = 'https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards'
 
-export const cardsPool = [
+export const cardsPool: Card[] = [
   {
     id: 'howl',
     name: 'M4 HOWL',
@@ -1920,13 +1931,13 @@ export const cardsPool = [
     },
 ];
 
-export function drawUniqueCards(qtd, pool = cardsPool) {
+export function drawUniqueCards(qtd: number, pool: Card[] = cardsPool): Card[] {
   if (qtd > pool.length) {
     throw new Error('Quantidade maior que o número de cartas disponíveis.');
   }
 
   // agrupa cartas por raridade
-  const byRarity = pool.reduce((acc, card) => {
+  const byRarity = pool.reduce<Record<string, Card[]>>((acc, card) => {
     if (!acc[card.rarity]) acc[card.rarity] = [];
     acc[card.rarity].push(card);
     return acc;
