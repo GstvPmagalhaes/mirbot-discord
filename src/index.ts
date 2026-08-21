@@ -565,7 +565,7 @@ client.on(Events.MessageCreate, async (message) => {
   const last = dailyClaims.get(userId);
 
   if (last === today) {
-    await message.reply('📦 Você já abriu a caixa de hoje pae. Volta amanhã.');
+    await message.reply('📦 Você já abriu a caixa de hoje paizao. Volta amanhã.');
     return;
   }
 

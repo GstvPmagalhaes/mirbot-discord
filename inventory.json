@@ -173,6 +173,12 @@
       "name": "hoje estarei no plantas",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/hoje_estareinoplantao.png",
       "rarity": "comum"
+    },
+    {
+      "id": "sucatapinto",
+      "name": "sucatapinto",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/sucatapinto.png",
+      "rarity": "comum"
     }
   ],
   "470049195772870656": [
