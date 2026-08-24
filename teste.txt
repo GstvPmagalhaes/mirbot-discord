@@ -1,0 +1,9 @@
+Uncaught Exception: ConnectTimeoutError: Connect Timeout Error (attempted addresses: 162.159.135.232:443, 162.159.128.233:443, 162.159.137.232:443, 162.159.138.232:443, 162.159.136.232:443, timeout: 10000ms)
+    at onConnectTimeout (/home/gustavo/Bots/mirbot-discord/node_modules/undici/lib/core/connect.js:237:24)
+    at Immediate._onImmediate (/home/gustavo/Bots/mirbot-discord/node_modules/undici/lib/core/connect.js:206:11)
+    at process.processImmediate (node:internal/timers:534:21) {
+  code: 'UND_ERR_CONNECT_TIMEOUT',
+  Symbol(undici.error.UND_ERR): true,
+  Symbol(undici.error.UND_ERR_CONNECT_TIMEOUT): true
+}
+
