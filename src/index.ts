@@ -1,9 +1,12 @@
 import 'dotenv/config';
 import { MessageFlags } from 'discord.js';
+import type { Interaction, Message } from 'discord.js';
+import { fetch as undiciFetch } from 'undici';
 import { promises as fs } from 'node:fs';
 import { getRarityMeta, drawUniqueCards, cardsPool  } from './utils/images.js';
 import type { Card } from './utils/images.js';
 import { renderDropImage } from './drop-image.js';
+import { findFusionRecipe, fuseCards, fusionRecipes } from './fusions.js';
 import {
   Client,
   GatewayIntentBits,
@@ -18,12 +21,32 @@ import {
 
 process.on('unhandledRejection', (reason) => {
   console.error('Unhandled Rejection em Promise:', reason);
+  process.exit(1);
 });
 
-process.on('uncaughtException', (err) => {
-  console.error('Uncaught Exception:', err);
+process.on('uncaughtException', (err, origin) => {
+  console.error(`Uncaught Exception (${origin}):`, err);
+  process.exit(1);
 });
 
+const DISCORD_CONNECT_RETRY_DELAYS_MS = [1_000, 3_000];
+
+function hasErrorCode(error: unknown, expectedCode: string, seen = new Set<unknown>()): boolean {
+  if (typeof error !== 'object' || error === null || seen.has(error)) return false;
+  seen.add(error);
+
+  if ('code' in error && error.code === expectedCode) return true;
+  if ('cause' in error && hasErrorCode(error.cause, expectedCode, seen)) return true;
+  if (error instanceof AggregateError) {
+    return error.errors.some((item) => hasErrorCode(item, expectedCode, seen));
+  }
+
+  return false;
+}
+
+function wait(milliseconds: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, milliseconds));
+}
 
 const client = new Client({
   intents: [
@@ -32,6 +55,28 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
   ],
   partials: [Partials.Channel],
+  rest: {
+    // O @discordjs/rest não repete UND_ERR_CONNECT_TIMEOUT por padrão.
+    timeout: 45_000,
+    async makeRequest(url, options) {
+      for (let attempt = 0; ; attempt++) {
+        try {
+          return await undiciFetch(url, options);
+        } catch (error) {
+          const retryDelay = DISCORD_CONNECT_RETRY_DELAYS_MS[attempt];
+          if (!hasErrorCode(error, 'UND_ERR_CONNECT_TIMEOUT') || retryDelay === undefined) {
+            throw error;
+          }
+
+          console.warn(
+            `Timeout ao conectar na API do Discord. Nova tentativa em ${retryDelay / 1_000}s ` +
+            `(${attempt + 2}/${DISCORD_CONNECT_RETRY_DELAYS_MS.length + 1}).`
+          );
+          await wait(retryDelay);
+        }
+      }
+    },
+  },
 });
 
 //batalhas
@@ -68,6 +113,7 @@ const INVENTORY_FILE = './inventory.json';
 const PAGE_SIZE = 10; 
 let inventory = new Map<string, Card[]>();
 const sessions = new Map<string, DropSession>();
+const activeFusionUsers = new Set<string>();
 
 function buildRepeatPage(userId: string, page = 1) {
   const userInventory = inventory.get(userId) || [];
@@ -176,6 +222,23 @@ async function loadDailyClaims() {
       console.error('Erro ao salvar daily:', err);
     }
   }
+
+function matchesInventoryFilter(card: Card, filter: string) {
+  switch (filter) {
+    case 'comum':
+    case 'raro':
+    case 'epico':
+    case 'lendario':
+    case 'supremo':
+    case 'manos':
+      return card.rarity === filter;
+    case 'mitico':
+      return card.rarity === 'mitico' || card.rarity === 'daily';
+    default:
+      return true;
+  }
+}
+
 function buildInventoryPage(userId: string, page = 1, filter = 'all') {
   const userInventory = inventory.get(userId) || [];
   const total = userInventory.length;
@@ -195,44 +258,44 @@ function buildInventoryPage(userId: string, page = 1, filter = 'all') {
   const lendarioCount = rarityCounts.lendario || 0;
   const supremoCount = rarityCounts.supremo || 0;
   const manosCount = rarityCounts.manos || 0;
-  const miticoCount = rarityCounts.mitico || 0;
+  const miticoCount = (rarityCounts.daily || 0) + (rarityCounts.mitico || 0);
 
-  // aplica filtro na lista pra exibir
-  let displayInventory = userInventory;
+  // Preserva a posição original para o número continuar válido após o filtro.
+  const inventoryEntries = userInventory.map((card, inventoryIndex) => ({
+    card,
+    inventoryIndex,
+  }));
   let filterLabel = 'todas';
   switch (filter) {
     case 'comum':
-      displayInventory = userInventory.filter((c) => c.rarity === 'comum');
       filterLabel = 'comuns';
       break;
     case 'raro':
-      displayInventory = userInventory.filter((c) => c.rarity === 'raro');
       filterLabel = 'raros';
       break;
     case 'epico':
-      displayInventory = userInventory.filter((c) => c.rarity === 'epico');
       filterLabel = 'épicos';
       break;
     case 'lendario':
-      displayInventory = userInventory.filter((c) => c.rarity === 'lendario');
       filterLabel = 'lendários';
       break;
     case 'supremo':
-      displayInventory = userInventory.filter((c) => c.rarity === 'supremo');
       filterLabel = 'supremos';
       break;
     case 'mitico':
-      displayInventory = userInventory.filter((c) => c.rarity === 'mitico');
       filterLabel = 'miticos';
       break;
     case 'manos':
-      displayInventory = userInventory.filter((c) => c.rarity === 'manos');
       filterLabel = 'manos';
       break;
     default:
       filter = 'all';
       break;
   }
+
+  const displayInventory = inventoryEntries.filter(({ card }) =>
+    matchesInventoryFilter(card, filter)
+  );
 
   const filteredTotal = displayInventory.length;
   const totalPages = Math.max(1, Math.ceil(filteredTotal / PAGE_SIZE));
@@ -243,11 +306,9 @@ function buildInventoryPage(userId: string, page = 1, filter = 'all') {
   const end = start + PAGE_SIZE;
   const slice = displayInventory.slice(start, end);
 
-  const lines = slice.map((card, i) => {
-    // index global com base na lista FILTRADA
-    const indexGlobal = start + i + 1;
+  const lines = slice.map(({ card, inventoryIndex }) => {
     const meta = getRarityMeta(card);
-    return `${indexGlobal}. ${card.name} — ${meta.label}`;
+    return `\`${inventoryIndex + 1}.\` ${card.name} — ${meta.label} — ID: \`${card.id}\``;
   });
 
   const header =
@@ -308,13 +369,15 @@ async function loadInventory() {
   }
 }
 
-async function saveInventory() {
+async function saveInventory(): Promise<boolean> {
   try {
     const obj = Object.fromEntries(inventory); // Map -> objeto plano
     await writeJsonAtomically(INVENTORY_FILE, obj);
     // console.log('Inventário salvo.');
+    return true;
   } catch (err) {
     console.error('Erro ao salvar inventário:', err);
+    return false;
   }
 }
 
@@ -342,9 +405,7 @@ async function createDropImage(cards: Card[]) {
   return { attachment, fileName };
 }
 
-client.on(Events.MessageCreate, async (message) => {
-  if (message.author.bot || !message.guild) return;
-
+async function handleMessage(message: Message<true>) {
   const raw = message.content.trim();
   const content = raw.toLowerCase();
   const userId = message.author.id;
@@ -359,13 +420,13 @@ client.on(Events.MessageCreate, async (message) => {
   if (content.startsWith('!bafao')) {
     const parts = raw.split(/\s+/);
     if (parts.length < 3) {
-      message.reply('Uso: `!bafao @pessoa id_da_carta`');
+      await message.reply('Uso: `!bafao @pessoa id_da_carta`');
       return;
     }
 
     const target = message.mentions.users.first();
     if (!target) {
-      message.reply('Você precisa mencionar alguém.');
+      await message.reply('Você precisa mencionar alguém.');
       return;
     }
 
@@ -374,7 +435,7 @@ client.on(Events.MessageCreate, async (message) => {
     const alvoId = target.id;
 
     if (desafianteId === alvoId) {
-      message.reply('Você não pode desafiar você mesmo, paizão 😂');
+      await message.reply('Você não pode desafiar você mesmo, paizão 😂');
       return;
     }
 
@@ -383,14 +444,14 @@ client.on(Events.MessageCreate, async (message) => {
     const cartaDesafiante = inv.find((c) => c.id === cardId);
 
     if (!cartaDesafiante) {
-      message.reply('Você não tem essa carta para apostar.');
+      await message.reply('Você não tem essa carta para apostar.');
       return;
     }
 
     // cria chave
     const key = `${desafianteId}:${alvoId}`;
     if (battles.has(key)) {
-      message.reply('Já existe um bafão pendente entre vocês!');
+      await message.reply('Já existe um bafão pendente entre vocês!');
       return;
     }
 
@@ -410,11 +471,13 @@ client.on(Events.MessageCreate, async (message) => {
       const b = battles.get(key);
       if (b && b.status === 'waiting') {
         battles.delete(key);
-        message.channel.send(`⏳ O bafão entre <@${desafianteId}> e <@${alvoId}> expirou.`);
+        void message.channel
+          .send(`⏳ O bafão entre <@${desafianteId}> e <@${alvoId}> expirou.`)
+          .catch((error) => console.error('Erro ao avisar expiração do bafão:', error));
       }
     }, BATTLE_TIMEOUT);
 
-    message.reply(
+    await message.reply(
       `🔥 **BAFÃO INICIADO!**\n\n` +
       `<@${alvoId}> foi desafiado por <@${desafianteId}>!\n` +
       `Aposta: **${cartaDesafiante.name}**\n\n` +
@@ -428,7 +491,7 @@ client.on(Events.MessageCreate, async (message) => {
   if (content.startsWith('!aceitarbafao')) {
     const parts = raw.split(/\s+/);
     if (parts.length < 3) {
-      message.reply('Uso: `!aceitarbafao id_da_carta @pessoa`');
+      await message.reply('Uso: `!aceitarbafao id_da_carta @pessoa`');
       return;
     }
 
@@ -436,7 +499,7 @@ client.on(Events.MessageCreate, async (message) => {
     const desafiante = message.mentions.users.first();
 
     if (!desafiante) {
-      message.reply('Você precisa mencionar o desafiante.');
+      await message.reply('Você precisa mencionar o desafiante.');
       return;
     }
 
@@ -447,7 +510,7 @@ client.on(Events.MessageCreate, async (message) => {
     const battle = battles.get(key);
 
     if (!battle) {
-      message.reply('Não existe bafão pendente com essa pessoa.');
+      await message.reply('Não existe bafão pendente com essa pessoa.');
       return;
     }
 
@@ -456,7 +519,7 @@ client.on(Events.MessageCreate, async (message) => {
     const cartaAlvo = invAlvo.find((c) => c.id === cartaIdAlvo);
 
     if (!cartaAlvo) {
-      message.reply('Você não tem essa carta para apostar.');
+      await message.reply('Você não tem essa carta para apostar.');
       return;
     }
 
@@ -489,7 +552,7 @@ client.on(Events.MessageCreate, async (message) => {
 
     battles.delete(key);
 
-    message.channel.send(
+    await message.channel.send(
       `⚔️ **RAPELÔ ZÉ** ⚔️\n\n` +
       `🎉 **Vencedor:** <@${winnerId}>\n` +
       `😵 **otario kkkk:** <@${loserId}>\n\n` +
@@ -518,45 +581,60 @@ client.on(Events.MessageCreate, async (message) => {
 
     cooldowns.set(userId, now);
 
-    // sorteia 3 cartas
-    const options = drawUniqueCards(3);
-    const sessionId = createSessionId();
+    try {
+      // sorteia 3 cartas
+      const options = drawUniqueCards(3);
+      const sessionId = createSessionId();
 
-    const { attachment } = await createDropImage(options);
-    const cardList = options
-      .map((card, index) => `\`${index + 1}.\` ${getRarityMeta(card).label} | **${card.name}**`)
-      .join('\n');
+      const { attachment } = await createDropImage(options);
+      const cardList = options
+        .map((card, index) => `\`${index + 1}.\` ${getRarityMeta(card).label} | **${card.name}**`)
+        .join('\n');
 
-    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-      new ButtonBuilder()
-        .setCustomId(`card:${sessionId}:0`)
-        .setEmoji('1️⃣')
-        .setLabel('.')
-        .setStyle(ButtonStyle.Secondary),
-      new ButtonBuilder()
-        .setCustomId(`card:${sessionId}:1`)
-        .setEmoji('2️⃣')
-        .setLabel('.')
-        .setStyle(ButtonStyle.Secondary),
-      new ButtonBuilder()
-        .setCustomId(`card:${sessionId}:2`)
-        .setEmoji('3️⃣')
-        .setLabel('.')
-        .setStyle(ButtonStyle.Secondary)
-    );
+      const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+        new ButtonBuilder()
+          .setCustomId(`card:${sessionId}:0`)
+          .setEmoji('1️⃣')
+          .setLabel('.')
+          .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
+          .setCustomId(`card:${sessionId}:1`)
+          .setEmoji('2️⃣')
+          .setLabel('.')
+          .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
+          .setCustomId(`card:${sessionId}:2`)
+          .setEmoji('3️⃣')
+          .setLabel('.')
+          .setStyle(ButtonStyle.Secondary)
+      );
 
-    const reply = await message.reply({
-      content: `🎴 <@${userId}> está dropando cartas\n\n${cardList}\n\nEscolha uma carta abaixo:`,
-      components: [row],
-      files: [attachment],
-    });
+      const reply = await message.reply({
+        content: `🎴 <@${userId}> está dropando cartas\n\n${cardList}\n\nEscolha uma carta abaixo:`,
+        components: [row],
+        files: [attachment],
+      });
 
-    sessions.set(sessionId, {
-      userId,
-      options,
-      messageId: reply.id,
-      createdAt: now,
-    });
+      sessions.set(sessionId, {
+        userId,
+        options,
+        messageId: reply.id,
+        createdAt: now,
+      });
+    } catch (error) {
+      if (cooldowns.get(userId) === now) {
+        if (lastUse === 0) cooldowns.delete(userId);
+        else cooldowns.set(userId, lastUse);
+      }
+
+      console.error(`Erro ao processar drop de ${userId}; cooldown devolvido:`, error);
+      try {
+        await message.reply('Não consegui enviar seu drop por uma falha de conexão. Seu cooldown foi devolvido; tenta novamente.');
+      } catch (replyError) {
+        console.error('Também não foi possível avisar o usuário sobre a falha do drop:', replyError);
+      }
+    }
+    return;
   }
 
 
@@ -642,8 +720,12 @@ client.on(Events.MessageCreate, async (message) => {
       'Mostra todas as suas cartas com paginação.\n\n' +
       '→ `!inv raros`, `!inv epicos`, `!inv lendarios`, `!inv comuns`\n' +
       'Filtra o inventário por raridade.\n\n' +
-      '→ `!card <n>`\n' +
-      'Mostra a carta **n** do seu inventário em destaque.\n\n' +
+      '→ `!card <número ou id>`\n' +
+      'Mostra uma carta usando a posição no inventário ou o ID dela.\n\n' +
+
+      '⚡ **Fusões**\n' +
+      '→ `!fusao exodia`\n' +
+      'Consome as cinco partes e invoca o Exodia.\n\n' +
 
       '🔁 **Cartas Repetidas**\n' +
       '→ `!repetidas`\n' +
@@ -658,16 +740,72 @@ client.on(Events.MessageCreate, async (message) => {
     return;
   }
 
-   if (content.startsWith('!card')) {
-    const parts = raw.split(/\s+/);
-    if (parts.length < 2) {
-      await message.reply('Uso: `!card <número da carta no inventário>`');
+  if (content === '!fusao' || content.startsWith('!fusao ')) {
+    const recipeId = raw.split(/\s+/).slice(1).join(' ').trim();
+    if (!recipeId) {
+      const options = fusionRecipes.map((recipe) => recipe.id).join(', ');
+      await message.reply(`Uso: \`!fusao <nome>\`. Fusões disponíveis: **${options}**.`);
       return;
     }
 
-    const index = parseInt(parts[1], 10);
-    if (Number.isNaN(index) || index < 1) {
-      await message.reply('Informe um número válido, tipo `!card 1`.');
+    const recipe = findFusionRecipe(recipeId);
+    if (!recipe) {
+      const options = fusionRecipes.map((item) => item.id).join(', ');
+      await message.reply(`Essa fusão não existe. Fusões disponíveis: **${options}**.`);
+      return;
+    }
+
+    if (activeFusionUsers.has(userId)) {
+      await message.reply('Sua fusão já está em andamento. Segura a emoção aí 👹');
+      return;
+    }
+
+    activeFusionUsers.add(userId);
+    try {
+      const previousInventory = inventory.get(userId) || [];
+      const result = fuseCards(previousInventory, recipe);
+
+      if (!result.success) {
+        const missingCards = result.missingIds.map((id) => {
+          const card = findCardById(id);
+          return `• ${card?.name || id} [\`${id}\`]`;
+        });
+
+        await message.reply(
+          `Você ainda não pode fazer a fusão **${recipe.name}**. Falta:\n${missingCards.join('\n')}`
+        );
+        return;
+      }
+
+      inventory.set(userId, result.inventory);
+      const saved = await saveInventory();
+      if (!saved) {
+        inventory.set(userId, previousInventory);
+        await message.reply(
+          'A fusão falhou ao salvar o inventário. Nenhuma carta foi consumida; tente novamente.'
+        );
+        return;
+      }
+
+      const embed = new EmbedBuilder()
+        .setTitle('🔥 FUSÃO CONCLUÍDA! 🔥')
+        .setDescription(
+          `As cinco partes foram reunidas...\n\n<@${userId}> invocou **${result.card.name}**!`
+        )
+        .setImage(recipe.animationUrl)
+        .setColor('#00fdf0');
+
+      await message.reply({ embeds: [embed] });
+    } finally {
+      activeFusionUsers.delete(userId);
+    }
+    return;
+  }
+
+   if (content === '!card' || content.startsWith('!card ')) {
+    const parts = raw.split(/\s+/);
+    if (parts.length < 2) {
+      await message.reply('Uso: `!card <número ou id da carta>`');
       return;
     }
 
@@ -677,29 +815,44 @@ client.on(Events.MessageCreate, async (message) => {
       return;
     }
 
-    const pos = index - 1;
-    if (pos >= userInventory.length) {
-      await message.reply(
-        `Você só tem **${userInventory.length}** carta(s).`
-      );
+    const reference = parts[1].toLowerCase();
+    const numericReference = /^\d+$/.test(reference);
+    const position = numericReference
+      ? Number(reference) - 1
+      : userInventory.findIndex((item) => item.id.toLowerCase() === reference);
+
+    if (position < 0 || position >= userInventory.length) {
+      const errorMessage = numericReference
+        ? `Você só tem **${userInventory.length}** carta(s).`
+        : `Você não tem nenhuma carta com o ID \`${reference}\`.`;
+      await message.reply(errorMessage);
       return;
     }
 
-    const card = userInventory[pos];
+    const card = userInventory[position];
     const meta = getRarityMeta(card);
 
     const embed = new EmbedBuilder()
       .setTitle(`${card.name} — ${meta.label}`)
       .setImage(card.imageUrl)
-      .setColor(meta.color);
+      .setColor(meta.color)
+      .setFooter({ text: `Posição no inventário: ${position + 1} • ID: ${card.id}` });
 
     await message.reply({ embeds: [embed] });
     return;
   }
+}
+
+client.on(Events.MessageCreate, (message) => {
+  if (message.author.bot || !message.inGuild()) return;
+
+  void handleMessage(message).catch((error) => {
+    console.error(`Erro ao processar mensagem ${message.id}:`, error);
+  });
 });
 
 // ---- HANDLER DOS BOTÕES ----
-client.on(Events.InteractionCreate, async (interaction) => {
+async function handleInteraction(interaction: Interaction) {
   if (!interaction.isButton()) return;
 
   const parts = interaction.customId.split(':');
@@ -793,16 +946,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       return;
     }
 
-    const filtered = (() => {
-      if (filter === 'comum') return userInventory.filter((c) => c.rarity === 'comum');
-      if (filter === 'raro') return userInventory.filter((c) => c.rarity === 'raro');
-      if (filter === 'epico') return userInventory.filter((c) => c.rarity === 'epico');
-      if (filter === 'lendario') return userInventory.filter((c) => c.rarity === 'lendario');
-      if (filter === 'supremo') return userInventory.filter((c) => c.rarity === 'supremo');
-      if (filter === 'mitico') return userInventory.filter((c) => c.rarity === 'mitico');
-      if (filter === 'manos') return userInventory.filter((c) => c.rarity === 'manos');
-      return userInventory;
-    })();
+    const filtered = userInventory.filter((card) => matchesInventoryFilter(card, filter));
 
     const totalFiltered = filtered.length;
     const totalPages = Math.max(1, Math.ceil(totalFiltered / PAGE_SIZE));
@@ -900,6 +1044,12 @@ client.on(Events.InteractionCreate, async (interaction) => {
       userInventory.length
     }** carta(s) no inventário. Digita !card ${userInventory.length} pra ver sua nova cartinha`,
     flags: MessageFlags.Ephemeral,
+  });
+}
+
+client.on(Events.InteractionCreate, (interaction) => {
+  void handleInteraction(interaction).catch((error) => {
+    console.error(`Erro ao processar interação ${interaction.id}:`, error);
   });
 });
 

@@ -6,9 +6,10 @@ export const rarities = {
   supremo:  { label: 'SUPREMO 👹', color: '#fd0000' },
   manos:    { label: 'MANOS 😶‍🌫️', color: '#ffffff' },
   daily:   { label: 'MITICO 👑', color: '#00fdf0' },
+  mitico:  { label: 'MÍTICO 👑', color: '#00fdf0' },
 } as const;
 
-export type Rarity = keyof typeof rarities | 'mitico' | '';
+export type Rarity = keyof typeof rarities | '';
 
 export interface Card {
   id: string;
@@ -48,7 +49,8 @@ export function getRarityMeta(card: Card) {
   return rarities.comum;
 }
 
-const BASE_URL = 'https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards'
+export const CARD_ASSET_BASE_URL = 'https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards';
+const BASE_URL = CARD_ASSET_BASE_URL;
 
 export const cardsPool: Card[] = [
   {
@@ -1928,6 +1930,36 @@ export const cardsPool: Card[] = [
       name: 'GABRIEL GARÇÃO',
       imageUrl: `${BASE_URL}/gabriel_garcom.png`, 
       rarity: 'epico',
+    },
+    {
+      id: 'exodiacabeca',
+      name: 'Cabeça de Exodia',
+      imageUrl: `${BASE_URL}/exodiacabeca.jpg`,
+      rarity: 'lendario',
+    },
+    {
+      id: 'exodiamaodireita',
+      name: 'Braço Direito de Exodia',
+      imageUrl: `${BASE_URL}/exodiamaodireita.jpg`,
+      rarity: 'lendario',
+    },
+    {
+      id: 'exodiamaoesq',
+      name: 'Braço Esquerdo de Exodia',
+      imageUrl: `${BASE_URL}/exodiamaoesq.jpg`,
+      rarity: 'lendario',
+    },
+    {
+      id: 'exodiapernadireita',
+      name: 'Perna Direita de Exodia',
+      imageUrl: `${BASE_URL}/exodiapernadireita.jpg`,
+      rarity: 'lendario',
+    },
+    {
+      id: 'exodiapernaesq',
+      name: 'Perna Esquerda de Exodia',
+      imageUrl: `${BASE_URL}/exodiapernaesq.jpg`,
+      rarity: 'lendario',
     },
 ];
 
