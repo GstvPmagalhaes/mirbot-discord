@@ -174,66 +174,6 @@ export const cardsPool: Card[] = [
     rarity: 'lendario'
   },
   {
-    id: 'mano1',
-    name: 'mano1',
-    imageUrl: `${BASE_URL}/manodoplay.png`,
-    rarity: 'manos'
-  },
-  {
-    id: 'mano2',
-    name: 'mano2',
-    imageUrl: `${BASE_URL}/mano2.png`,
-    rarity: 'manos'
-  }, 
-  {
-    id: 'mano3',
-    name: 'mano3',
-    imageUrl: `${BASE_URL}/mano3.png`,
-    rarity: 'manos'
-  },  
-  {
-    id: 'mano4',
-    name: 'mano4',
-    imageUrl: `${BASE_URL}/mano4.png`,
-    rarity: 'manos'
-  },  
-  {
-    id: 'mano5',
-    name: 'mano5',
-    imageUrl: `${BASE_URL}/mano5.png`,
-    rarity: 'manos'
-  },  
-  {
-    id: 'mano6',
-    name: 'mano6',
-    imageUrl: `${BASE_URL}/mano6.png`,
-    rarity: 'manos'
-  },  
-  {
-    id: 'mano7',
-    name: 'mano7',
-    imageUrl: `${BASE_URL}/mano7.png`,
-    rarity: 'manos'
-  },  
-  {
-    id: 'mano8',
-    name: 'mano8',
-    imageUrl: `${BASE_URL}/mano8.png`,
-    rarity: 'manos'
-  },
-  {
-    id: 'mano9',
-    name: 'mano9',
-    imageUrl: `${BASE_URL}/mano9.png`,
-    rarity: 'manos'
-  },
-  {
-    id: 'mano10',
-    name: 'mano10',
-    imageUrl: `${BASE_URL}/mano10.png`,
-    rarity: 'manos'
-  },
-  {
     id: 'awp_asiimov',
     name: 'awp_asiimov',
     imageUrl: `${BASE_URL}/awp_asiimov.png`,
@@ -1014,9 +954,9 @@ export const cardsPool: Card[] = [
     rarity: 'comum'
   },
   {
-    id: 'creepypastagoku',
-    name: 'creepypastagoku',
-    imageUrl: `${BASE_URL}/creepypastagoku.png`, 
+    id: 'comunismo',
+    name: 'comunismo',
+    imageUrl: `${BASE_URL}/comunismo.jpg`, 
     rarity: 'daily'
   },
   {
@@ -1770,6 +1710,36 @@ export const cardsPool: Card[] = [
      rarity: 'raro'
     },
     {
+     id: 'exodiapernadireita',
+     name: 'EXODIA PERNA DIREITA',
+     imageUrl: `${BASE_URL}/exodiapernadireita.jpg`,
+     rarity: 'lendario'
+    },
+    {
+     id: 'exodiapernaesq',
+     name: 'EXODIA PERNA ESQUERDA',
+     imageUrl: `${BASE_URL}/exodiapernaesq.jpg`,
+     rarity: 'lendario'
+    },
+    {
+     id: 'exodiamaoesq',
+     name: 'EXODIA MÃO ESQUERDA',
+     imageUrl: `${BASE_URL}/exodiamaoesq.jpg`,
+     rarity: 'lendario'
+    },
+     {
+     id: 'exodiamaodireita',
+     name: 'EXODIA MÃO DIREITA',
+     imageUrl: `${BASE_URL}/exodiamaodireita.jpg`,
+     rarity: 'lendario'
+    },
+    {
+     id: 'exodiacabeca',
+     name: 'EXODIA CABEÇA',
+     imageUrl: `${BASE_URL}/exodiacabeca.jpg`,
+     rarity: 'lendario'
+    },
+    {
       id: 'luiz_gozado',
       name: 'quer leitinho???',
       imageUrl: `${BASE_URL}/luiz_gozado.png`, 
@@ -1853,13 +1823,13 @@ export const cardsPool: Card[] = [
       imageUrl: `${BASE_URL}/nesquik_luiz.png`, 
       rarity: 'epico',
     },
-      {
+    {
       id: 'jao_chapeu',
       name: 'jao de shapeu',
       imageUrl: `${BASE_URL}/jao_chapeu.png`, 
       rarity: 'raro',
     },
-      {
+    {
       id: 'jao_flo',
       name: 'jao flozinha',
       imageUrl: `${BASE_URL}/jao_flo.png`, 

@@ -182,8 +182,8 @@ function buildRepeatPage(userId: string, page = 1) {
   };
 }
 
-const DAILY_COMMON_CARD_ID = 'sucatapinto';
-const DAILY_JACKPOT_CARD_ID = 'creepypastagoku';
+const DAILY_COMMON_CARD_ID = 'vivemos';
+const DAILY_JACKPOT_CARD_ID = 'comunismo';
 
 function findCardById(cardId: string) {
   return cardsPool.find((c) => c.id === cardId);
@@ -643,7 +643,7 @@ async function handleMessage(message: Message<true>) {
   const last = dailyClaims.get(userId);
 
   if (last === today) {
-    await message.reply('📦 Você já abriu a caixa de hoje pae. Volta amanhã.');
+    await message.reply('📦 Você já abriu a caixa de hoje paizao. Volta amanhã.');
     return;
   }
 
