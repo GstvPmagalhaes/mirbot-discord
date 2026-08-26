@@ -6,7 +6,7 @@ type SharpOverlay = Parameters<ReturnType<typeof sharp>['composite']>[0][number]
 
 const CARD_WIDTH = 360;
 const CARD_HEIGHT = 600;
-const CARD_BORDER = 8;
+const CARD_BORDER = 10;
 const CARD_GAP = 24;
 const CARD_RADIUS = 18;
 

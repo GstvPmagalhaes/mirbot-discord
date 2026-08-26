@@ -835,9 +835,9 @@
       "rarity": "lendario"
     },
     {
-      "id": "exodiamaoesq",
+      "id": "exodiamaoesquerda",
       "name": "Braço Esquerdo de Exodia",
-      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/exodiamaoesq.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/exodiamaoesquerda.jpg",
       "rarity": "lendario"
     },
     {
@@ -959,6 +959,12 @@
       "name": "xereca",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/xerecarefri.png",
       "rarity": "comum"
+    },
+    {
+      "id": "cudogustavo",
+      "name": "MANO ONDE EU TO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/cudogustavo.png",
+      "rarity": "raro"
     }
   ],
   "470049195772870656": [
@@ -1591,6 +1597,12 @@
       "name": "MURILO COVID",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/murilin_dnv.png",
       "rarity": "raro"
+    },
+    {
+      "id": "naoseinadadepassaros",
+      "name": "essa é boa",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/naoseinadadepassaros.png",
+      "rarity": "comum"
     }
   ],
   "220362145659879432": [
@@ -1761,6 +1773,30 @@
       "name": "LORA LIGANO",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/lora.png",
       "rarity": "lendario"
+    },
+    {
+      "id": "sorria",
+      "name": "SURRIA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/sorria.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "apenasonline",
+      "name": "somente via whatsapp",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/apenasonline.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "cagueinapia",
+      "name": "NOTICIA CHATA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/cagueinapia.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "psicopata",
+      "name": "psicopata",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/psicopata.png",
+      "rarity": "comum"
     }
   ],
   "268028857637011457": [
@@ -2143,9 +2179,9 @@
       "rarity": "epico"
     },
     {
-      "id": "exodiamaoesq",
+      "id": "exodiamaoesquerda",
       "name": "Braço Esquerdo de Exodia",
-      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/exodiamaoesq.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/exodiamaoesquerda.jpg",
       "rarity": "lendario"
     },
     {
@@ -2711,6 +2747,12 @@
       "name": "MEU DEUS!!! :O",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/animaisagua.png",
       "rarity": "comum"
+    },
+    {
+      "id": "vegetacria",
+      "name": "vegeta cria",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/vegetacria.png",
+      "rarity": "epico"
     }
   ],
   "882997317689561108": [
@@ -2935,6 +2977,18 @@
       "name": "gaviao do J5",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gaviaoj5.png",
       "rarity": "epico"
+    },
+    {
+      "id": "luiz_aut",
+      "name": "luiz autisto",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/luiz_aut.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "nasus_level",
+      "name": "nasus_level",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nasus_level.png",
+      "rarity": "raro"
     }
   ],
   "217117377970569216": [
@@ -3003,6 +3057,12 @@
       "name": "PVF MANDA PFV PFV",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/manda_foto.png",
       "rarity": "raro"
+    },
+    {
+      "id": "gugu_demaua",
+      "name": "GUGU DE MAUA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_demaua.png",
+      "rarity": "comum"
     }
   ],
   "1018611048196096049": [

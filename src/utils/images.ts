@@ -1,8 +1,8 @@
 export const rarities = {
-  comum:    { label: 'Comum 🟩',    color: '#0a7c00' }, 
-  raro:     { label: 'Raro 🔷',     color: '#1900ff' },
-  epico:    { label: 'Épico 🟣',    color: '#7c1aa3' },
-  lendario: { label: 'Lendário ⭐', color: '#ff7300' },
+  comum:    { label: 'Comum 🟩',    color: '#15ff00' }, 
+  raro:     { label: 'Raro 🔷',     color: '#00ccff' },
+  epico:    { label: 'Épico 🟣',    color: '#c637ff' },
+  lendario: { label: 'Lendário ⭐', color: '#fcac00' },
   supremo:  { label: 'SUPREMO 👹', color: '#fd0000' },
   manos:    { label: 'MANOS 😶‍🌫️', color: '#ffffff' },
   daily:   { label: 'MITICO 👑', color: '#00fdf0' },
