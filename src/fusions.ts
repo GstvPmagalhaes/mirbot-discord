@@ -20,9 +20,9 @@ export const fusionRecipes: FusionRecipe[] = [
     componentIds: [
       'exodiacabeca',
       'exodiamaodireita',
-      'exodiamaoesq',
+      'exodiamaoesquerda',
       'exodiapernadireita',
-      'exodiapernaesq',
+      'exodiapernaesquerda',
     ],
     result: {
       id: 'exodia',

@@ -1,8 +1,8 @@
 export const rarities = {
-  comum:    { label: 'Comum 🟩',    color: '#10c400' }, 
-  raro:     { label: 'Raro 🔷',     color: '#0099ff' },
-  epico:    { label: 'Épico 🟣',    color: '#b700ff' },
-  lendario: { label: 'Lendário ⭐', color: '#ffdf5d' },
+  comum:    { label: 'Comum 🟩',    color: '#0a7c00' }, 
+  raro:     { label: 'Raro 🔷',     color: '#1900ff' },
+  epico:    { label: 'Épico 🟣',    color: '#7c1aa3' },
+  lendario: { label: 'Lendário ⭐', color: '#ff7300' },
   supremo:  { label: 'SUPREMO 👹', color: '#fd0000' },
   manos:    { label: 'MANOS 😶‍🌫️', color: '#ffffff' },
   daily:   { label: 'MITICO 👑', color: '#00fdf0' },
@@ -1710,36 +1710,6 @@ export const cardsPool: Card[] = [
      rarity: 'raro'
     },
     {
-     id: 'exodiapernadireita',
-     name: 'EXODIA PERNA DIREITA',
-     imageUrl: `${BASE_URL}/exodiapernadireita.jpg`,
-     rarity: 'lendario'
-    },
-    {
-     id: 'exodiapernaesq',
-     name: 'EXODIA PERNA ESQUERDA',
-     imageUrl: `${BASE_URL}/exodiapernaesq.jpg`,
-     rarity: 'lendario'
-    },
-    {
-     id: 'exodiamaoesq',
-     name: 'EXODIA MÃO ESQUERDA',
-     imageUrl: `${BASE_URL}/exodiamaoesq.jpg`,
-     rarity: 'lendario'
-    },
-     {
-     id: 'exodiamaodireita',
-     name: 'EXODIA MÃO DIREITA',
-     imageUrl: `${BASE_URL}/exodiamaodireita.jpg`,
-     rarity: 'lendario'
-    },
-    {
-     id: 'exodiacabeca',
-     name: 'EXODIA CABEÇA',
-     imageUrl: `${BASE_URL}/exodiacabeca.jpg`,
-     rarity: 'lendario'
-    },
-    {
       id: 'luiz_gozado',
       name: 'quer leitinho???',
       imageUrl: `${BASE_URL}/luiz_gozado.png`, 
@@ -1914,9 +1884,9 @@ export const cardsPool: Card[] = [
       rarity: 'lendario',
     },
     {
-      id: 'exodiamaoesq',
+      id: 'exodiamaoesquerda',
       name: 'Braço Esquerdo de Exodia',
-      imageUrl: `${BASE_URL}/exodiamaoesq.jpg`,
+      imageUrl: `${BASE_URL}/exodiamaoesquerda.jpg`,
       rarity: 'lendario',
     },
     {
@@ -1926,9 +1896,9 @@ export const cardsPool: Card[] = [
       rarity: 'lendario',
     },
     {
-      id: 'exodiapernaesq',
+      id: 'exodiapernaesquerda',
       name: 'Perna Esquerda de Exodia',
-      imageUrl: `${BASE_URL}/exodiapernaesq.jpg`,
+      imageUrl: `${BASE_URL}/exodiapernaesquerda.jpg`,
       rarity: 'lendario',
     },
 ];
