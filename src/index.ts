@@ -187,10 +187,10 @@ function buildRepeatPage(userId: string, page = 1) {
   };
 }
 
-const DAILY_COMMON_CARD_ID = 'vivemos';
-const DAILY_JACKPOT_CARD_ID = 'comunismo';
 const DAILY_EXODIA_CHANCE = 0.01;
 const DAILY_JACKPOT_CHANCE = 0.07;
+const DAILY_COMMON_CARD_ID = 'nesquik_luiz';
+const DAILY_JACKPOT_CARD_ID = 'papagaio';
 
 function findCardById(cardId: string) {
   return cardsPool.find((c) => c.id === cardId);
