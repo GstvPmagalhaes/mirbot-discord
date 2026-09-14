@@ -1952,22 +1952,10 @@ export const cardsPool: Card[] = [
       rarity: 'comum',
     },
     {
-      id: 'charmeleon',
-      name: 'CHARMELEON',
-      imageUrl: `${BASE_URL}/charmeleon.jpg`, 
-      rarity: 'epico',
-    },
-    {
       id: 'gastly',
       name: 'GASTLY',
       imageUrl: `${BASE_URL}/gastly.jpg`, 
       rarity: 'comum',
-    },
-    {
-      id: 'haunter',
-      name: 'HAUNTER',
-      imageUrl: `${BASE_URL}/haunter.jpg`, 
-      rarity: 'epico',
     },
     {
       id: 'leo_carnaval',
