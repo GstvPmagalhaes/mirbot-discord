@@ -954,9 +954,9 @@ export const cardsPool: Card[] = [
     rarity: 'comum'
   },
   {
-    id: 'comunismo',
-    name: 'comunismo',
-    imageUrl: `${BASE_URL}/comunismo.jpg`, 
+    id: 'papagaio',
+    name: 'PAPAGAIO DE BANDIDO',
+    imageUrl: `${BASE_URL}/papagaio.jpg`, 
     rarity: 'daily'
   },
   {
@@ -1851,7 +1851,91 @@ export const cardsPool: Card[] = [
       id: 'rafiki_uber',
       name: 'RAFIKI UBER',
       imageUrl: `${BASE_URL}/rafiki_uber.png`, 
-      rarity: 'raro',
+      rarity: 'supremo',
+    },
+    {
+      id: 'dragaodosolhosazuis',
+      name: 'Dragão dos Olhos Azuis',
+      imageUrl: `${BASE_URL}/dragaodosolhosazuis.jpg`, 
+      rarity: 'supremo',
+    },
+    {
+      id: 'dragaovermelho',
+      name: 'Dragão Vermelho',
+      imageUrl: `${BASE_URL}/dragaovermelho.jpg`, 
+      rarity: 'lendario',
+    },
+    {
+      id: 'darkmagician',
+      name: 'Dark Magician',
+      imageUrl: `${BASE_URL}/darkmagician.jpg`, 
+      rarity: 'lendario',
+    },
+    {
+      id: 'srbatata',
+      name: 'SR CABECA DE BATATA',
+      imageUrl: `${BASE_URL}/srbatata.jpg`, 
+      rarity: 'comum',
+    },
+    {
+      id: 'gumball',
+      name: 'AI PAINHO',
+      imageUrl: `${BASE_URL}/gumball.jpg`, 
+      rarity: 'comum',
+    },
+    {
+      id: 'indiancall',
+      name: 'ATENDE AI RSRS',
+      imageUrl: `${BASE_URL}/indiancall.jpg`, 
+      rarity: 'comum',
+    },
+    {
+      id: 'sherkbunda',
+      name: 'SHEREKUDA',
+      imageUrl: `${BASE_URL}/sherkbunda.jpg`, 
+      rarity: 'comum',
+    },
+    {
+      id: 'yeminion',
+      name: 'YEMINION',
+      imageUrl: `${BASE_URL}/yeminion.jpg`, 
+      rarity: 'comum',
+    },
+    {
+      id: 'shrock',
+      name: 'shrock',
+      imageUrl: `${BASE_URL}/shrock.jpg`, 
+      rarity: 'comum',
+    },
+    {
+      id: 'ocabavaiendoidar',
+      name: 'O CABA VAI ENDOIDAR',
+      imageUrl: `${BASE_URL}/ocabavaiendoidar.jpg`, 
+      rarity: 'comum',
+    },
+    {
+      id: 'charmander',
+      name: 'CHARMANDER',
+      imageUrl: `${BASE_URL}/charmander.jpg`, 
+      rarity: 'comum',
+    },
+    {
+      id: 'charmeleon',
+      name: 'CHARMELEON',
+      imageUrl: `${BASE_URL}/charmeleon.jpg`, 
+      rarity: 'epico',
+    },
+    {
+      id: 'gastly',
+      name: 'GASTLY',
+      imageUrl: `${BASE_URL}/gastly.jpg`, 
+      rarity: 'comum',
+    },
+    {
+      id: 'haunter',
+      name: 'HAUNTER',
+      imageUrl: `${BASE_URL}/haunter.jpg`, 
+      rarity: 'epico',
     },
     {
       id: 'leo_carnaval',
