@@ -1,4 +1,8 @@
-import { CARD_ASSET_BASE_URL } from './utils/images.js';
+import {
+  CARD_ASSET_BASE_URL,
+  CHARMELEON_CARD,
+  HAUNTER_CARD,
+} from './utils/images.js';
 import type { Card } from './utils/images.js';
 
 export interface FusionRecipe {
@@ -7,23 +11,26 @@ export interface FusionRecipe {
   componentIds: string[];
   result: Card;
   animationUrl: string;
+  completionText: string;
 }
 
 export type FusionResult =
   | { success: true; inventory: Card[]; card: Card }
   | { success: false; missingIds: string[] };
 
+export const EXODIA_PART_IDS = [
+  'exodiacabeca',
+  'exodiamaodireita',
+  'exodiamaoesquerda',
+  'exodiapernadireita',
+  'exodiapernaesquerda',
+] as const;
+
 export const fusionRecipes: FusionRecipe[] = [
   {
     id: 'exodia',
     name: 'Exodia',
-    componentIds: [
-      'exodiacabeca',
-      'exodiamaodireita',
-      'exodiamaoesquerda',
-      'exodiapernadireita',
-      'exodiapernaesquerda',
-    ],
+    componentIds: [...EXODIA_PART_IDS],
     result: {
       id: 'exodia',
       name: 'EXODIA, O PROIBIDO',
@@ -31,6 +38,49 @@ export const fusionRecipes: FusionRecipe[] = [
       rarity: 'mitico',
     },
     animationUrl: `${CARD_ASSET_BASE_URL}/exodia-fusao.gif`,
+    completionText: 'As cinco partes foram reunidas...',
+  },
+  {
+    id: 'charmander',
+    name: 'Charmander',
+    componentIds: ['charmander', 'charmander', 'charmander'],
+    result: CHARMELEON_CARD,
+    animationUrl: `${CARD_ASSET_BASE_URL}/charizardfusao.gif`,
+    completionText: 'Três Charmander se fundiram e evoluíram!',
+  },
+  {
+    id: 'charmeleon',
+    name: 'Charmeleon',
+    componentIds: ['charmeleon', 'charmeleon', 'charmeleon'],
+    result: {
+      id: 'charizard',
+      name: 'Charizard',
+      imageUrl: `${CARD_ASSET_BASE_URL}/charizard.gif`,
+      rarity: 'lendario',
+    },
+    animationUrl: `${CARD_ASSET_BASE_URL}/charizardfusao.gif`,
+    completionText: 'Três Charmeleon se fundiram e alcançaram a evolução final!',
+  },
+  {
+    id: 'gastly',
+    name: 'Gastly',
+    componentIds: ['gastly', 'gastly', 'gastly'],
+    result: HAUNTER_CARD,
+    animationUrl: `${CARD_ASSET_BASE_URL}/gengarfusao.gif`,
+    completionText: 'Três Gastly se fundiram e evoluíram!',
+  },
+  {
+    id: 'haunter',
+    name: 'Haunter',
+    componentIds: ['haunter', 'haunter', 'haunter'],
+    result: {
+      id: 'gengar',
+      name: 'Gengar',
+      imageUrl: `${CARD_ASSET_BASE_URL}/gengar.gif`,
+      rarity: 'lendario',
+    },
+    animationUrl: `${CARD_ASSET_BASE_URL}/gengarfusao.gif`,
+    completionText: 'Três Haunter se fundiram e alcançaram a evolução final!',
   },
 ];
 

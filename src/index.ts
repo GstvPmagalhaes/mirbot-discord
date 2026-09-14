@@ -6,7 +6,12 @@ import { promises as fs } from 'node:fs';
 import { getRarityMeta, drawUniqueCards, cardsPool  } from './utils/images.js';
 import type { Card } from './utils/images.js';
 import { renderDropImage } from './drop-image.js';
-import { findFusionRecipe, fuseCards, fusionRecipes } from './fusions.js';
+import {
+  EXODIA_PART_IDS,
+  findFusionRecipe,
+  fuseCards,
+  fusionRecipes,
+} from './fusions.js';
 import {
   Client,
   GatewayIntentBits,
@@ -184,6 +189,8 @@ function buildRepeatPage(userId: string, page = 1) {
 
 const DAILY_COMMON_CARD_ID = 'vivemos';
 const DAILY_JACKPOT_CARD_ID = 'comunismo';
+const DAILY_EXODIA_CHANCE = 0.01;
+const DAILY_JACKPOT_CHANCE = 0.07;
 
 function findCardById(cardId: string) {
   return cardsPool.find((c) => c.id === cardId);
@@ -649,15 +656,22 @@ async function handleMessage(message: Message<true>) {
 
   const commonCard = findCardById(DAILY_COMMON_CARD_ID);
   const jackpotCard = findCardById(DAILY_JACKPOT_CARD_ID);
+  const exodiaParts = EXODIA_PART_IDS.map((cardId) => findCardById(cardId));
 
-  if (!commonCard || !jackpotCard) {
+  if (!commonCard || !jackpotCard || exodiaParts.some((card) => !card)) {
     await message.reply('Erro: carta(s) da caixa diária não configurada(s).');
     return;
   }
 
-  // 1% jackpot
   const roll = Math.random();
-  const won = roll < 0.07 ? jackpotCard : commonCard;
+  let won: Card;
+  if (roll < DAILY_EXODIA_CHANCE) {
+    won = exodiaParts[Math.floor(Math.random() * exodiaParts.length)]!;
+  } else if (roll < DAILY_EXODIA_CHANCE + DAILY_JACKPOT_CHANCE) {
+    won = jackpotCard;
+  } else {
+    won = commonCard;
+  }
 
   // adiciona direto no inventário
   const inv = inventory.get(userId) || [];
@@ -726,6 +740,10 @@ async function handleMessage(message: Message<true>) {
       '⚡ **Fusões**\n' +
       '→ `!fusao exodia`\n' +
       'Consome as cinco partes e invoca o Exodia.\n\n' +
+      '→ `!fusao charmander` ou `!fusao charmeleon`\n' +
+      'Evolui três cópias pela linha do Charizard.\n\n' +
+      '→ `!fusao gastly` ou `!fusao haunter`\n' +
+      'Evolui três cópias pela linha do Gengar.\n\n' +
 
       '🔁 **Cartas Repetidas**\n' +
       '→ `!repetidas`\n' +
@@ -766,13 +784,18 @@ async function handleMessage(message: Message<true>) {
       const result = fuseCards(previousInventory, recipe);
 
       if (!result.success) {
-        const missingCards = result.missingIds.map((id) => {
+        const missingCounts = new Map<string, number>();
+        for (const id of result.missingIds) {
+          missingCounts.set(id, (missingCounts.get(id) || 0) + 1);
+        }
+
+        const missingCards = [...missingCounts].map(([id, count]) => {
           const card = findCardById(id);
-          return `• ${card?.name || id} [\`${id}\`]`;
+          return `• ${count}x ${card?.name || id} [\`${id}\`]`;
         });
 
         await message.reply(
-          `Você ainda não pode fazer a fusão **${recipe.name}**. Falta:\n${missingCards.join('\n')}`
+          `Você ainda não pode fazer a fusão **${recipe.name}**. Faltam:\n${missingCards.join('\n')}`
         );
         return;
       }
@@ -790,7 +813,7 @@ async function handleMessage(message: Message<true>) {
       const embed = new EmbedBuilder()
         .setTitle('🔥 FUSÃO CONCLUÍDA! 🔥')
         .setDescription(
-          `As cinco partes foram reunidas...\n\n<@${userId}> invocou **${result.card.name}**!`
+          `${recipe.completionText}\n\n<@${userId}> recebeu **${result.card.name}**!`
         )
         .setImage(recipe.animationUrl)
         .setColor('#00fdf0');
