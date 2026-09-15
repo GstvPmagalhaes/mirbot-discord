@@ -55,36 +55,34 @@ const BASE_URL = CARD_ASSET_BASE_URL;
 export const CHARMANDER_CARD: Card = {
   id: 'charmander',
   name: 'Charmander',
-  imageUrl: `${BASE_URL}/charmander.png`,
+  imageUrl: `${BASE_URL}/charmander.jpg`,
   rarity: 'comum',
 };
 
 export const CHARMELEON_CARD: Card = {
   id: 'charmeleon',
   name: 'Charmeleon',
-  imageUrl: `${BASE_URL}/charmeleon.png`,
+  imageUrl: `${BASE_URL}/charmeleon.jpg`,
   rarity: 'epico',
 };
 
 export const GASTLY_CARD: Card = {
   id: 'gastly',
   name: 'Gastly',
-  imageUrl: `${BASE_URL}/gastly.png`,
+  imageUrl: `${BASE_URL}/gastly.jpg`,
   rarity: 'comum',
 };
 
 export const HAUNTER_CARD: Card = {
   id: 'haunter',
   name: 'Haunter',
-  imageUrl: `${BASE_URL}/haunter.png`,
+  imageUrl: `${BASE_URL}/haunter.jpg`,
   rarity: 'epico',
 };
 
 export const cardsPool: Card[] = [
   CHARMANDER_CARD,
-  CHARMELEON_CARD,
   GASTLY_CARD,
-  HAUNTER_CARD,
   {
     id: 'howl',
     name: 'M4 HOWL',

@@ -2945,6 +2945,96 @@
       "name": "mamaco sargento 22 🫡",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/macaco_sargento.png",
       "rarity": "raro"
+    },
+    {
+      "id": "macaco_banza",
+      "name": "macaco banza",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/macaco_banza.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "hoje_oceu",
+      "name": "hoje_oceu",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/hoje_oceu.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "luqinha_god",
+      "name": "luqinha amem",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/luqinha_god.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "duascerveja",
+      "name": "QUEM NUNCA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/duascerveja.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "indiancall",
+      "name": "ATENDE AI RSRS",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/indiancall.jpg",
+      "rarity": "comum"
+    },
+    {
+      "id": "impostossa",
+      "name": "impostos SA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/impostossa.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "gugu_mtoemo",
+      "name": "voces nao me entendem",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gugu_mtoemo.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "perceba",
+      "name": "PERCEBA",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/perceba.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "essecaraaiehfoda",
+      "name": "esse cara ai eh foda",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/essecaraaiehfoda.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "obgd_khazix",
+      "name": "obgd_khazix",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/obgd_khazix.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "eutrosse",
+      "name": "EU TRUSSE",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/eutrosse.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "marca_nao_randola",
+      "name": "marca_nao_randola",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/marca_nao_randola.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "godzilla",
+      "name": "kkkkkkkkkkkkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/godzilla.png",
+      "rarity": "supremo"
+    },
+    {
+      "id": "nesquik_luiz",
+      "name": "NAPOLITANO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nesquik_luiz.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "maisvcehchato",
+      "name": "maisvcehchatoheinbot",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/maisvcehchato.png",
+      "rarity": "raro"
     }
   ],
   "470049195772870656": [
@@ -5323,6 +5413,42 @@
       "name": "DEMIURGO",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/demiurgo.png",
       "rarity": "lendario"
+    },
+    {
+      "id": "celso_machado",
+      "name": "OBRIGADO CELSO MACHADO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/celso_machado.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "sperma_fumante",
+      "name": "sperma_fumante",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/sperma_fumante.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "davy_jones",
+      "name": "DAVY JONES",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/davy_jones.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "aicemalo",
+      "name": "AI CE MALO RATON",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/aicemalo.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "rafaelanao_verao",
+      "name": "RAFAEL CURTINDO VERAO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/rafaelanao_verao.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "nesquik_luiz",
+      "name": "NAPOLITANO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nesquik_luiz.png",
+      "rarity": "epico"
     }
   ],
   "220362145659879432": [
@@ -6494,6 +6620,18 @@
       "id": "srbatata",
       "name": "SR CABECA DE BATATA",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/srbatata.jpg",
+      "rarity": "comum"
+    },
+    {
+      "id": "essa_mulekada",
+      "name": "essa_mulekada",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/essa_mulekada.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "hoje_estareinoplantao",
+      "name": "hoje estarei no plantas",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/hoje_estareinoplantao.png",
       "rarity": "comum"
     }
   ],
@@ -8609,6 +8747,72 @@
       "name": "vendo2penis",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/vendo2penis.png",
       "rarity": "comum"
+    },
+    {
+      "id": "dragaodosolhosazuis",
+      "name": "Dragão dos Olhos Azuis",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/dragaodosolhosazuis.jpg",
+      "rarity": "supremo"
+    },
+    {
+      "id": "estudano_patch",
+      "name": "estudano_patch",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/estudano_patch.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "gaviaoj5",
+      "name": "gaviao do J5",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gaviaoj5.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "curasenhor",
+      "name": "curasenhor",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/curasenhor.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "rafiki_uber",
+      "name": "RAFIKI UBER",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/rafiki_uber.png",
+      "rarity": "supremo"
+    },
+    {
+      "id": "shrock",
+      "name": "shrock",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/shrock.jpg",
+      "rarity": "comum"
+    },
+    {
+      "id": "thanos",
+      "name": "Thanos.",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/thanos.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "joao_doka",
+      "name": "sidoka muito branco",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/joao_doka.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "nesquik_luiz",
+      "name": "NAPOLITANO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nesquik_luiz.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "gol_quadrado",
+      "name": "GOL QUADRADO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/gol_quadrado.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "umhomem",
+      "name": "kkkkkkkkkkkkkkkk",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/umhomem.png",
+      "rarity": "epico"
     }
   ],
   "610525564461121557": [
@@ -9934,6 +10138,18 @@
       "id": "desonline",
       "name": "DESOLINE 🙄",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/desonline.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "cachorro_cururu",
+      "name": "CACHORRO CURURU",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/cachorro_cururu.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "nesquik_luiz",
+      "name": "NAPOLITANO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nesquik_luiz.png",
       "rarity": "epico"
     }
   ],
@@ -11341,6 +11557,42 @@
       "name": "trump",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/trump.png",
       "rarity": "comum"
+    },
+    {
+      "id": "murilin_dnv",
+      "name": "MURILO COVID",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/murilin_dnv.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "pm_fdp",
+      "name": "pm_fdp",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/pm_fdp.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "nesquik_luiz",
+      "name": "NAPOLITANO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nesquik_luiz.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "charmander",
+      "name": "CHARMANDER",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/charmander.jpg",
+      "rarity": "comum"
+    },
+    {
+      "id": "noget",
+      "name": "frita meu noget :(",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/noget.png",
+      "rarity": "raro"
+    },
+    {
+      "id": "hoje_estareinoplantao",
+      "name": "hoje estarei no plantas",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/hoje_estareinoplantao.png",
+      "rarity": "comum"
     }
   ],
   "217117377970569216": [
@@ -11901,6 +12153,30 @@
       "name": "evito cagar p nao ficar de barriga vazia",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/evitocagar.png",
       "rarity": "comum"
+    },
+    {
+      "id": "nesquik_luiz",
+      "name": "NAPOLITANO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nesquik_luiz.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "caminhao_calcinha",
+      "name": "CAMINHAO VIADO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/caminhao_calcinha.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "negaobonito",
+      "name": "aprenda luiz",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/negaobonito.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "nesquik_luiz",
+      "name": "NAPOLITANO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nesquik_luiz.png",
+      "rarity": "epico"
     }
   ],
   "1018611048196096049": [
