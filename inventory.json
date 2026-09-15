@@ -3035,6 +3035,18 @@
       "name": "maisvcehchatoheinbot",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/maisvcehchato.png",
       "rarity": "raro"
+    },
+    {
+      "id": "oquevcfariamcgui",
+      "name": "seja sincero",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/oquevcfariamcgui.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "ocabavaiendoidar",
+      "name": "O CABA VAI ENDOIDAR",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/ocabavaiendoidar.jpg",
+      "rarity": "comum"
     }
   ],
   "470049195772870656": [
