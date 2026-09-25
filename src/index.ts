@@ -3,7 +3,12 @@ import { MessageFlags } from 'discord.js';
 import type { Interaction, Message } from 'discord.js';
 import { fetch as undiciFetch } from 'undici';
 import { promises as fs } from 'node:fs';
-import { getRarityMeta, drawUniqueCards, cardsPool  } from './utils/images.js';
+import {
+  GUGUVERSARIO_CARD,
+  getRarityMeta,
+  drawUniqueCards,
+  cardsPool,
+} from './utils/images.js';
 import type { Card } from './utils/images.js';
 import { renderDropImage } from './drop-image.js';
 import {
@@ -189,11 +194,37 @@ function buildRepeatPage(userId: string, page = 1) {
 
 const DAILY_EXODIA_CHANCE = 0.01;
 const DAILY_JACKPOT_CHANCE = 0.07;
-const DAILY_COMMON_CARD_ID = 'nesquik_luiz';
 const DAILY_JACKPOT_CARD_ID = 'papagaio';
+const GUGUVERSARIO_EVENT_DATE = '2026-09-25';
+const GUGUVERSARIO_DROP_CHANCE = 0.20;
 
 function findCardById(cardId: string) {
   return cardsPool.find((c) => c.id === cardId);
+}
+
+function getDailyRegularCards() {
+  const specialCardIds = new Set([DAILY_JACKPOT_CARD_ID, ...EXODIA_PART_IDS]);
+
+  return cardsPool.filter(
+    (card) =>
+      !specialCardIds.has(card.id) &&
+      card.rarity !== 'daily' &&
+      card.rarity !== 'mitico'
+  );
+}
+
+function drawDropCards(quantity: number): Card[] {
+  const eventIsActive = getSaoPauloDateKey() === GUGUVERSARIO_EVENT_DATE;
+  const eventCardDropped = eventIsActive && Math.random() < GUGUVERSARIO_DROP_CHANCE;
+
+  if (!eventCardDropped || quantity < 1) {
+    return drawUniqueCards(quantity);
+  }
+
+  const cards = drawUniqueCards(quantity - 1);
+  const eventCardPosition = Math.floor(Math.random() * quantity);
+  cards.splice(eventCardPosition, 0, GUGUVERSARIO_CARD);
+  return cards;
 }
 
 async function loadDailyClaims() {
@@ -590,7 +621,7 @@ async function handleMessage(message: Message<true>) {
 
     try {
       // sorteia 3 cartas
-      const options = drawUniqueCards(3);
+      const options = drawDropCards(3);
       const sessionId = createSessionId();
 
       const { attachment } = await createDropImage(options);
@@ -654,11 +685,11 @@ async function handleMessage(message: Message<true>) {
     return;
   }
 
-  const commonCard = findCardById(DAILY_COMMON_CARD_ID);
   const jackpotCard = findCardById(DAILY_JACKPOT_CARD_ID);
   const exodiaParts = EXODIA_PART_IDS.map((cardId) => findCardById(cardId));
+  const regularCards = getDailyRegularCards();
 
-  if (!commonCard || !jackpotCard || exodiaParts.some((card) => !card)) {
+  if (!jackpotCard || exodiaParts.some((card) => !card) || regularCards.length === 0) {
     await message.reply('Erro: carta(s) da caixa diária não configurada(s).');
     return;
   }
@@ -670,7 +701,7 @@ async function handleMessage(message: Message<true>) {
   } else if (roll < DAILY_EXODIA_CHANCE + DAILY_JACKPOT_CHANCE) {
     won = jackpotCard;
   } else {
-    won = commonCard;
+    won = drawUniqueCards(1, regularCards)[0];
   }
 
   // adiciona direto no inventário
@@ -861,7 +892,15 @@ async function handleMessage(message: Message<true>) {
       .setColor(meta.color)
       .setFooter({ text: `Posição no inventário: ${position + 1} • ID: ${card.id}` });
 
-    await message.reply({ embeds: [embed] });
+    if (meta.borderStyle === 'holographic') {
+      const framedCard = await renderDropImage([card]);
+      const fileName = `${card.id}_${Date.now()}.png`;
+      const attachment = new AttachmentBuilder(framedCard, { name: fileName });
+      embed.setImage(`attachment://${fileName}`);
+      await message.reply({ embeds: [embed], files: [attachment] });
+    } else {
+      await message.reply({ embeds: [embed] });
+    }
     return;
   }
 }

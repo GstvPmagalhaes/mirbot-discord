@@ -1,3 +1,9 @@
+export interface RarityMeta {
+  label: string;
+  color: `#${string}`;
+  borderStyle?: 'holographic';
+}
+
 export const rarities = {
   comum:    { label: 'Comum 🟩',    color: '#15ff00' }, 
   raro:     { label: 'Raro 🔷',     color: '#00ccff' },
@@ -7,7 +13,12 @@ export const rarities = {
   manos:    { label: 'MANOS 😶‍🌫️', color: '#ffffff' },
   daily:   { label: 'MITICO 👑', color: '#00fdf0' },
   mitico:  { label: 'MÍTICO 👑', color: '#00fdf0' },
-} as const;
+  efemera: {
+    label: 'EFÊMERA ✦',
+    color: '#d946ef',
+    borderStyle: 'holographic',
+  },
+} as const satisfies Record<string, RarityMeta>;
 
 export type Rarity = keyof typeof rarities | '';
 
@@ -41,7 +52,7 @@ function pickRarityByWeight(): Rarity {
   return 'comum';
 }
 
-export function getRarityMeta(card: Card) {
+export function getRarityMeta(card: Card): RarityMeta {
   if (card.rarity in rarities) {
     return rarities[card.rarity as keyof typeof rarities];
   }
@@ -71,6 +82,13 @@ export const GASTLY_CARD: Card = {
   name: 'Gastly',
   imageUrl: `${BASE_URL}/gastly.jpg`,
   rarity: 'comum',
+};
+
+export const GUGUVERSARIO_CARD: Card = {
+  id: 'guguversario',
+  name: 'GUGU VERSARIO',
+  imageUrl: `${BASE_URL}/guguversario.png`,
+  rarity: 'efemera',
 };
 
 export const HAUNTER_CARD: Card = {
