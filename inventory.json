@@ -4355,6 +4355,12 @@
       "name": "Haunter",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/haunter.jpg",
       "rarity": "epico"
+    },
+    {
+      "id": "obeso",
+      "name": "OBESO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/obeso.png",
+      "rarity": "epico"
     }
   ],
   "470049195772870656": [
@@ -15379,6 +15385,18 @@
       "name": "sucatapinto",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/sucatapinto.png",
       "rarity": "comum"
+    },
+    {
+      "id": "nesquik_luiz",
+      "name": "NAPOLITANO",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/nesquik_luiz.png",
+      "rarity": "epico"
+    },
+    {
+      "id": "afelelicidade",
+      "name": "LUIZ CURTIU",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/afelelicidade.png",
+      "rarity": "raro"
     }
   ],
   "217117377970569216": [

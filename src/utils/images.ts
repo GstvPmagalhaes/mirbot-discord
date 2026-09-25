@@ -324,12 +324,6 @@ export const cardsPool: Card[] = [
     rarity: 'epico'
   },
   {
-    id: 'vegetacria',
-    name: 'vegeta cria',
-    imageUrl: `${BASE_URL}/vegetacria.png`,
-    rarity: 'epico'
-  },
-  {
     id: 'atentese',
     name: 'cuidado',
     imageUrl: `${BASE_URL}/atentese.png`,
