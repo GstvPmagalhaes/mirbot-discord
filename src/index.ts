@@ -268,8 +268,6 @@ function matchesInventoryFilter(card: Card, filter: string) {
     case 'epico':
     case 'lendario':
     case 'supremo':
-    case 'manos':
-      return card.rarity === filter;
     case 'mitico':
       return card.rarity === 'mitico' || card.rarity === 'daily';
     default:
@@ -295,7 +293,6 @@ function buildInventoryPage(userId: string, page = 1, filter = 'all') {
   const epicoCount    = rarityCounts.epico    || 0;
   const lendarioCount = rarityCounts.lendario || 0;
   const supremoCount = rarityCounts.supremo || 0;
-  const manosCount = rarityCounts.manos || 0;
   const miticoCount = (rarityCounts.daily || 0) + (rarityCounts.mitico || 0);
 
   // Preserva a posição original para o número continuar válido após o filtro.
@@ -323,9 +320,6 @@ function buildInventoryPage(userId: string, page = 1, filter = 'all') {
     case 'mitico':
       filterLabel = 'miticos';
       break;
-    case 'manos':
-      filterLabel = 'manos';
-      break;
     default:
       filter = 'all';
       break;
@@ -351,7 +345,7 @@ function buildInventoryPage(userId: string, page = 1, filter = 'all') {
 
   const header =
     `📦 **Suas cartas** (filtro: ${filterLabel}) ` +
-    `(**COMUM**: ${comumCount} | **RARO**: ${raroCount} | **EPICA**: ${epicoCount} | **LENDARIA**: ${lendarioCount}) | **SUPREMA**: ${supremoCount} | **MITICA**: ${miticoCount}  | **MANOS**: ${manosCount}  )` +
+    `(**COMUM**: ${comumCount} | **RARO**: ${raroCount} | **EPICA**: ${epicoCount} | **LENDARIA**: ${lendarioCount}) | **SUPREMA**: ${supremoCount} | **MITICA**: ${miticoCount}  )` +
     `— ${total} no total — pág. ${page}/${totalPages}`;
 
   const content =
@@ -744,7 +738,6 @@ async function handleMessage(message: Message<true>) {
       if (arg === 'epicos' || arg === 'epico') filter = 'epico';
       if (arg === 'lendarios' || arg === 'lendario') filter = 'lendario';
       if (arg === 'supremos' || arg === 'supremo') filter = 'supremo';
-      if (arg === 'mano' || arg === 'manos') filter = 'manos';
       if (arg === 'miticas' || arg === 'mitica' || arg === 'miticos' || arg === 'mitico') filter = 'mitico';
     }
 
