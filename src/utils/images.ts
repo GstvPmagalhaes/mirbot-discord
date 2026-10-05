@@ -1,7 +1,7 @@
 export interface RarityMeta {
   label: string;
   color: `#${string}`;
-  borderStyle?: 'holographic';
+  borderStyle?: 'holographic' | 'dark-ornate' | 'ivory-ornate';
 }
 
 export const rarities = {
@@ -10,6 +10,16 @@ export const rarities = {
   epico:    { label: 'Épico 🟣',    color: '#c637ff' },
   lendario: { label: 'Lendário ⭐', color: '#fcac00' },
   supremo:  { label: 'SUPREMO 👹', color: '#fd0000' },
+  times: {
+    label: 'TIMES ⚽',
+    color: '#080b16',
+    borderStyle: 'dark-ornate',
+  },
+  monkeys: {
+    label: 'MONKEYS 🐒',
+    color: '#f5f4ef',
+    borderStyle: 'ivory-ornate',
+  },
   daily:   { label: 'MITICO 👑', color: '#00fdf0' },
   mitico:  { label: 'MÍTICO 👑', color: '#00fdf0' },
   efemera: {
@@ -33,6 +43,8 @@ export const rarityWeights = {
   comum: 70,
   raro: 15,   
   epico: 10,
+  times: 2,
+  monkeys: 2,
   lendario: 1.5,
   supremo: 0.8
 };
@@ -146,6 +158,192 @@ export const cardsPool: Card[] = [
     name: 'heisenberg',
     imageUrl: `${BASE_URL}/heisenberg.png`,
     rarity: 'comum'
+  },
+  {
+    id: 'vaitomanoculucas',
+    name: 'vaitomanoculucas',
+    imageUrl: `${BASE_URL}/vaitomanoculucas.jpg`,
+    rarity: 'comum'
+  },
+  {
+    id: 'euolhandopromorro',
+    name: 'euolhandopromorro',
+    imageUrl: `${BASE_URL}/euolhandopromorro.jpg`,
+    rarity: 'comum'
+  },
+  {
+    id: 'igaodocapa',
+    name: 'igaodocapa',
+    imageUrl: `${BASE_URL}/igaodocapa.jpg`,
+    rarity: 'comum'
+  },
+  {
+    id: 'cruzeiro',
+    name: 'cruzeiro',
+    imageUrl: `${BASE_URL}/cruzeiro.jpg`,
+    rarity: 'times'
+  },
+  {
+    id: 'saopaulo',
+    name: 'saopaulo',
+    imageUrl: `${BASE_URL}/saopaulo.jpg`,
+    rarity: 'times'
+  },
+  {
+    id: 'palmeiras',
+    name: 'palmeiras',
+    imageUrl: `${BASE_URL}/palmeiras.jpg`,
+    rarity: 'times'
+  },
+  {
+    id: 'fluminense',
+    name: 'fluminense',
+    imageUrl: `${BASE_URL}/fluminense.jpg`,
+    rarity: 'times'
+  },
+  {
+    id: 'botafogo',
+    name: 'botafogo',
+    imageUrl: `${BASE_URL}/botafogo.jpg`,
+    rarity: 'times'
+  },
+  {
+    id: 'galo',
+    name: 'galo',
+    imageUrl: `${BASE_URL}/galo.jpg`,
+    rarity: 'times'
+  },
+  {
+    id: 'flamengo',
+    name: 'flamengo',
+    imageUrl: `${BASE_URL}/flamengo.jpg`,
+    rarity: 'times'
+  },
+  {
+    id: 'corinthians',
+    name: 'corinthians',
+    imageUrl: `${BASE_URL}/corinthians.jpg`,
+    rarity: 'times'
+  },
+  {
+    id: 'vasco',
+    name: 'vasco',
+    imageUrl: `${BASE_URL}/vasco.jpg`,
+    rarity: 'times'
+  },
+  {
+    id: 'putinha',
+    name: 'putinha...',
+    imageUrl: `${BASE_URL}/putinha.jpg`,
+    rarity: 'comum'
+  },
+  {
+    id: 'arrogant',
+    name: 'arrogant...',
+    imageUrl: `${BASE_URL}/arrogant.jpg`,
+    rarity: 'comum'
+  },
+  {
+    id: 'rato',
+    name: 'rato...',
+    imageUrl: `${BASE_URL}/rato.jpg`,
+    rarity: 'comum'
+  },
+  {
+    id: 'tungtung',
+    name: 'tungtung...',
+    imageUrl: `${BASE_URL}/tungtung.jpg`,
+    rarity: 'comum'
+  },
+  {
+    id: 'download',
+    name: 'download...',
+    imageUrl: `${BASE_URL}/download.jpg`,
+    rarity: 'comum'
+  },
+  {
+    id: 'charlekick',
+    name: 'charlekick...',
+    imageUrl: `${BASE_URL}/charlekick.jpg`,
+    rarity: 'comum'
+  },
+  {
+    id: 'lamumu',
+    name: 'lamumu...',
+    imageUrl: `${BASE_URL}/lamumu.jpg`,
+    rarity: 'comum'
+  },
+  {
+    id: 'bobsponjaobito',
+    name: 'bobsponjaobito...',
+    imageUrl: `${BASE_URL}/bobsponjaobito.jpg`,
+    rarity: 'supremo'
+  },
+  {
+    id: 'homeritachi',
+    name: 'homeritachi...',
+    imageUrl: `${BASE_URL}/homeritachi.jpg`,
+    rarity: 'supremo'
+  },
+  {
+    id: 'monkeys1',
+    name: 'monkeys1',
+    imageUrl: `${BASE_URL}/monkeys1.jpg`,
+    rarity: 'monkeys'
+  },
+  {
+    id: 'monkeys2',
+    name: 'monkeys2',
+    imageUrl: `${BASE_URL}/monkeys2.jpg`,
+    rarity: 'monkeys'
+  },
+  {
+    id: 'monkeys3',
+    name: 'monkeys3',
+    imageUrl: `${BASE_URL}/monkeys3.jpg`,
+    rarity: 'monkeys'
+  },
+  {
+    id: 'monkeys4',
+    name: 'monkeys4',
+    imageUrl: `${BASE_URL}/monkeys4.jpg`,
+    rarity: 'monkeys'
+  },
+  {
+    id: 'monkeys5',
+    name: 'monkeys5',
+    imageUrl: `${BASE_URL}/monkeys5.jpg`,
+    rarity: 'monkeys'
+  },
+  {
+    id: 'monkeys6',
+    name: 'monkeys6',
+    imageUrl: `${BASE_URL}/monkeys6.jpg`,
+    rarity: 'monkeys'
+  },
+  {
+    id: 'monkeys7',
+    name: 'monkeys7',
+    imageUrl: `${BASE_URL}/monkeys7.jpg`,
+    rarity: 'monkeys'
+  },
+  {
+    id: 'monkeys8',
+    name: 'monkeys8',
+    imageUrl: `${BASE_URL}/monkeys8.jpg`,
+    rarity: 'monkeys'
+  },
+  {
+    id: 'monkeys9',
+    name: 'monkeys9',
+    imageUrl: `${BASE_URL}/monkeys9.jpg`,
+    rarity: 'monkeys'
+  },
+  {
+    id: 'monkeys10',
+    name: 'monkeys10',
+    imageUrl: `${BASE_URL}/monkeys10.jpg`,
+    rarity: 'monkeys'
   },
   {
     id: 'analise',

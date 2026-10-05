@@ -16,6 +16,7 @@ import {
   findFusionRecipe,
   fuseCards,
   fusionRecipes,
+  getFusionAnimationUrl,
 } from './fusions.js';
 import {
   Client,
@@ -268,6 +269,9 @@ function matchesInventoryFilter(card: Card, filter: string) {
     case 'epico':
     case 'lendario':
     case 'supremo':
+    case 'times':
+    case 'monkeys':
+      return card.rarity === filter;
     case 'mitico':
       return card.rarity === 'mitico' || card.rarity === 'daily';
     default:
@@ -293,6 +297,8 @@ function buildInventoryPage(userId: string, page = 1, filter = 'all') {
   const epicoCount    = rarityCounts.epico    || 0;
   const lendarioCount = rarityCounts.lendario || 0;
   const supremoCount = rarityCounts.supremo || 0;
+  const timesCount = rarityCounts.times || 0;
+  const monkeysCount = rarityCounts.monkeys || 0;
   const miticoCount = (rarityCounts.daily || 0) + (rarityCounts.mitico || 0);
 
   // Preserva a posição original para o número continuar válido após o filtro.
@@ -320,6 +326,12 @@ function buildInventoryPage(userId: string, page = 1, filter = 'all') {
     case 'mitico':
       filterLabel = 'miticos';
       break;
+    case 'times':
+      filterLabel = 'times';
+      break;
+    case 'monkeys':
+      filterLabel = 'monkeys';
+      break;
     default:
       filter = 'all';
       break;
@@ -345,7 +357,9 @@ function buildInventoryPage(userId: string, page = 1, filter = 'all') {
 
   const header =
     `📦 **Suas cartas** (filtro: ${filterLabel}) ` +
-    `(**COMUM**: ${comumCount} | **RARO**: ${raroCount} | **EPICA**: ${epicoCount} | **LENDARIA**: ${lendarioCount}) | **SUPREMA**: ${supremoCount} | **MITICA**: ${miticoCount}  )` +
+    `(**COMUM**: ${comumCount} | **RARO**: ${raroCount} | **EPICA**: ${epicoCount} | ` +
+    `**LENDARIA**: ${lendarioCount} | **SUPREMA**: ${supremoCount} | **MITICA**: ${miticoCount} | ` +
+    `**TIMES**: ${timesCount} | **MONKEYS**: ${monkeysCount}) ` +
     `— ${total} no total — pág. ${page}/${totalPages}`;
 
   const content =
@@ -738,6 +752,8 @@ async function handleMessage(message: Message<true>) {
       if (arg === 'epicos' || arg === 'epico') filter = 'epico';
       if (arg === 'lendarios' || arg === 'lendario') filter = 'lendario';
       if (arg === 'supremos' || arg === 'supremo') filter = 'supremo';
+      if (arg === 'time' || arg === 'times') filter = 'times';
+      if (arg === 'monkey' || arg === 'monkeys') filter = 'monkeys';
       if (arg === 'miticas' || arg === 'mitica' || arg === 'miticos' || arg === 'mitico') filter = 'mitico';
     }
 
@@ -758,6 +774,9 @@ async function handleMessage(message: Message<true>) {
       'Mostra todas as suas cartas com paginação.\n\n' +
       '→ `!inv raros`, `!inv epicos`, `!inv lendarios`, `!inv comuns`\n' +
       'Filtra o inventário por raridade.\n\n' +
+
+      '→ `!inv monkeys` ou `!inv times`\n' +
+      'Mostra somente as cartas de uma das coleções do evento.\n\n' +
       '→ `!card <número ou id>`\n' +
       'Mostra uma carta usando a posição no inventário ou o ID dela.\n\n' +
 
@@ -768,6 +787,12 @@ async function handleMessage(message: Message<true>) {
       'Evolui três cópias pela linha do Charizard.\n\n' +
       '→ `!fusao gastly` ou `!fusao haunter`\n' +
       'Evolui três cópias pela linha do Gengar.\n\n' +
+
+      '→ `!fusao monkeys`\n' +
+      'Consome os dez Monkeys diferentes e entrega uma parte aleatória do Exodia.\n\n' +
+
+      '→ `!fusao times`\n' +
+      'Consome os nove Times diferentes e entrega Charmeleon ou Haunter.\n\n' +
 
       '🔁 **Cartas Repetidas**\n' +
       '→ `!repetidas`\n' +
@@ -839,7 +864,7 @@ async function handleMessage(message: Message<true>) {
         .setDescription(
           `${recipe.completionText}\n\n<@${userId}> recebeu **${result.card.name}**!`
         )
-        .setImage(recipe.animationUrl)
+        .setImage(getFusionAnimationUrl(recipe, result.card))
         .setColor('#00fdf0');
 
       await message.reply({ embeds: [embed] });
@@ -885,7 +910,7 @@ async function handleMessage(message: Message<true>) {
       .setColor(meta.color)
       .setFooter({ text: `Posição no inventário: ${position + 1} • ID: ${card.id}` });
 
-    if (meta.borderStyle === 'holographic') {
+    if (meta.borderStyle) {
       const framedCard = await renderDropImage([card]);
       const fileName = `${card.id}_${Date.now()}.png`;
       const attachment = new AttachmentBuilder(framedCard, { name: fileName });

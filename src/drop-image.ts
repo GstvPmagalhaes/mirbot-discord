@@ -1,6 +1,6 @@
 import sharp from 'sharp';
 import { getRarityMeta } from './utils/images.js';
-import type { Card } from './utils/images.js';
+import type { Card, RarityMeta } from './utils/images.js';
 
 type SharpOverlay = Parameters<ReturnType<typeof sharp>['composite']>[0][number];
 
@@ -10,6 +10,7 @@ const CARD_BORDER = 10;
 const CARD_GAP = 24;
 const CARD_RADIUS = 18;
 const HOLOGRAPHIC_BORDER = 16;
+const ORNATE_BORDER = 22;
 
 export async function renderDropImage(cards: Card[]): Promise<Buffer> {
   const panels = await Promise.all(cards.map(renderCardPanel));
@@ -36,9 +37,7 @@ export async function renderDropImage(cards: Card[]): Promise<Buffer> {
 
 async function renderCardPanel(card: Card): Promise<Buffer> {
   const meta = getRarityMeta(card);
-  const borderWidth = meta.borderStyle === 'holographic'
-    ? HOLOGRAPHIC_BORDER
-    : CARD_BORDER;
+  const borderWidth = getBorderWidth(meta.borderStyle);
   const innerWidth = CARD_WIDTH - borderWidth * 2;
   const innerHeight = CARD_HEIGHT - borderWidth * 2;
 
@@ -65,6 +64,10 @@ async function renderCardPanel(card: Card): Promise<Buffer> {
 
   if (meta.borderStyle === 'holographic') {
     overlays.push({ input: createHolographicFrame(borderWidth), left: 0, top: 0 });
+  } else if (meta.borderStyle === 'dark-ornate') {
+    overlays.push({ input: createDarkOrnateFrame(borderWidth), left: 0, top: 0 });
+  } else if (meta.borderStyle === 'ivory-ornate') {
+    overlays.push({ input: createIvoryOrnateFrame(borderWidth), left: 0, top: 0 });
   }
 
   overlays.push({ input: roundedMask, left: 0, top: 0, blend: 'dest-in' });
@@ -82,10 +85,32 @@ async function renderCardPanel(card: Card): Promise<Buffer> {
     .toBuffer();
 }
 
-function createHolographicFrame(borderWidth: number): Buffer {
+function getBorderWidth(borderStyle: RarityMeta['borderStyle']) {
+  if (borderStyle === 'holographic') return HOLOGRAPHIC_BORDER;
+  if (borderStyle === 'dark-ornate' || borderStyle === 'ivory-ornate') return ORNATE_BORDER;
+  return CARD_BORDER;
+}
+
+function createFrameMask(borderWidth: number) {
   const innerWidth = CARD_WIDTH - borderWidth * 2;
   const innerHeight = CARD_HEIGHT - borderWidth * 2;
   const innerRadius = Math.max(4, CARD_RADIUS - borderWidth / 2);
+
+  return {
+    innerWidth,
+    innerHeight,
+    innerRadius,
+    svg: `
+      <mask id="frame-mask">
+        <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" rx="${CARD_RADIUS}" fill="white" />
+        <rect x="${borderWidth}" y="${borderWidth}" width="${innerWidth}" height="${innerHeight}"
+          rx="${innerRadius}" fill="black" />
+      </mask>`,
+  };
+}
+
+function createHolographicFrame(borderWidth: number): Buffer {
+  const { innerWidth, innerHeight, innerRadius, svg: frameMask } = createFrameMask(borderWidth);
 
   return Buffer.from(`
     <svg width="${CARD_WIDTH}" height="${CARD_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
@@ -98,11 +123,7 @@ function createHolographicFrame(borderWidth: number): Buffer {
           <stop offset="78%" stop-color="#34d399" />
           <stop offset="100%" stop-color="#c084fc" />
         </linearGradient>
-        <mask id="frame-mask">
-          <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" rx="${CARD_RADIUS}" fill="white" />
-          <rect x="${borderWidth}" y="${borderWidth}" width="${innerWidth}" height="${innerHeight}"
-            rx="${innerRadius}" fill="black" />
-        </mask>
+        ${frameMask}
         <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="2.5" result="blur" />
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
@@ -126,6 +147,126 @@ function createHolographicFrame(borderWidth: number): Buffer {
       <rect x="${borderWidth - 1}" y="${borderWidth - 1}"
         width="${innerWidth + 2}" height="${innerHeight + 2}" rx="${innerRadius}"
         fill="none" stroke="white" stroke-opacity="0.72" stroke-width="2" />
+    </svg>
+  `);
+}
+
+function createDarkOrnateFrame(borderWidth: number): Buffer {
+  const { innerWidth, innerHeight, innerRadius, svg: frameMask } = createFrameMask(borderWidth);
+
+  return Buffer.from(`
+    <svg width="${CARD_WIDTH}" height="${CARD_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="obsidian" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#02040a" />
+          <stop offset="26%" stop-color="#17142a" />
+          <stop offset="52%" stop-color="#050814" />
+          <stop offset="78%" stop-color="#16102a" />
+          <stop offset="100%" stop-color="#02040a" />
+        </linearGradient>
+        <linearGradient id="dark-metal" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#6d481d" />
+          <stop offset="28%" stop-color="#e4bd64" />
+          <stop offset="54%" stop-color="#70481b" />
+          <stop offset="78%" stop-color="#f3dc8f" />
+          <stop offset="100%" stop-color="#765022" />
+        </linearGradient>
+        <filter id="blue-glow" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+        ${frameMask}
+      </defs>
+
+      <g mask="url(#frame-mask)">
+        <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#obsidian)" />
+        <path d="M0 62 L22 36 L22 10 L52 0 M308 0 L338 10 L338 36 L360 62
+          M0 538 L22 564 L22 590 L52 600 M308 600 L338 590 L338 564 L360 538"
+          fill="none" stroke="url(#dark-metal)" stroke-width="7" />
+        <path d="M0 105 Q18 94 22 68 M360 105 Q342 94 338 68
+          M0 495 Q18 506 22 532 M360 495 Q342 506 338 532"
+          fill="none" stroke="#4867a8" stroke-width="3" stroke-opacity="0.9" />
+        <path d="M116 8 L156 8 L180 20 L204 8 L244 8
+          M116 592 L156 592 L180 580 L204 592 L244 592"
+          fill="none" stroke="url(#dark-metal)" stroke-width="5" />
+        <g fill="#6387d8" stroke="#f1d486" stroke-width="2" filter="url(#blue-glow)">
+          <path d="M180 5 L188 13 L180 25 L172 13 Z" />
+          <path d="M180 575 L188 587 L180 595 L172 587 Z" />
+          <path d="M5 300 L13 289 L21 300 L13 311 Z" />
+          <path d="M339 300 L347 289 L355 300 L347 311 Z" />
+        </g>
+      </g>
+
+      <rect x="${borderWidth - 2}" y="${borderWidth - 2}"
+        width="${innerWidth + 4}" height="${innerHeight + 4}" rx="${innerRadius}"
+        fill="none" stroke="#090d1b" stroke-width="6" />
+      <rect x="${borderWidth - 1}" y="${borderWidth - 1}"
+        width="${innerWidth + 2}" height="${innerHeight + 2}" rx="${innerRadius}"
+        fill="none" stroke="url(#dark-metal)" stroke-width="2" />
+    </svg>
+  `);
+}
+
+function createIvoryOrnateFrame(borderWidth: number): Buffer {
+  const { innerWidth, innerHeight, innerRadius, svg: frameMask } = createFrameMask(borderWidth);
+
+  return Buffer.from(`
+    <svg width="${CARD_WIDTH}" height="${CARD_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ivory" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ffffff" />
+          <stop offset="24%" stop-color="#d9dde3" />
+          <stop offset="48%" stop-color="#fffdf3" />
+          <stop offset="72%" stop-color="#c8ced8" />
+          <stop offset="100%" stop-color="#ffffff" />
+        </linearGradient>
+        <linearGradient id="pearl-metal" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#8b7a54" />
+          <stop offset="30%" stop-color="#fff4c7" />
+          <stop offset="55%" stop-color="#9aa8bd" />
+          <stop offset="82%" stop-color="#ffffff" />
+          <stop offset="100%" stop-color="#a78b54" />
+        </linearGradient>
+        <filter id="pearl-glow" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="2.6" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+        ${frameMask}
+      </defs>
+
+      <g mask="url(#frame-mask)">
+        <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#ivory)" />
+        <path d="M0 70 Q20 58 22 28 Q42 24 58 0
+          M360 70 Q340 58 338 28 Q318 24 302 0
+          M0 530 Q20 542 22 572 Q42 576 58 600
+          M360 530 Q340 542 338 572 Q318 576 302 600"
+          fill="none" stroke="url(#pearl-metal)" stroke-width="7" />
+        <path d="M4 118 Q18 94 21 65 Q45 58 72 16
+          M356 118 Q342 94 339 65 Q315 58 288 16
+          M4 482 Q18 506 21 535 Q45 542 72 584
+          M356 482 Q342 506 339 535 Q315 542 288 584"
+          fill="none" stroke="#ffffff" stroke-width="3" stroke-opacity="0.95" />
+        <path d="M112 8 Q148 15 180 30 Q212 15 248 8
+          M112 592 Q148 585 180 570 Q212 585 248 592"
+          fill="none" stroke="url(#pearl-metal)" stroke-width="5" />
+        <g fill="#ffffff" stroke="#baa46c" stroke-width="2" filter="url(#pearl-glow)">
+          <path d="M180 5 L190 15 L180 29 L170 15 Z" />
+          <path d="M180 571 L190 585 L180 595 L170 585 Z" />
+          <circle cx="12" cy="300" r="7" />
+          <circle cx="348" cy="300" r="7" />
+        </g>
+        <g fill="#ffffff" opacity="0.9">
+          <circle cx="15" cy="145" r="2.2" /><circle cx="345" cy="145" r="2.2" />
+          <circle cx="15" cy="455" r="2.2" /><circle cx="345" cy="455" r="2.2" />
+        </g>
+      </g>
+
+      <rect x="${borderWidth - 2}" y="${borderWidth - 2}"
+        width="${innerWidth + 4}" height="${innerHeight + 4}" rx="${innerRadius}"
+        fill="none" stroke="#7e8795" stroke-width="5" />
+      <rect x="${borderWidth - 1}" y="${borderWidth - 1}"
+        width="${innerWidth + 2}" height="${innerHeight + 2}" rx="${innerRadius}"
+        fill="none" stroke="#fff9dd" stroke-width="2" />
     </svg>
   `);
 }
