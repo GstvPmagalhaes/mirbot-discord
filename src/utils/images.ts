@@ -10,12 +10,11 @@ export const rarities = {
   epico:    { label: 'Épico 🟣',    color: '#c637ff' },
   lendario: { label: 'Lendário ⭐', color: '#fcac00' },
   supremo:  { label: 'SUPREMO 👹', color: '#fd0000' },
-  manos:    { label: 'MANOS 😶‍🌫️', color: '#ffffff' },
   daily:   { label: 'MITICO 👑', color: '#00fdf0' },
   mitico:  { label: 'MÍTICO 👑', color: '#00fdf0' },
   efemera: {
     label: 'EFÊMERA ✦',
-    color: '#d946ef',
+    color: '#b6006a',
     borderStyle: 'holographic',
   },
 } as const satisfies Record<string, RarityMeta>;
@@ -34,7 +33,6 @@ export const rarityWeights = {
   comum: 70,
   raro: 15,   
   epico: 10,
-  manos: 7,
   lendario: 1.5,
   supremo: 0.8
 };
@@ -316,12 +314,6 @@ export const cardsPool: Card[] = [
     name: 'AMEM',
     imageUrl: `${BASE_URL}/nessedomingo.png`,
     rarity: 'comum'
-  },
-  {
-    id: 'vegetacria',
-    name: 'vegeta cria',
-    imageUrl: `${BASE_URL}/vegetacria.png`,
-    rarity: 'epico'
   },
   {
     id: 'vegetacria',
