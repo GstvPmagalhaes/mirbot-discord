@@ -1,15 +1,43 @@
 export interface RarityMeta {
   label: string;
   color: `#${string}`;
-  borderStyle?: 'holographic' | 'dark-ornate' | 'ivory-ornate';
+  borderStyle?:
+    | 'common-forged'
+    | 'rare-crystal'
+    | 'epic-arcane'
+    | 'legendary-regal'
+    | 'supreme-storm'
+    | 'holographic'
+    | 'dark-ornate'
+    | 'ivory-ornate';
 }
 
 export const rarities = {
-  comum:    { label: 'Comum 🟩',    color: '#15ff00' }, 
-  raro:     { label: 'Raro 🔷',     color: '#00ccff' },
-  epico:    { label: 'Épico 🟣',    color: '#c637ff' },
-  lendario: { label: 'Lendário ⭐', color: '#fcac00' },
-  supremo:  { label: 'SUPREMO 👹', color: '#fd0000' },
+  comum: {
+    label: 'Comum 🟩',
+    color: '#15ff00',
+    borderStyle: 'common-forged',
+  },
+  raro: {
+    label: 'Raro 🔷',
+    color: '#00ccff',
+    borderStyle: 'rare-crystal',
+  },
+  epico: {
+    label: 'Épico 🟣',
+    color: '#c637ff',
+    borderStyle: 'epic-arcane',
+  },
+  lendario: {
+    label: 'Lendário ⭐',
+    color: '#fcac00',
+    borderStyle: 'legendary-regal',
+  },
+  supremo: {
+    label: 'SUPREMO 👹',
+    color: '#fd0000',
+    borderStyle: 'supreme-storm',
+  },
   times: {
     label: 'TIMES ⚽',
     color: '#080b16',
