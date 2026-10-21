@@ -5,6 +5,7 @@ import { fetch as undiciFetch } from 'undici';
 import { promises as fs } from 'node:fs';
 import {
   GUGUVERSARIO_CARD,
+  RETIRED_MYTHIC_CARDS,
   getRarityMeta,
   drawUniqueCards,
   cardsPool,
@@ -138,6 +139,7 @@ const albumCatalog = (() => {
   const cards = new Map<string, Card>();
   const collectibleCards = [
     ...cardsPool,
+    ...RETIRED_MYTHIC_CARDS,
     GUGUVERSARIO_CARD,
     ...fusionRecipes.flatMap((recipe) => recipe.results),
   ];

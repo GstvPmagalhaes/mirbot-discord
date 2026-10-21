@@ -129,6 +129,29 @@ export const GUGUVERSARIO_CARD: Card = {
   rarity: 'efemera',
 };
 
+// Permanecem visíveis no álbum para quem as conquistou, mas ficam fora do
+// cardsPool para não poderem ser obtidas novamente em drops ou caixas.
+export const RETIRED_MYTHIC_CARDS: readonly Card[] = [
+  {
+    id: 'creepypastagoku',
+    name: 'creepypastagoku',
+    imageUrl: `${BASE_URL}/creepypastagoku.png`,
+    rarity: 'mitico',
+  },
+  {
+    id: 'comunismo',
+    name: 'comunismo',
+    imageUrl: `${BASE_URL}/comunismo.jpg`,
+    rarity: 'mitico',
+  },
+  {
+    id: 'papagaio',
+    name: 'PAPAGAIO DE BANDIDO',
+    imageUrl: `${BASE_URL}/papagaio.jpg`,
+    rarity: 'mitico',
+  },
+];
+
 export const HAUNTER_CARD: Card = {
   id: 'haunter',
   name: 'Haunter',
