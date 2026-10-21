@@ -514,13 +514,42 @@ async function buildAlbumPage(
   const filters = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(filterMenu);
 
   return {
-    content:
-      `📖 **Álbum de <@${userId}>** • ` +
-      `**${result.ownedUnique}/${result.totalUnique}** cartas únicas • ` +
-      `**${result.totalCopies}** cópias no inventário`,
-    files: [attachment],
-    components: [navigation, filters],
+    payload: {
+      content:
+        `📖 **Álbum de <@${userId}>** • ` +
+        `**${result.ownedUnique}/${result.totalUnique}** cartas únicas • ` +
+        `**${result.totalCopies}** cópias no inventário`,
+      files: [attachment],
+      components: [navigation, filters],
+    },
+    page: result.page,
+    totalPages: result.totalPages,
   };
+}
+
+function prewarmAdjacentAlbumPage(
+  userId: string,
+  displayName: string,
+  currentPage: number,
+  totalPages: number,
+  filter: AlbumFilter
+) {
+  const adjacentPage = currentPage < totalPages
+    ? currentPage + 1
+    : currentPage > 1
+      ? currentPage - 1
+      : null;
+  if (adjacentPage === null) return;
+
+  void renderAlbumPage({
+    catalog: albumCatalog,
+    inventory: inventory.get(userId) || [],
+    displayName,
+    page: adjacentPage,
+    filter,
+  }).catch((error) => {
+    console.error(`Erro ao pré-carregar a página ${adjacentPage} do álbum:`, error);
+  });
 }
 
 async function loadInventory() {
@@ -864,9 +893,15 @@ async function handleMessage(message: Message<true>) {
   if (content === '!album' || content.startsWith('!album ')) {
     const filter = parseAlbumFilter(raw.split(/\s+/)[1]);
     const displayName = message.member?.displayName || message.author.displayName;
-    await message.channel.sendTyping();
-    const payload = await buildAlbumPage(userId, displayName, 1, filter);
-    await message.reply(payload);
+    const loadingReply = await message.reply('📖 Montando seu álbum...');
+    try {
+      const album = await buildAlbumPage(userId, displayName, 1, filter);
+      await loadingReply.edit(album.payload);
+      prewarmAdjacentAlbumPage(userId, displayName, album.page, album.totalPages, filter);
+    } catch (error) {
+      console.error(`Erro ao montar álbum de ${userId}:`, error);
+      await loadingReply.edit('Não consegui montar seu álbum agora. Tenta novamente em instantes.');
+    }
     return;
   }
 
@@ -1090,8 +1125,15 @@ async function handleInteraction(interaction: Interaction) {
     const filter = selectedFilter && isAlbumFilter(selectedFilter) ? selectedFilter : 'all';
     await interaction.deferUpdate();
     try {
-      const payload = await buildAlbumPage(ownerId, interaction.user.displayName, 1, filter);
-      await interaction.editReply({ ...payload, attachments: [] });
+      const album = await buildAlbumPage(ownerId, interaction.user.displayName, 1, filter);
+      await interaction.editReply({ ...album.payload, attachments: [] });
+      prewarmAdjacentAlbumPage(
+        ownerId,
+        interaction.user.displayName,
+        album.page,
+        album.totalPages,
+        filter
+      );
     } catch (error) {
       console.error('Erro ao filtrar álbum:', error);
       await interaction.editReply({
@@ -1128,8 +1170,15 @@ async function handleInteraction(interaction: Interaction) {
 
     await interaction.deferUpdate();
     try {
-      const payload = await buildAlbumPage(ownerId, interaction.user.displayName, newPage, filter);
-      await interaction.editReply({ ...payload, attachments: [] });
+      const album = await buildAlbumPage(ownerId, interaction.user.displayName, newPage, filter);
+      await interaction.editReply({ ...album.payload, attachments: [] });
+      prewarmAdjacentAlbumPage(
+        ownerId,
+        interaction.user.displayName,
+        album.page,
+        album.totalPages,
+        filter
+      );
     } catch (error) {
       console.error('Erro ao trocar página do álbum:', error);
       await interaction.editReply({

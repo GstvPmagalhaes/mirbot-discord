@@ -68,7 +68,12 @@ const rarityOrder: Record<string, number> = {
   efemera: 8,
 };
 
+const MAX_CACHED_PAGES = 24;
+const MAX_CACHED_CARD_PANELS = 512;
 const renderedCardCache = new Map<string, Promise<Buffer>>();
+const renderedCardPanelCache = new Map<string, Promise<Buffer>>();
+const renderedPageCache = new Map<string, Promise<Buffer>>();
+let lockedCardCache: Promise<Buffer> | undefined;
 
 export function isAlbumFilter(value: string): value is AlbumFilter {
   return albumFilters.some((filter) => filter.value === value);
@@ -98,42 +103,58 @@ export async function renderAlbumPage(options: AlbumRenderOptions): Promise<Albu
   const totalCopies = options.inventory.length;
   const percentage = catalog.length === 0 ? 0 : Math.round((ownedUnique / catalog.length) * 100);
   const filterLabel = albumFilters.find((item) => item.value === filter)?.label ?? 'Todas as cartas';
+  const inventorySignature = [...inventoryCounts.entries()]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([cardId, count]) => `${cardId}:${count}`)
+    .join(',');
+  const pageCacheKey = [options.displayName, filter, page, catalog.length, inventorySignature].join('|');
 
-  const background = createBackground({
-    displayName: options.displayName,
-    ownedUnique,
-    totalUnique: catalog.length,
-    totalCopies,
-    percentage,
-    page,
-    totalPages,
-    filterLabel,
-    entries,
-  });
+  let rendering = getCachedValue(renderedPageCache, pageCacheKey);
+  if (!rendering) {
+    rendering = (async () => {
+      const background = createBackground({
+        displayName: options.displayName,
+        ownedUnique,
+        totalUnique: catalog.length,
+        totalCopies,
+        percentage,
+        page,
+        totalPages,
+        filterLabel,
+        entries,
+      });
 
-  const panels = await Promise.all(pageEntries.map(renderAlbumCard));
-  const composites: SharpOverlay[] = [{ input: background, left: 0, top: 0 }];
-  panels.forEach((input, index) => {
-    const column = index % 5;
-    const row = Math.floor(index / 5);
-    composites.push({
-      input,
-      left: GRID_LEFT + column * (CARD_WIDTH + CARD_GAP_X),
-      top: GRID_TOP + row * (CARD_HEIGHT + CARD_GAP_Y),
+      const panels = await Promise.all(pageEntries.map(renderAlbumCard));
+      const composites: SharpOverlay[] = [{ input: background, left: 0, top: 0 }];
+      panels.forEach((input, index) => {
+        const column = index % 5;
+        const row = Math.floor(index / 5);
+        composites.push({
+          input,
+          left: GRID_LEFT + column * (CARD_WIDTH + CARD_GAP_X),
+          top: GRID_TOP + row * (CARD_HEIGHT + CARD_GAP_Y),
+        });
+      });
+
+      return sharp({
+        create: {
+          width: CANVAS_WIDTH,
+          height: CANVAS_HEIGHT,
+          channels: 4,
+          background: '#070a14',
+        },
+      })
+        .composite(composites)
+        .png({ compressionLevel: 4, adaptiveFiltering: true })
+        .toBuffer();
+    })().catch((error) => {
+      renderedPageCache.delete(pageCacheKey);
+      throw error;
     });
-  });
+    setCachedValue(renderedPageCache, pageCacheKey, rendering, MAX_CACHED_PAGES);
+  }
 
-  const buffer = await sharp({
-    create: {
-      width: CANVAS_WIDTH,
-      height: CANVAS_HEIGHT,
-      channels: 4,
-      background: '#070a14',
-    },
-  })
-    .composite(composites)
-    .png({ compressionLevel: 9 })
-    .toBuffer();
+  const buffer = await rendering;
 
   return {
     buffer,
@@ -166,19 +187,29 @@ function countCards(cards: Card[]) {
 }
 
 async function renderAlbumCard(entry: AlbumEntry): Promise<Buffer> {
-  if (entry.count === 0) return createLockedCard();
+  if (entry.count === 0) {
+    lockedCardCache ??= createLockedCard();
+    return lockedCardCache;
+  }
 
-  try {
+  const panelCacheKey = `${entry.card.id}:${entry.count}`;
+  const cached = getCachedValue(renderedCardPanelCache, panelCacheKey);
+  if (cached) return cached;
+
+  const rendering = (async () => {
     const art = await getRenderedCard(entry.card);
     return composeOwnedCard(entry, art);
-  } catch (error) {
+  })().catch((error) => {
+    renderedCardPanelCache.delete(panelCacheKey);
     console.error(`Erro ao renderizar a carta ${entry.card.id} no álbum:`, error);
     return createUnavailableCard(entry);
-  }
+  });
+  setCachedValue(renderedCardPanelCache, panelCacheKey, rendering, MAX_CACHED_CARD_PANELS);
+  return rendering;
 }
 
 function getRenderedCard(card: Card) {
-  const cached = renderedCardCache.get(card.id);
+  const cached = getCachedValue(renderedCardCache, card.id);
   if (cached) return cached;
 
   const rendering = renderDropImage([card])
@@ -189,6 +220,23 @@ function getRenderedCard(card: Card) {
     });
   renderedCardCache.set(card.id, rendering);
   return rendering;
+}
+
+function getCachedValue<T>(cache: Map<string, T>, key: string) {
+  const value = cache.get(key);
+  if (value === undefined) return undefined;
+  cache.delete(key);
+  cache.set(key, value);
+  return value;
+}
+
+function setCachedValue<T>(cache: Map<string, T>, key: string, value: T, maximumSize: number) {
+  cache.set(key, value);
+  while (cache.size > maximumSize) {
+    const oldestKey = cache.keys().next().value;
+    if (oldestKey === undefined) break;
+    cache.delete(oldestKey);
+  }
 }
 
 async function composeOwnedCard(entry: AlbumEntry, art: Buffer) {
