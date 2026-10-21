@@ -12,6 +12,12 @@ import {
 import type { Card } from './utils/images.js';
 import { renderDropImage } from './drop-image.js';
 import {
+  albumFilters,
+  isAlbumFilter,
+  renderAlbumPage,
+} from './album-image.js';
+import type { AlbumFilter } from './album-image.js';
+import {
   EXODIA_PART_IDS,
   findFusionRecipe,
   fuseCards,
@@ -28,6 +34,8 @@ import {
   ButtonStyle,
   AttachmentBuilder,
   EmbedBuilder,
+  StringSelectMenuBuilder,
+  StringSelectMenuOptionBuilder,
 } from 'discord.js';
 
 process.on('unhandledRejection', (reason) => {
@@ -125,6 +133,17 @@ const PAGE_SIZE = 10;
 let inventory = new Map<string, Card[]>();
 const sessions = new Map<string, DropSession>();
 const activeFusionUsers = new Set<string>();
+
+const albumCatalog = (() => {
+  const cards = new Map<string, Card>();
+  const collectibleCards = [
+    ...cardsPool,
+    GUGUVERSARIO_CARD,
+    ...fusionRecipes.flatMap((recipe) => recipe.results),
+  ];
+  for (const card of collectibleCards) cards.set(card.id, card);
+  return [...cards.values()];
+})();
 
 function buildRepeatPage(userId: string, page = 1) {
   const userInventory = inventory.get(userId) || [];
@@ -392,6 +411,115 @@ function buildInventoryPage(userId: string, page = 1, filter = 'all') {
   return {
     content,
     components: [row],
+  };
+}
+
+function parseAlbumFilter(value?: string): AlbumFilter {
+  const normalized = value
+    ?.trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '') ?? 'all';
+  const aliases: Record<string, AlbumFilter> = {
+    todas: 'all',
+    todos: 'all',
+    comum: 'comum',
+    comuns: 'comum',
+    rara: 'raro',
+    raras: 'raro',
+    raro: 'raro',
+    raros: 'raro',
+    epica: 'epico',
+    epicas: 'epico',
+    epico: 'epico',
+    epicos: 'epico',
+    lendaria: 'lendario',
+    lendarias: 'lendario',
+    lendario: 'lendario',
+    lendarios: 'lendario',
+    suprema: 'supremo',
+    supremas: 'supremo',
+    supremo: 'supremo',
+    supremos: 'supremo',
+    mitica: 'mitico',
+    miticas: 'mitico',
+    mitico: 'mitico',
+    miticos: 'mitico',
+    time: 'times',
+    times: 'times',
+    monkey: 'monkeys',
+    monkeys: 'monkeys',
+    efemera: 'efemera',
+    efemeras: 'efemera',
+  };
+  return aliases[normalized] ?? (isAlbumFilter(normalized) ? normalized : 'all');
+}
+
+async function buildAlbumPage(
+  userId: string,
+  displayName: string,
+  page = 1,
+  filter: AlbumFilter = 'all'
+) {
+  const result = await renderAlbumPage({
+    catalog: albumCatalog,
+    inventory: inventory.get(userId) || [],
+    displayName,
+    page,
+    filter,
+  });
+  const fileName = `album_${userId}_${Date.now()}.png`;
+  const attachment = new AttachmentBuilder(result.buffer, { name: fileName });
+
+  const navigation = new ActionRowBuilder<ButtonBuilder>().addComponents(
+    new ButtonBuilder()
+      .setCustomId(`album:${userId}:${result.page}:${filter}:first`)
+      .setLabel('≪')
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(result.page === 1),
+    new ButtonBuilder()
+      .setCustomId(`album:${userId}:${result.page}:${filter}:prev`)
+      .setLabel('‹')
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(result.page === 1),
+    new ButtonBuilder()
+      .setCustomId(`album:${userId}:${result.page}:${filter}:page`)
+      .setLabel(`${result.page}/${result.totalPages}`)
+      .setStyle(ButtonStyle.Primary)
+      .setDisabled(true),
+    new ButtonBuilder()
+      .setCustomId(`album:${userId}:${result.page}:${filter}:next`)
+      .setLabel('›')
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(result.page === result.totalPages),
+    new ButtonBuilder()
+      .setCustomId(`album:${userId}:${result.page}:${filter}:last`)
+      .setLabel('≫')
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(result.page === result.totalPages)
+  );
+
+  const filterMenu = new StringSelectMenuBuilder()
+    .setCustomId(`album-filter:${userId}`)
+    .setPlaceholder('Filtrar o álbum por raridade')
+    .addOptions(
+      albumFilters.map((item) =>
+        new StringSelectMenuOptionBuilder()
+          .setLabel(item.label)
+          .setValue(item.value)
+          .setEmoji(item.emoji)
+          .setDefault(item.value === filter)
+      )
+    );
+  const filters = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(filterMenu);
+
+  return {
+    content:
+      `📖 **Álbum de <@${userId}>** • ` +
+      `**${result.ownedUnique}/${result.totalUnique}** cartas únicas • ` +
+      `**${result.totalCopies}** cópias no inventário`,
+    files: [attachment],
+    components: [navigation, filters],
   };
 }
 
@@ -732,6 +860,16 @@ async function handleMessage(message: Message<true>) {
   return;
 }
 
+  // ---- COMANDO ÁLBUM ----
+  if (content === '!album' || content.startsWith('!album ')) {
+    const filter = parseAlbumFilter(raw.split(/\s+/)[1]);
+    const displayName = message.member?.displayName || message.author.displayName;
+    await message.channel.sendTyping();
+    const payload = await buildAlbumPage(userId, displayName, 1, filter);
+    await message.reply(payload);
+    return;
+  }
+
   // ---- COMANDO INVENTÁRIO ----
     if (content.startsWith('!inv')) {
     const userInventory = inventory.get(userId) || [];
@@ -777,6 +915,11 @@ async function handleMessage(message: Message<true>) {
 
       '→ `!inv monkeys` ou `!inv times`\n' +
       'Mostra somente as cartas de uma das coleções do evento.\n\n' +
+      '📖 **Álbum**\n' +
+      '→ `!album`\n' +
+      'Mostra sua coleção visual, incluindo as cartas que ainda faltam.\n\n' +
+      '→ `!album raras`, `!album epicas`, `!album lendarias`\n' +
+      'Abre o álbum já filtrado pela raridade.\n\n' +
       '→ `!card <número ou id>`\n' +
       'Mostra uma carta usando a posição no inventário ou o ID dela.\n\n' +
 
@@ -933,10 +1076,70 @@ client.on(Events.MessageCreate, (message) => {
 
 // ---- HANDLER DOS BOTÕES ----
 async function handleInteraction(interaction: Interaction) {
+  if (interaction.isStringSelectMenu() && interaction.customId.startsWith('album-filter:')) {
+    const [, ownerId] = interaction.customId.split(':');
+    if (interaction.user.id !== ownerId) {
+      await interaction.reply({
+        content: 'Esse álbum não é seu, paizão 😅',
+        flags: MessageFlags.Ephemeral,
+      });
+      return;
+    }
+
+    const selectedFilter = interaction.values[0];
+    const filter = selectedFilter && isAlbumFilter(selectedFilter) ? selectedFilter : 'all';
+    await interaction.deferUpdate();
+    try {
+      const payload = await buildAlbumPage(ownerId, interaction.user.displayName, 1, filter);
+      await interaction.editReply({ ...payload, attachments: [] });
+    } catch (error) {
+      console.error('Erro ao filtrar álbum:', error);
+      await interaction.editReply({
+        content: 'Não consegui montar essa página do álbum agora. Tenta novamente em instantes.',
+        components: [],
+        attachments: [],
+      });
+    }
+    return;
+  }
+
   if (!interaction.isButton()) return;
 
   const parts = interaction.customId.split(':');
   const prefix = parts[0];
+
+  if (prefix === 'album') {
+    const [, ownerId, pageStr, filterValue, action] = parts;
+    if (interaction.user.id !== ownerId) {
+      await interaction.reply({
+        content: 'Esse álbum não é seu, paizão 😅',
+        flags: MessageFlags.Ephemeral,
+      });
+      return;
+    }
+
+    const currentPage = Number.parseInt(pageStr, 10) || 1;
+    const filter = isAlbumFilter(filterValue) ? filterValue : 'all';
+    let newPage = currentPage;
+    if (action === 'first') newPage = 1;
+    if (action === 'prev') newPage = currentPage - 1;
+    if (action === 'next') newPage = currentPage + 1;
+    if (action === 'last') newPage = Number.MAX_SAFE_INTEGER;
+
+    await interaction.deferUpdate();
+    try {
+      const payload = await buildAlbumPage(ownerId, interaction.user.displayName, newPage, filter);
+      await interaction.editReply({ ...payload, attachments: [] });
+    } catch (error) {
+      console.error('Erro ao trocar página do álbum:', error);
+      await interaction.editReply({
+        content: 'Não consegui montar essa página do álbum agora. Tenta novamente em instantes.',
+        components: [],
+        attachments: [],
+      });
+    }
+    return;
+  }
 
   if (prefix === 'repeat') {
   const [, ownerId, pageStr, action] = parts;
