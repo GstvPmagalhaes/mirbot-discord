@@ -6107,6 +6107,12 @@
       "name": "monkeys8",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/monkeys8.jpg",
       "rarity": "monkeys"
+    },
+    {
+      "id": "pomboselfie",
+      "name": "POMBO SELFIE",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/pomboselfie.jpg",
+      "rarity": "raro"
     }
   ],
   "470049195772870656": [
@@ -15892,6 +15898,12 @@
       "id": "desista",
       "name": "MORRA",
       "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/desista.png",
+      "rarity": "comum"
+    },
+    {
+      "id": "obgd_khazix",
+      "name": "obgd_khazix",
+      "imageUrl": "https://raw.githubusercontent.com/GstvPmagalhaes/mirbot-cards/refs/heads/main/cards/obgd_khazix.png",
       "rarity": "comum"
     }
   ],
