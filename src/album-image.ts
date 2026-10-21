@@ -17,7 +17,7 @@ export const albumFilters = [
   { value: 'mitico', label: 'Míticas', emoji: '👑' },
   { value: 'times', label: 'Times', emoji: '⚽' },
   { value: 'monkeys', label: 'Monkeys', emoji: '🐒' },
-  { value: 'efemera', label: 'Efêmeras', emoji: '✦' },
+  { value: 'efemera', label: 'Efêmeras', emoji: '💫' },
 ] as const;
 
 export type AlbumFilter = (typeof albumFilters)[number]['value'];
