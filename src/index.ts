@@ -212,9 +212,9 @@ function buildRepeatPage(userId: string, page = 1) {
   };
 }
 
-const DAILY_EXODIA_CHANCE = 0.01;
+const DAILY_EXODIA_CHANCE = 0.02;
 const DAILY_JACKPOT_CHANCE = 0.07;
-const DAILY_JACKPOT_CARD_ID = 'papagaio';
+const DAILY_JACKPOT_CARD_ID = 'vegetaminion';
 const GUGUVERSARIO_EVENT_DATE = '2026-09-25';
 const GUGUVERSARIO_DROP_CHANCE = 0.20;
 
@@ -859,10 +859,18 @@ async function handleMessage(message: Message<true>) {
     return;
   }
 
+  const inv = inventory.get(userId) || [];
+  const ownedCardIds = new Set(inv.map((card) => card.id));
+  const missingExodiaParts = exodiaParts.filter(
+    (card): card is Card => card !== undefined && !ownedCardIds.has(card.id)
+  );
+
   const roll = Math.random();
   let won: Card;
   if (roll < DAILY_EXODIA_CHANCE) {
-    won = exodiaParts[Math.floor(Math.random() * exodiaParts.length)]!;
+    won = missingExodiaParts.length > 0
+      ? missingExodiaParts[Math.floor(Math.random() * missingExodiaParts.length)]!
+      : drawUniqueCards(1, regularCards)[0];
   } else if (roll < DAILY_EXODIA_CHANCE + DAILY_JACKPOT_CHANCE) {
     won = jackpotCard;
   } else {
@@ -870,7 +878,6 @@ async function handleMessage(message: Message<true>) {
   }
 
   // adiciona direto no inventário
-  const inv = inventory.get(userId) || [];
   inv.push(won);
   inventory.set(userId, inv);
 
